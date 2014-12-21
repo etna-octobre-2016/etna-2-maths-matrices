@@ -1,0 +1,7 @@
+{
+    "scripts":{
+        "dev"       : "npm run clean && npm run styles",
+        "clean"     : "rm -rf dist .sass-cache",
+        "styles"    : "sass --scss --watch src/sass:dist/css"
+    }
+}
