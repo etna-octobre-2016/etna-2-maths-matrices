@@ -1,0 +1,9 @@
+{
+  "name": "etna-maths-matrix-project",
+  "version": "0.1",
+  "private": true,
+  "devDependencies": {
+    "polymer": "~0.5.2",
+    "bourbon": "~4.0.2"
+  }
+}

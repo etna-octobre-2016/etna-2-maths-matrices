@@ -1,5 +1,11 @@
-@import "components/button";
+/* Bourbon includes */
+@import "../../vendors/bourbon/dist/bourbon";
 
-body{
-  background: #555;
+my-element{
+    @include transition(all 0.4s ease-in-out);
+    background: pink;
+
+    &:hover{
+        background: black;
+    }
 }

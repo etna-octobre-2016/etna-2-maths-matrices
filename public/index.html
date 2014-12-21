@@ -3,9 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>Projet Matrices - Mathématiques</title>
-  <link rel="stylesheet" href="build/css/main.css">
+  <link rel="stylesheet" href="dist/css/main.css">
+  <link rel="import" href="../vendors/polymer/polymer.html">
 </head>
 <body>
-    <button class="button">Hello world</button>
+    <polymer-element name="my-element" noscript>
+        <template>
+            <span>Hello from <b>my-element</b>. This is my Shadow DOM.</span>
+            Welcome to <content></content>
+        </template>
+    </polymer-element>
+    <my-element>Paradise</my-element>
 </body>
 </html>
