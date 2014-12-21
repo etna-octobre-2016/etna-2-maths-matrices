@@ -3,8 +3,7 @@
   display: inline-block; }
 
 .radio__label {
-  display: inline-block;
-  vertical-align: middle; }
+  display: block; }
   .radio__label:hover {
     cursor: pointer; }
 
@@ -12,9 +11,9 @@
   color: #25282A;
   display: inline-block;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.9rem;
-  line-height: 20px;
-  text-transform: uppercase; }
+  font-size: 1rem;
+  text-transform: uppercase;
+  vertical-align: middle; }
 
 .radio__button {
   background-color: white;
@@ -24,6 +23,8 @@
   display: inline-block;
   height: 14px;
   margin-left: 5px;
+  position: relative;
+  top: -2px;
   transition: background-color 0.2s ease-in-out;
   vertical-align: middle;
   width: 14px; }
