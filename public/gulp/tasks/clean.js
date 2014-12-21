@@ -5,7 +5,7 @@ gulp.task('clean', function(){
 
     del(['dist'], function(err, deletedFiles){
 
-        if (deletedFiles.length > 0)
+        if (typeof deletedFiles.length === "number" && deletedFiles.length > 0)
         {
             var i;
             for (i = 0; i < deletedFiles.length; i++)

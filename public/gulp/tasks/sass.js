@@ -1,6 +1,6 @@
 var gulp        = require('gulp'),
     sass        = require('gulp-sass'),
-    sassConfig  = { errLogToConsole: true };
+    sassConfig  = { errLogToConsole: true, outputStyle: 'compressed' };
 
 gulp.task('sass', ['sass_main', 'sass_components']);
 
