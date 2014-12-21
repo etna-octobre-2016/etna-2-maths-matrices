@@ -1,6 +1,17 @@
-var gulp = require('gulp');
+var gulp    = require('gulp'),
+    del     = require('del');
 
 gulp.task('clean', function(){
 
-    console.log("hello world from clean task");
+    del(['dist'], function(err, deletedFiles){
+
+        if (deletedFiles.length > 0)
+        {
+            var i;
+            for (i = 0; i < deletedFiles.length; i++)
+            {
+                console.log('Deleted:', deletedFiles[i]);
+            }
+        }
+    });
 });
