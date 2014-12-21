@@ -1,7 +1,15 @@
 {
+    "devDependencies": {
+        "bower": "1.3.12",
+        "gulp": "3.8.10",
+        "node-sass": "1.2.3"
+    },
     "scripts":{
-        "dev"       : "npm run clean && npm run styles",
-        "clean"     : "rm -rf dist .sass-cache",
-        "styles"    : "sass --scss --watch src/sass:dist/css"
+        "clean"         : "rm -rf node_modules vendors",
+        "install_bower" : "npm install -g bower@1.3.12",
+        "install_gulp"  : "npm install -g gulp@3.8.10",
+
+        "preinstall"    : "npm run install_bower && npm run install_gulp",
+        "postinstall"   : "bower install"
     }
 }
