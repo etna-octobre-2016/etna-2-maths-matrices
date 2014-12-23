@@ -3,5 +3,11 @@ var gulp    = require('gulp'),
 
 gulp.task('clean', function(){
 
-    del(['dist'], {force: true});
+    var paths = [
+        'src/css',
+        'src/html/components/**/*.css',
+        'src/js/app.js'
+    ];
+    
+    del(paths, {force: true});
 });

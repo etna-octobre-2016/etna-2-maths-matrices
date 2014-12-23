@@ -18,6 +18,6 @@ gulp.task('sass_main', function(){
     return gulp
         .src(['./src/sass/*.scss'])
         .pipe(sass(sassConfig))
-        .pipe(gulp.dest('dist/css'))
+        .pipe(gulp.dest('./src/css'))
         .pipe(global.browserSyncReload({ stream:true }));
 });
