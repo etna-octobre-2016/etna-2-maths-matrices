@@ -9,7 +9,8 @@ gulp.task('sass_components', function(){
     return gulp
         .src(['./src/components/**/*.scss'], {base: '.'})
         .pipe(sass(sassConfig))
-        .pipe(gulp.dest('.'));
+        .pipe(gulp.dest('.'))
+        .pipe(global.browserSyncReload({ stream:true }));
 });
 
 gulp.task('sass_main', function(){
@@ -17,5 +18,6 @@ gulp.task('sass_main', function(){
     return gulp
         .src(['./src/sass/*.scss'])
         .pipe(sass(sassConfig))
-        .pipe(gulp.dest('dist/css'));
+        .pipe(gulp.dest('dist/css'))
+        .pipe(global.browserSyncReload({ stream:true }));
 });

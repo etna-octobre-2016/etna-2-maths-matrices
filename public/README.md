@@ -16,6 +16,7 @@ En voici la liste :
 - Gulp
 - Bower
 - Browser Sync
+- Browserify
 
 # Utilisation
 

@@ -6,16 +6,29 @@
     <link rel="stylesheet" href="dist/css/main.css">
 
     <!-- Dependencies -->
-    <link rel="import" href="../vendors/polymer/polymer.html">
-    <script src="../vendors/webcomponentsjs/webcomponents.min.js"></script>
+    <!-- <link rel="import" href="../vendors/polymer/polymer.html">
+    <script src="../vendors/webcomponentsjs/webcomponents.min.js"></script> -->
 
     <!-- Custom components -->
     <link rel="import" href="src/components/radio/radio.html">
-    
-    <script src="dist/js/index.js"></script>
+
 </head>
 <body>
-    <component-radio name="operation" value="sum">Somme</component-radio>
-    <component-radio name="operation" value="product">Produit</component-radio>
+    <main id="main"></main>
+    <script type="text/x-template" id="main-template">
+        <div v-if="operation === 'add'">
+            Addition
+        </div>
+        <div v-if="operation === 'sub'">
+            Soustraction
+        </div>
+        <div v-if="operation === 'trace'">
+            Trace
+        </div>
+        <div v-if="operation === 'transpose'">
+            Transposé
+        </div>
+    </script>
+    <script src="dist/js/index.js"></script>
 </body>
 </html>

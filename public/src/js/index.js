@@ -1,3 +1,9 @@
-var matrixAdd = require('./modules/matrix-add');
+var Vue = require('../../vendors/vue/src/vue');
 
-console.log(matrixAdd);
+// Vue.config.debug = true;
+
+var mainView = new Vue({
+    data        : { operation: 'sub' },
+    el          : '#main',
+    template    : '#main-template'
+});
