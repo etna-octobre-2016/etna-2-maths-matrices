@@ -15,7 +15,7 @@ gulp.task('sass_components', function(){
 gulp.task('sass_main', function(){
 
     return gulp
-        .src(['src/sass/*.scss'])
+        .src(['./src/sass/*.scss'])
         .pipe(sass(sassConfig))
         .pipe(gulp.dest('dist/css'));
 });
