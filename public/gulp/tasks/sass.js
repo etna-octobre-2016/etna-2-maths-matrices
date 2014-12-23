@@ -7,7 +7,7 @@ gulp.task('sass', ['sass_main', 'sass_components']);
 gulp.task('sass_components', function(){
 
     return gulp
-        .src(['./src/components/**/*.scss'], {base: '.'})
+        .src(['./src/html/components/**/*.scss'], {base: '.'})
         .pipe(sass(sassConfig))
         .pipe(gulp.dest('.'))
         .pipe(global.browserSyncReload({ stream:true }));

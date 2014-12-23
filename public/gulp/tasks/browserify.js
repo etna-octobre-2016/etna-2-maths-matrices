@@ -5,10 +5,10 @@ var browserify  = require('browserify'),
 
 gulp.task('browserify', function(){
 
-    return browserify('src/js/index.js')
+    return browserify('./src/js/index.js')
         .bundle()
         .on('error', gutil.log)
         .pipe(source('app.js'))
-        .pipe(gulp.dest('src/js/app.js'))
+        .pipe(gulp.dest('src/js'))
         .pipe(global.browserSyncReload({ stream:true }));
 });
