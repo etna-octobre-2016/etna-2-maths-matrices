@@ -1,18 +1,16 @@
 <polymer-element name="component-app">
     <template>
-
         <h1>Bienvenue dans l'application Matrix Calculator</h1>
-
-        <component-radio if="{{operation === 'add'}}">Hello</component-radio>
-
-        <p if="{{operation === null}}">
-            Aucune operation
-        </p>
-
+        <template if="{{operation === 'add'}}">
+            <component-radio >Hello</component-radio>
+        </template>
+        <template if="{{operation === 'sub'}}">
+            <p>World</p>
+        </template>
     </template>
     <script>
         Polymer({
-            operation: null
+            operation: 'sub'
         });
         console.log('component-app init');
     </script>
