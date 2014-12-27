@@ -7,16 +7,17 @@ header('Content-Type: application/json');
 try
 {
     $matrixArray = [
-        [0, '032'],
-        [-21, '+20.002', 4],
+        [0, '032', -45],
         [1, '-2332432']
     ];
 
-    // $var = filter_var('755', FILTER_VALIDATE_INT);
-
-    // var_dump($var);
-
     $matrix = new Matrix($matrixArray);
+
+    var_dump([
+        'array'         => $matrix->getArray(),
+        'columnsCount'  => $matrix->getColumnsCount(),
+        'linesCount'    => $matrix->getLinesCount(),
+    ]);
 
     $response = [
         'status'    => 'success',

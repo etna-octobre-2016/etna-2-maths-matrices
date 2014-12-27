@@ -1,14 +1,40 @@
 <?php
 class Matrix
 {
+    private $array;
+    private $columnsCount;
+    private $linesCount;
+
+    // CONSTRUCTOR
+    ////////////////////////////////////////////////////////////////////////////////////////
+
     function __construct($matrixArray)
     {
         self::validateMatrixArray($matrixArray);
 
-        // init code
+        $this->array = $matrixArray;
+        $this->linesCount = count($matrixArray);
+        $this->columnsCount = max(self::getLinesLengths($matrixArray));
     }
 
-    /* Private static methods */
+    // GETTERS
+    ////////////////////////////////////////////////////////////////////////////////////////
+
+    public function getArray()
+    {
+        return $this->array;
+    }
+    public function getColumnsCount()
+    {
+        return $this->columnsCount;
+    }
+    public function getLinesCount()
+    {
+        return $this->linesCount;
+    }
+
+    // PRIVATE STATIC METHODS
+    ////////////////////////////////////////////////////////////////////////////////////////
 
     private static function convertCellValue(&$matrixCell)
     {
@@ -58,15 +84,11 @@ class Matrix
             }
         }
 
-        var_dump($matrixArray);
+        $matrixLinesLengths = self::getLinesLengths($matrixArray);
 
-        // $matrixLinesLengths = self::getLinesLengths($matrixArray);
-
-        // var_dump($matrixLinesLengths);
-
-        // if (!self::hasEqualLinesLengths($matrixLinesLengths))
-        // {
-        //     throw new MatrixException('each ')
-        // }
+        if (!self::hasEqualLinesLengths($matrixLinesLengths))
+        {
+            throw new MatrixException('each line need to have the same number of columns');
+        }
     }
 }
