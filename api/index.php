@@ -16,9 +16,8 @@ try
         [4, 5, 6]
     ]);
 
-    $result = Matrix::add($aMatrix, $bMatrix);
-
-    var_dump($result);
+    var_dump(Matrix::add($aMatrix, $bMatrix));
+    var_dump(Matrix::sub($aMatrix, $bMatrix));
 
     $response = [
         'status'    => 'success',

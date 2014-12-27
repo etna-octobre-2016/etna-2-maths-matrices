@@ -56,6 +56,26 @@ class Matrix
         }
         return new Matrix($resultMatrixArray);
     }
+    public static function sub(Matrix $aMatrix, Matrix $bMatrix)
+    {
+        if ($aMatrix->getColumnsCount() !== $bMatrix->getColumnsCount() || $aMatrix->getLinesCount() !== $bMatrix->getLinesCount())
+        {
+            throw new MatrixException("matrices are not of the same format");
+        }
+
+        $aMatrixArray       = $aMatrix->getArray();
+        $bMatrixArray       = $bMatrix->getArray();
+        $resultMatrixArray  = [];
+
+        foreach ($aMatrixArray as $lineIndex => $lineColumns)
+        {
+            foreach ($lineColumns as $columnIndex => $cellValue)
+            {
+                $resultMatrixArray[$lineIndex][$columnIndex] = $cellValue - $bMatrixArray[$lineIndex][$columnIndex];
+            }
+        }
+        return new Matrix($resultMatrixArray);
+    }
 
     // PRIVATE STATIC METHODS
     ////////////////////////////////////////////////////////////////////////////////////////
