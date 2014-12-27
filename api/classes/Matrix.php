@@ -33,6 +33,30 @@ class Matrix
         return $this->linesCount;
     }
 
+    // PUBLIC STATIC METHODS
+    ////////////////////////////////////////////////////////////////////////////////////////
+
+    public static function add(Matrix $aMatrix, Matrix $bMatrix)
+    {
+        if ($aMatrix->getColumnsCount() !== $bMatrix->getColumnsCount() || $aMatrix->getLinesCount() !== $bMatrix->getLinesCount())
+        {
+            throw new MatrixException("matrices are not of the same format");
+        }
+
+        $aMatrixArray       = $aMatrix->getArray();
+        $bMatrixArray       = $bMatrix->getArray();
+        $resultMatrixArray  = [];
+
+        foreach ($aMatrixArray as $lineIndex => $lineColumns)
+        {
+            foreach ($lineColumns as $columnIndex => $cellValue)
+            {
+                $resultMatrixArray[$lineIndex][$columnIndex] = $cellValue + $bMatrixArray[$lineIndex][$columnIndex];
+            }
+        }
+        return new Matrix($resultMatrixArray);
+    }
+
     // PRIVATE STATIC METHODS
     ////////////////////////////////////////////////////////////////////////////////////////
 

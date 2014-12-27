@@ -6,18 +6,19 @@ header('Content-Type: application/json');
 
 try
 {
-    $matrixArray = [
-        [0, '032', -45],
-        [1, '-2332432']
-    ];
-
-    $matrix = new Matrix($matrixArray);
-
-    var_dump([
-        'array'         => $matrix->getArray(),
-        'columnsCount'  => $matrix->getColumnsCount(),
-        'linesCount'    => $matrix->getLinesCount(),
+    $aMatrix = new Matrix([
+        [1, 2, 3],
+        [4, 5, 6]
     ]);
+
+    $bMatrix = new Matrix([
+        ['1', '2', 3],
+        [4, 5, 6]
+    ]);
+
+    $result = Matrix::add($aMatrix, $bMatrix);
+
+    var_dump($result);
 
     $response = [
         'status'    => 'success',
