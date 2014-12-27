@@ -76,6 +76,20 @@ class Matrix
         }
         return new Matrix($resultMatrixArray);
     }
+    public static function multiplyByReal(Matrix $matrix, $real)
+    {
+        $matrixArray = $matrix->getArray();
+
+        self::convertCellValue($real);
+        foreach ($matrixArray as &$lineColumns)
+        {
+            foreach ($lineColumns as &$cell)
+            {
+                $cell *= $real;
+            }
+        }
+        return new Matrix($matrixArray);
+    }
 
     // PRIVATE STATIC METHODS
     ////////////////////////////////////////////////////////////////////////////////////////

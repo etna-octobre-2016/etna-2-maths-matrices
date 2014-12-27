@@ -18,6 +18,7 @@ try
 
     var_dump(Matrix::add($aMatrix, $bMatrix));
     var_dump(Matrix::sub($aMatrix, $bMatrix));
+    var_dump(Matrix::multiplyByReal($bMatrix, '-1'));
 
     $response = [
         'status'    => 'success',
