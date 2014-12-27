@@ -2,21 +2,26 @@
 require 'classes/MatrixException.php';
 require 'classes/Matrix.php';
 
+header('Content-Type: application/json');
+
 try
 {
-    $matrix = [
-        [0, 2, 7],
-        [0, 1, 5, 2],
-        [3, -12, 4, 0]
+    $matrixArray = [
+        [0, '032'],
+        [-21, '+20.002', 4],
+        [1, '-2332432']
     ];
 
+    // $var = filter_var('755', FILTER_VALIDATE_INT);
 
-    var_dump($matrix);
+    // var_dump($var);
 
-    $matrixColumns = Matrix::getColumnsCount($matrix);
-    $matrixhasEqualColumns = Matrix::hasEqualColumnsCountByLine($matrixColumns);
+    $matrix = new Matrix($matrixArray);
 
-    var_dump($matrixhasEqualColumns);
+    $response = [
+        'status'    => 'success',
+        'resources' => null
+    ];
 }
 catch (MatrixException $e)
 {
@@ -24,5 +29,6 @@ catch (MatrixException $e)
         'status'    => 'failure',
         'message'   => $e->getMessage()
     ];
-    echo json_encode($response);
 }
+
+echo json_encode($response);
