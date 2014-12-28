@@ -76,6 +76,37 @@ class Matrix
         }
         return new Matrix($resultMatrixArray);
     }
+    public static function multiply(Matrix $aMatrix, Matrix $bMatrix)
+    {
+        if ($aMatrix->getColumnsCount() !== $bMatrix->getLinesCount())
+        {
+            throw new MatrixException("the number of columns in the first matrix is not equal to the number of lines in the second matrix");
+        }
+
+        // $aMatrixArray           = $aMatrix->getArray();
+        // $aMatrixColumnsCount    = $aMatrix->getColumnsCount();
+        // $bMatrixArray           = $bMatrix->getArray();
+        // $resultMatrixArray      = [];
+        //
+        // foreach ($aMatrixArray as $aLineIndex => $aLineColumns)
+        // {
+        //     echo "<br>line n°$aLineIndex<br><br>";
+        //
+        //     foreach ($aLineColumns as $aColumnIndex => $aCellValue)
+        //     {
+        //         echo "column n°$aColumnIndex - value: $aCellValue<br>";
+        //
+        //         $resultMatrixArray[$aLineIndex][$aColumnIndex] = 0;
+        //
+        //         for ($i = 0; $i < $aMatrixColumnsCount; $i++)
+        //         {
+        //             $resultMatrixArray[$aLineIndex][$aColumnIndex] += $aMatrixArray[$aLineIndex][$i] * $bMatrixArray[$i][$aColumnIndex];
+        //         }
+        //     }
+        // }
+
+        // return new Matrix($resultMatrixArray);
+    }
     public static function multiplyByReal(Matrix $matrix, $real)
     {
         $matrixArray = $matrix->getArray();
@@ -90,6 +121,7 @@ class Matrix
         }
         return new Matrix($matrixArray);
     }
+
 
     // PRIVATE STATIC METHODS
     ////////////////////////////////////////////////////////////////////////////////////////
