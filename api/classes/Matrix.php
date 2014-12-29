@@ -33,6 +33,18 @@ class Matrix
         return $this->linesCount;
     }
 
+    // PUBLIC METHODS
+    ////////////////////////////////////////////////////////////////////////////////////////
+
+    public function isSquare()
+    {
+        if ($this->getLinesCount() === $this->getColumnsCount())
+        {
+            return true;
+        }
+        return false;
+    }
+
     // PRIVATE STATIC METHODS
     ////////////////////////////////////////////////////////////////////////////////////////
 

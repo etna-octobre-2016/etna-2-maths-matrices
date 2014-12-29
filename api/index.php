@@ -19,13 +19,23 @@ try
         [3,     6,      8,      0,      -42]
     ]);
 
+    $cMatrix = new Matrix([
+        [1, 2],
+        [1, 2]
+    ]);
+
     // $result = MatrixCalculator::add($aMatrix, $bMatrix);
     // $result = MatrixCalculator::sub($aMatrix, $bMatrix);
     // $result = MatrixCalculator::multiplyByReal($aMatrix, '-1');
     // $result = MatrixCalculator::multiply($aMatrix, $bMatrix);
-    $result = MatrixCalculator::transpose($aMatrix);
+    // $result = MatrixCalculator::transpose($aMatrix);
+    // var_dump($result->getArray());
 
-    var_dump($result->getArray());
+    var_dump([
+        'a_is_squaure' => $aMatrix->isSquare(),
+        'b_is_squaure' => $bMatrix->isSquare(),
+        'c_is_squaure' => $cMatrix->isSquare()
+    ]);
 
     $response = [
         'status'    => 'success',
@@ -34,6 +44,8 @@ try
 }
 catch (MatrixException $e)
 {
+    var_dump($e);
+
     $response = [
         'status'    => 'failure',
         'message'   => $e->getMessage()
