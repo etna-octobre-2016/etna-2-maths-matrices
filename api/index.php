@@ -18,13 +18,12 @@ try
         [3,     6,      8,      0,      -42]
     ]);
 
-    // var_dump(Matrix::add($aMatrix, $bMatrix));
-    // var_dump(Matrix::sub($aMatrix, $bMatrix));
-    // var_dump(Matrix::multiplyByReal($bMatrix, '-1'));
-
+    // $result = Matrix::add($aMatrix, $bMatrix));
+    // $result = Matrix::sub($aMatrix, $bMatrix));
+    // $result = Matrix::multiplyByReal($bMatrix, '-1'));
     $result = Matrix::multiply($aMatrix, $bMatrix);
 
-    // var_dump($result->getArray());
+    var_dump($result->getArray());
 
     $response = [
         'status'    => 'success',
