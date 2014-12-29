@@ -89,6 +89,20 @@ class MatrixCalculator
         }
         return new Matrix($matrixArray);
     }
+    public static function transpose(Matrix $matrix)
+    {
+        $matrixArray       = $matrix->getArray();
+        $resultMatrixArray = [];
+
+        foreach ($matrixArray as $lineIndex => $columns)
+        {
+            foreach ($columns as $columnIndex => $cellValue)
+            {
+                $resultMatrixArray[$columnIndex][$lineIndex] = $cellValue;
+            }
+        }
+        return new Matrix($resultMatrixArray);
+    }
 
     // PRIVATE STATIC METHODS
     ///////////////////////////////////////////////////////////////////////////

@@ -22,7 +22,8 @@ try
     // $result = MatrixCalculator::add($aMatrix, $bMatrix);
     // $result = MatrixCalculator::sub($aMatrix, $bMatrix);
     // $result = MatrixCalculator::multiplyByReal($aMatrix, '-1');
-    $result = MatrixCalculator::multiply($aMatrix, $bMatrix);
+    // $result = MatrixCalculator::multiply($aMatrix, $bMatrix);
+    $result = MatrixCalculator::transpose($aMatrix);
 
     var_dump($result->getArray());
 
