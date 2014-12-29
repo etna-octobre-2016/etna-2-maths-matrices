@@ -1,6 +1,7 @@
 <?php
-require 'classes/MatrixException.php';
 require 'classes/Matrix.php';
+require 'classes/MatrixCalculator.php';
+require 'classes/MatrixException.php';
 
 header('Content-Type: application/json');
 
@@ -18,10 +19,10 @@ try
         [3,     6,      8,      0,      -42]
     ]);
 
-    // $result = Matrix::add($aMatrix, $bMatrix));
-    // $result = Matrix::sub($aMatrix, $bMatrix));
-    // $result = Matrix::multiplyByReal($bMatrix, '-1'));
-    $result = Matrix::multiply($aMatrix, $bMatrix);
+    // $result = MatrixCalculator::add($aMatrix, $bMatrix);
+    // $result = MatrixCalculator::sub($aMatrix, $bMatrix);
+    // $result = MatrixCalculator::multiplyByReal($aMatrix, '-1');
+    $result = MatrixCalculator::multiply($aMatrix, $bMatrix);
 
     var_dump($result->getArray());
 
