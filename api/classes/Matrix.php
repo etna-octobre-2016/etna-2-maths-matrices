@@ -28,6 +28,14 @@ class Matrix
     {
         return $this->columnsCount;
     }
+    public function getLinesCount()
+    {
+        return $this->linesCount;
+    }
+
+    // PUBLIC METHODS
+    ////////////////////////////////////////////////////////////////////////////////////////
+
     public function getIdentityMatrix()
     {
         if (!$this->isSquare())
@@ -47,14 +55,6 @@ class Matrix
         }
         return new Matrix($identityMatrixArray);
     }
-    public function getLinesCount()
-    {
-        return $this->linesCount;
-    }
-
-    // PUBLIC METHODS
-    ////////////////////////////////////////////////////////////////////////////////////////
-
     public function isEqualTo(Matrix $otherMatrix)
     {
         if ($this->getColumnsCount() !== $otherMatrix->getColumnsCount() || $this->getLinesCount() !== $otherMatrix->getLinesCount())
