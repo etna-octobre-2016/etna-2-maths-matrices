@@ -85,10 +85,10 @@ class Matrix
         }
         return false;
     }
-    public function debugHTML($matrixName = '(undefined)')
+    public function debugHTML($title = "")
     {
         $html[] = '<table style="border:1px solid black; border-collapse: collapse;">';
-        $html[] = "<caption>Matrix $matrixName</caption>";
+        $html[] = "<caption>$title</caption>";
         $html[] = '<thead>';
         $html[] = '<tr>';
         $html[] = '<th style="border:1px solid black; background-color: #BBB; padding: 5px;">i / j</th>';

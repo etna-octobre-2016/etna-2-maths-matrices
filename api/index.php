@@ -15,7 +15,7 @@ try
         [5,7,101]
     ]);
 
-    $aMatrix->debugHTML('A');
+    $aMatrix->debugHTML('Matrice A');
 
     $bMatrix = new Matrix([
         [1,100,666,0,-45,23],
@@ -23,7 +23,7 @@ try
         [898,7,989,66,0,86]
     ]);
 
-    $bMatrix->debugHTML('B');
+    $bMatrix->debugHTML('Matrice B');
 
     // $result = MatrixCalculator::add($aMatrix, $bMatrix);
     // $result = MatrixCalculator::sub($aMatrix, $bMatrix);
@@ -31,7 +31,11 @@ try
     $result = MatrixCalculator::multiply($aMatrix, $bMatrix);
     // $result = MatrixCalculator::transpose($aMatrix);
 
-    $result->debugHTML('A x B');
+    // $result->debugHTML('Matrice A + B');
+    // $result->debugHTML('Matrice A - B');
+    // $result->debugHTML('Matrice -1A');
+    $result->debugHTML('Matrice AB');
+    // $result->debugHTML('Matrice A^T');
 
     $cMatrix = new Matrix([
         [0, 1, 2],
@@ -44,9 +48,7 @@ try
         [3, '4', 5]
     ]);
 
-    var_dump([
-        'c_is_equal_to_d' => $cMatrix->isEqualTo($dMatrix)
-    ]);
+    $cMatrix->debugHTML("Matrice C");
 
     $cMatrix->getIdentityMatrix()->debugHTML("Matrice identité de C");
 
