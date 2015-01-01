@@ -36,6 +36,28 @@ class Matrix
     // PUBLIC METHODS
     ////////////////////////////////////////////////////////////////////////////////////////
 
+    public function isEqualTo(Matrix $otherMatrix)
+    {
+        if ($this->getColumnsCount() !== $otherMatrix->getColumnsCount() || $this->getLinesCount() !== $otherMatrix->getLinesCount())
+        {
+            return false;
+        }
+
+        $matrixArray = $this->getArray();
+        $otherMatrixArray = $otherMatrix->getArray();
+
+        foreach ($matrixArray as $lineIndex => $columns)
+        {
+            foreach ($columns as $columnIndex => $cellValue)
+            {
+                if ($cellValue !== $otherMatrixArray[$lineIndex][$columnIndex])
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
     public function isSquare()
     {
         if ($this->getLinesCount() === $this->getColumnsCount())

@@ -33,6 +33,20 @@ try
 
     $result->debugHTML('A x B');
 
+    $cMatrix = new Matrix([
+        [0, 1, 2],
+        [3, 4, 5]
+    ]);
+
+    $dMatrix = new Matrix([
+        [0, 1, 2],
+        [3, '4', 5]
+    ]);
+
+    var_dump([
+        'c_is_equal_to_d' => $cMatrix->isEqualTo($dMatrix)
+    ]);
+
     // $response = [
     //     'status'    => 'success',
     //     'resources' => null
