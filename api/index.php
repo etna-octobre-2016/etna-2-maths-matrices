@@ -44,13 +44,18 @@ try
     ]);
 
     $dMatrix = new Matrix([
-        [0, 1, 2],
-        [3, '4', 5]
+        [1, 0, 0],
+        [0, 1, 0],
+        [0, 0, 1]
     ]);
 
     $cMatrix->debugHTML("Matrice C");
 
     $cMatrix->getIdentityMatrix()->debugHTML("Matrice identité de C");
+
+    $dMatrix->debugHTML("Matrice D");
+
+    echo "La matrice D ".($dMatrix->isIdentityMatrix() ? "est une identité" : "n'est pas une identité");
 
     // $response = [
     //     'status'    => 'success',

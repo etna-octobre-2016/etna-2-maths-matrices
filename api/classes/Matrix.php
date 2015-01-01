@@ -77,6 +77,10 @@ class Matrix
         }
         return true;
     }
+    public function isIdentityMatrix()
+    {
+        return $this->isEqualTo($this->getIdentityMatrix());
+    }
     public function isSquare()
     {
         if ($this->getLinesCount() === $this->getColumnsCount())
