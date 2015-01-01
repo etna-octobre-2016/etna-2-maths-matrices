@@ -8,36 +8,30 @@ require 'classes/MatrixException.php';
 try
 {
     $aMatrix = new Matrix([
-        [2,     434,    -12,    0],
-        [-565,  -2,     23,     69]
+        [34,-23,346],
+        [-1,0,0],
+        [42,567,10],
+        [1,3,4],
+        [5,7,101]
     ]);
 
     $aMatrix->debugHTML('A');
 
     $bMatrix = new Matrix([
-        [34,    767,    80,     98,     0],
-        [-232,  -4,     232,    -998,   8923],
-        [45,    1,      2,      65,     -9],
-        [3,     6,      8,      0,      -42]
+        [1,100,666,0,-45,23],
+        [87,9909,7,87,987,96],
+        [898,7,989,66,0,86]
     ]);
 
-    $cMatrix = new Matrix([
-        [1, 2],
-        [1, 2]
-    ]);
+    $bMatrix->debugHTML('B');
 
     // $result = MatrixCalculator::add($aMatrix, $bMatrix);
     // $result = MatrixCalculator::sub($aMatrix, $bMatrix);
     // $result = MatrixCalculator::multiplyByReal($aMatrix, '-1');
-    // $result = MatrixCalculator::multiply($aMatrix, $bMatrix);
+    $result = MatrixCalculator::multiply($aMatrix, $bMatrix);
     // $result = MatrixCalculator::transpose($aMatrix);
-    // var_dump($result->getArray());
 
-    var_dump([
-        'a_is_squaure' => $aMatrix->isSquare(),
-        'b_is_squaure' => $bMatrix->isSquare(),
-        'c_is_squaure' => $cMatrix->isSquare()
-    ]);
+    $result->debugHTML('A x B');
 
     // $response = [
     //     'status'    => 'success',

@@ -52,27 +52,22 @@ class MatrixCalculator
         }
 
         $aMatrixArray           = $aMatrix->getArray();
-        $aMatrixColumnsCount    = $aMatrix->getColumnsCount();
         $bMatrixArray           = $bMatrix->getArray();
+        $bMatrixColumnsCount    = $bMatrix->getColumnsCount();
         $resultMatrixArray      = [];
 
-        foreach ($aMatrixArray as $aLineIndex => $aLineColumns)
+        foreach ($aMatrixArray as $i => $aLineColumns)
         {
-            // echo "<br>line n°$aLineIndex<br><br>";
-
-            foreach ($aLineColumns as $aColumnIndex => $aCellValue)
+            for ($j = 0; $j < $bMatrixColumnsCount; $j++)
             {
-                // echo "column n°$aColumnIndex - value: $aCellValue<br>";
+                $resultMatrixArray[$i][$j] = 0;
 
-                $resultMatrixArray[$aLineIndex][$aColumnIndex] = 0;
-
-                for ($i = 0; $i < $aMatrixColumnsCount; $i++)
+                foreach ($aLineColumns as $k => $aCellValue)
                 {
-                    $resultMatrixArray[$aLineIndex][$aColumnIndex] += $aMatrixArray[$aLineIndex][$i] * $bMatrixArray[$i][$aColumnIndex];
+                    $resultMatrixArray[$i][$j] += $aMatrixArray[$i][$k] * $bMatrixArray[$k][$j];
                 }
             }
         }
-
         return new Matrix($resultMatrixArray);
     }
     public static function multiplyByReal(Matrix $matrix, $real)
