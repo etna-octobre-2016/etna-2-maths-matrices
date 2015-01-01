@@ -36,6 +36,40 @@ class Matrix
     // PUBLIC METHODS
     ////////////////////////////////////////////////////////////////////////////////////////
 
+    public function debugHTML($title = "")
+    {
+        $html[] = '<table style="border:1px solid black; border-collapse: collapse;">';
+        $html[] = "<caption>$title</caption>";
+        $html[] = '<thead>';
+        $html[] = '<tr>';
+        $html[] = '<th style="border:1px solid black; background-color: #BBB; padding: 5px;">i / j</th>';
+
+        for ($j = 0; $j < $this->getColumnsCount(); $j++)
+        {
+            $html[] = '<th style="border:1px solid black; background-color: #BBB; padding: 5px;">'.($j + 1).'</th>';
+        }
+
+        $html[] = '</tr>';
+        $html[] = '</thead>';
+        $html[] = '<tbody>';
+
+        foreach ($this->getArray() as $i => $columns)
+        {
+            $html[] = '<tr>';
+            $html[] = '<th style="border:1px solid black; background-color: #BBB; padding: 5px;">'.($i + 1).'</th>';
+
+            foreach ($columns as $cellValue)
+            {
+                $html[] = '<td style="border:1px solid black; text-align: center; padding: 5px;">'.$cellValue.'</td>';
+            }
+
+            $html[] = '</tr>';
+        }
+
+        $html[] = '</tbody>';
+        $html[] = '</table>';
+        echo implode('', $html);
+    }
     public function getIdentityMatrix()
     {
         if (!$this->isSquare())
@@ -88,40 +122,6 @@ class Matrix
             return true;
         }
         return false;
-    }
-    public function debugHTML($title = "")
-    {
-        $html[] = '<table style="border:1px solid black; border-collapse: collapse;">';
-        $html[] = "<caption>$title</caption>";
-        $html[] = '<thead>';
-        $html[] = '<tr>';
-        $html[] = '<th style="border:1px solid black; background-color: #BBB; padding: 5px;">i / j</th>';
-
-        for ($j = 0; $j < $this->getColumnsCount(); $j++)
-        {
-            $html[] = '<th style="border:1px solid black; background-color: #BBB; padding: 5px;">'.($j + 1).'</th>';
-        }
-
-        $html[] = '</tr>';
-        $html[] = '</thead>';
-        $html[] = '<tbody>';
-
-        foreach ($this->getArray() as $i => $columns)
-        {
-            $html[] = '<tr>';
-            $html[] = '<th style="border:1px solid black; background-color: #BBB; padding: 5px;">'.($i + 1).'</th>';
-
-            foreach ($columns as $cellValue)
-            {
-                $html[] = '<td style="border:1px solid black; text-align: center; padding: 5px;">'.$cellValue.'</td>';
-            }
-
-            $html[] = '</tr>';
-        }
-
-        $html[] = '</tbody>';
-        $html[] = '</table>';
-        echo implode('', $html);
     }
 
     // PRIVATE STATIC METHODS
