@@ -64,7 +64,7 @@ class Matrix
         foreach ($this->getArray() as $i => $columns)
         {
             $html[] = '<tr>';
-            $html[] = '<th style="border:1px solid black; background-color: #BBB; padding: 5px;">'.$i.'</th>';
+            $html[] = '<th style="border:1px solid black; background-color: #BBB; padding: 5px;">'.($i + 1).'</th>';
 
             foreach ($columns as $cellValue)
             {
