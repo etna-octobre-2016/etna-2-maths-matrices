@@ -28,6 +28,25 @@ class Matrix
     {
         return $this->columnsCount;
     }
+    public function getIdentityMatrix()
+    {
+        if (!$this->isSquare())
+        {
+            throw new MatrixException("the identity matrix not available for a non square matrix");
+        }
+
+        $matrixArray = $this->getArray();
+        $identityMatrixArray = [];
+
+        foreach ($matrixArray as $lineIndex => $columns)
+        {
+            foreach ($columns as $columnIndex => $cellValue)
+            {
+                $identityMatrixArray[$lineIndex][$columnIndex] = ($lineIndex === $columnIndex) ? 1 : 0;
+            }
+        }
+        return new Matrix($identityMatrixArray);
+    }
     public function getLinesCount()
     {
         return $this->linesCount;

@@ -35,6 +35,7 @@ try
 
     $cMatrix = new Matrix([
         [0, 1, 2],
+        [3, 4, 5],
         [3, 4, 5]
     ]);
 
@@ -46,6 +47,8 @@ try
     var_dump([
         'c_is_equal_to_d' => $cMatrix->isEqualTo($dMatrix)
     ]);
+
+    $cMatrix->getIdentityMatrix()->debugHTML("Matrice identité de C");
 
     // $response = [
     //     'status'    => 'success',
