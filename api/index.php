@@ -3,7 +3,7 @@ require 'classes/Matrix.php';
 require 'classes/MatrixCalculator.php';
 require 'classes/MatrixException.php';
 
-header('Content-Type: application/json');
+// header('Content-Type: application/json');
 
 try
 {
@@ -11,6 +11,8 @@ try
         [2,     434,    -12,    0],
         [-565,  -2,     23,     69]
     ]);
+
+    $aMatrix->debugHTML('A');
 
     $bMatrix = new Matrix([
         [34,    767,    80,     98,     0],
@@ -37,10 +39,10 @@ try
         'c_is_squaure' => $cMatrix->isSquare()
     ]);
 
-    $response = [
-        'status'    => 'success',
-        'resources' => null
-    ];
+    // $response = [
+    //     'status'    => 'success',
+    //     'resources' => null
+    // ];
 }
 catch (MatrixException $e)
 {
@@ -50,6 +52,6 @@ catch (MatrixException $e)
         'status'    => 'failure',
         'message'   => $e->getMessage()
     ];
-}
 
-echo json_encode($response);
+    echo json_encode($response);
+}
