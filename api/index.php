@@ -22,10 +22,15 @@ try
         [ 3, 4, 9 ]
     ]);
 
+    $dMatrix = new Matrix([
+        [ 89, -13 ],
+        [ 4,22 ]
+    ]);
+
     // $result = MatrixCalculator::add($aMatrix, $bMatrix);
     // $result = MatrixCalculator::multiplyByReal($aMatrix, 2);
     // $result = MatrixCalculator::transpose($aMatrix);
-    $result = MatrixCalculator::multiply($aMatrix, $bMatrix);
+    // $result = MatrixCalculator::multiply($aMatrix, $bMatrix);
 
     //$aMatrix->debugHTML("Matrice A");
     echo "<br><br>";
@@ -38,9 +43,11 @@ try
 
     
     // $result->debugHTML("toto");
-    $resultc = $cMatrix->getTrace();
-    echo $resultc;
+    // $resultc = $cMatrix->getTrace();
+    // echo $resultc;
 
+    $result = MatrixCalculator::determ22($dMatrix);
+    var_dump($result);
 
 }
 catch (MatrixException $e)

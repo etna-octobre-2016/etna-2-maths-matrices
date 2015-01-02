@@ -86,6 +86,13 @@ class MatrixCalculator
         }
         return new Matrix($resultMatrixArray);
     }
+    public static function determ22(Matrix $matrix){
+        $array = $matrix->getArray();
+        $nbCol = $matrix->getColumnsCount();
+
+        $result = ($array[0][0]*$array[1][1])-($array[0][1]*$array[1][0]);
+        return $result;
+    }
 
     // PRIVATE STATIC METHODS
     ///////////////////////////////////////////////////////////////////////////
