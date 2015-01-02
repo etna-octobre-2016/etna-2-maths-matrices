@@ -77,15 +77,15 @@ class Matrix
             throw new MatrixException('determinant not available for non square matrix');
         }
 
-        $determinant = 0;
-        $matrixArray = $this->getArray();
-
         if ($this->getLinesCount() === 2)
         {
-            echo "appel de la fonction d'Alexis<br>";
+            $determinant = MatrixCalculator::determ22($this);
         }
         else
         {
+            $determinant = 0;
+            $matrixArray = $this->getArray();
+
             foreach ($matrixArray[0] as $columnIndex => $cellValue)
             {
                 $subMatrix = $this->getSubMatrix(0, $columnIndex);
@@ -94,7 +94,7 @@ class Matrix
                 // @note: le signe du determinant change lorsque l'on passe d'une colonne à une autre
                 if ($columnIndex % 2 !== 0)
                 {
-                    $subMatrixDeterminant *= 1;
+                    $subMatrixDeterminant *= -1;
                 }
 
                 $determinant += $cellValue * $subMatrixDeterminant;
@@ -152,7 +152,6 @@ class Matrix
         }
 
         $matrixArray    = $this->getArray();
-        $newColumnIndex = 0;
         $newLineIndex   = 0;
         $subMatrixArray = [];
 
@@ -160,6 +159,7 @@ class Matrix
         {
             if ($lineIndex !== $excludedLineIndex)
             {
+                $newColumnIndex = 0;
                 foreach ($columns as $columnIndex => $cellValue)
                 {
                     if ($columnIndex !== $excludedColumnIndex)

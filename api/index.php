@@ -6,14 +6,14 @@ require 'classes/MatrixException.php';
 try
 {
     $aMatrix = new Matrix([
-        [1, 2, 4],
-        [2, -1, 3],
-        [4, 0, 1]
+        [1,2,3,4],
+        [1,0,2,0],
+        [0,1,2,3],
+        [2,3,0,0]
     ]);
 
     $aMatrix->debugHTML("Matrice A");
-
-    $aMatrix->getDeterminant();
+    var_dump($aMatrix->getDeterminant());
 }
 catch (MatrixException $e)
 {
