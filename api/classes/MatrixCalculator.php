@@ -30,19 +30,7 @@ class MatrixCalculator
         {
             throw new MatrixException("matrices are not of the same format");
         }
-
-        $aMatrixArray       = $aMatrix->getArray();
-        $bMatrixArray       = $bMatrix->getArray();
-        $resultMatrixArray  = [];
-
-        foreach ($aMatrixArray as $lineIndex => $lineColumns)
-        {
-            foreach ($lineColumns as $columnIndex => $cellValue)
-            {
-                $resultMatrixArray[$lineIndex][$columnIndex] = $cellValue - $bMatrixArray[$lineIndex][$columnIndex];
-            }
-        }
-        return new Matrix($resultMatrixArray);
+        return self::add($aMatrix, self::multiplyByReal($bMatrix, -1));
     }
     public static function multiply(Matrix $aMatrix, Matrix $bMatrix)
     {
