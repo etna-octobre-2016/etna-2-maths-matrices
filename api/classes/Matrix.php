@@ -70,6 +70,45 @@ class Matrix
         $html[] = '</table>';
         echo implode('', $html);
     }
+    public function getSubMatrix($excludedLineIndex, $excludedColumnIndex)
+    {
+        if (!is_int($excludedLineIndex) || !is_int($excludedColumnIndex))
+        {
+            throw new MatrixException('excluded line or column index must be an integer');
+        }
+
+        if ($excludedLineIndex < 0 || $excludedColumnIndex < 0)
+        {
+            throw new MatrixException('excluded line or column index cannot be negative');
+        }
+
+        if ($excludedLineIndex >= $this->getLinesCount() || $excludedColumnIndex >= $this->getColumnsCount())
+        {
+            throw new MatrixException('excluded line or column index is out of range');
+        }
+
+        $matrixArray    = $this->getArray();
+        $newColumnIndex = 0;
+        $newLineIndex   = 0;
+        $subMatrixArray = [];
+
+        foreach ($matrixArray as $lineIndex => $columns)
+        {
+            if ($lineIndex !== $excludedLineIndex)
+            {
+                foreach ($columns as $columnIndex => $cellValue)
+                {
+                    if ($columnIndex !== $excludedColumnIndex)
+                    {
+                        $subMatrixArray[$newLineIndex][$newColumnIndex] = $cellValue;
+                        $newColumnIndex++;
+                    }
+                }
+                $newLineIndex++;
+            }
+        }
+        return new Matrix($subMatrixArray);
+    }
     public function getIdentityMatrix()
     {
         if (!$this->isSquare())
