@@ -89,6 +89,19 @@ class Matrix
         }
         return new Matrix($identityMatrixArray);
     }
+    public function getTrace()
+    {
+        if (!$this->isSquare()){
+            throw new MatrixException("Your Matrix is not Square");
+        }
+        $matrixArray = $this->getArray();
+        $nbCol       = $this->getColumnsCount();
+
+        for ($i=0;$i<$nbCol;++$i){
+            $result += $matrixArray[$i][$i]; 
+        }
+        return $result;        
+    } 
     public function isEqualTo(Matrix $otherMatrix)
     {
         if ($this->getColumnsCount() !== $otherMatrix->getColumnsCount() || $this->getLinesCount() !== $otherMatrix->getLinesCount())
