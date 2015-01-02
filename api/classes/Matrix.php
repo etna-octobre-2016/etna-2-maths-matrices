@@ -91,20 +91,16 @@ class Matrix
     }
     public function getTrace()
     {
-        if ($this->isSquare())
-        {
-            $matrixArray = $this->getArray();
-            $nbCol       = $this->getColumnsCount();
-
-            for ($i=0;$i<$nbCol;++$i){
-                $result += $matrixArray[$i][$i]; 
-            }
-            echo "<br> The result of trace is --> ".$result;
-        }
-        else if (!$this->isSquare())
+        if (!$this->isSquare()){
             throw new MatrixException("Your Matrix is not Square");
-        else
-            throw new MatrixException("Something wrong");
+        }
+        $matrixArray = $this->getArray();
+        $nbCol       = $this->getColumnsCount();
+
+        for ($i=0;$i<$nbCol;++$i){
+            $result += $matrixArray[$i][$i]; 
+        }
+        return $result;        
     } 
     public function isEqualTo(Matrix $otherMatrix)
     {

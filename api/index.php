@@ -39,8 +39,7 @@ try
     
     // $result->debugHTML("toto");
     $resultc = $cMatrix->getTrace();
-    $resultc->debugHTML("get Trace");
-
+    echo $resultc;
 
 
 }
