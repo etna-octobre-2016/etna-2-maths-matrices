@@ -70,6 +70,38 @@ class Matrix
         $html[] = '</table>';
         echo implode('', $html);
     }
+    public function getDeterminant()
+    {
+        if (!$this->isSquare())
+        {
+            throw new MatrixException('determinant not available for non square matrix');
+        }
+
+        $determinant = 0;
+        $matrixArray = $this->getArray();
+
+        if ($this->getLinesCount() === 2)
+        {
+            echo "appel de la fonction d'Alexis<br>";
+        }
+        else
+        {
+            foreach ($matrixArray[0] as $columnIndex => $cellValue)
+            {
+                $subMatrix = $this->getSubMatrix(0, $columnIndex);
+                $subMatrixDeterminant = $subMatrix->getDeterminant();
+
+                // @note: le signe du determinant change lorsque l'on passe d'une colonne à une autre
+                if ($columnIndex % 2 !== 0)
+                {
+                    $subMatrixDeterminant *= 1;
+                }
+
+                $determinant += $cellValue * $subMatrixDeterminant;
+            }
+        }
+        return $determinant;
+    }
     public function getIdentityMatrix()
     {
         if (!$this->isSquare())
@@ -98,10 +130,49 @@ class Matrix
         $nbCol       = $this->getColumnsCount();
 
         for ($i=0;$i<$nbCol;++$i){
-            $result += $matrixArray[$i][$i]; 
+            $result += $matrixArray[$i][$i];
         }
-        return $result;        
-    } 
+        return $result;
+    }
+    public function getSubMatrix($excludedLineIndex, $excludedColumnIndex)
+    {
+        if (!is_int($excludedLineIndex) || !is_int($excludedColumnIndex))
+        {
+            throw new MatrixException('excluded line or column index must be an integer');
+        }
+
+        if ($excludedLineIndex < 0 || $excludedColumnIndex < 0)
+        {
+            throw new MatrixException('excluded line or column index cannot be negative');
+        }
+
+        if ($excludedLineIndex >= $this->getLinesCount() || $excludedColumnIndex >= $this->getColumnsCount())
+        {
+            throw new MatrixException('excluded line or column index is out of range');
+        }
+
+        $matrixArray    = $this->getArray();
+        $newColumnIndex = 0;
+        $newLineIndex   = 0;
+        $subMatrixArray = [];
+
+        foreach ($matrixArray as $lineIndex => $columns)
+        {
+            if ($lineIndex !== $excludedLineIndex)
+            {
+                foreach ($columns as $columnIndex => $cellValue)
+                {
+                    if ($columnIndex !== $excludedColumnIndex)
+                    {
+                        $subMatrixArray[$newLineIndex][$newColumnIndex] = $cellValue;
+                        $newColumnIndex++;
+                    }
+                }
+                $newLineIndex++;
+            }
+        }
+        return new Matrix($subMatrixArray);
+    }
     public function isEqualTo(Matrix $otherMatrix)
     {
         if ($this->getColumnsCount() !== $otherMatrix->getColumnsCount() || $this->getLinesCount() !== $otherMatrix->getLinesCount())
