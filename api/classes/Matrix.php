@@ -70,6 +70,25 @@ class Matrix
         $html[] = '</table>';
         echo implode('', $html);
     }
+    public function getIdentityMatrix()
+    {
+        if (!$this->isSquare())
+        {
+            throw new MatrixException("the identity matrix not available for a non square matrix");
+        }
+
+        $matrixArray = $this->getArray();
+        $identityMatrixArray = [];
+
+        foreach ($matrixArray as $lineIndex => $columns)
+        {
+            foreach ($columns as $columnIndex => $cellValue)
+            {
+                $identityMatrixArray[$lineIndex][$columnIndex] = ($lineIndex === $columnIndex) ? 1 : 0;
+            }
+        }
+        return new Matrix($identityMatrixArray);
+    }
     public function getSubMatrix($excludedLineIndex, $excludedColumnIndex)
     {
         if (!is_int($excludedLineIndex) || !is_int($excludedColumnIndex))
@@ -108,25 +127,6 @@ class Matrix
             }
         }
         return new Matrix($subMatrixArray);
-    }
-    public function getIdentityMatrix()
-    {
-        if (!$this->isSquare())
-        {
-            throw new MatrixException("the identity matrix not available for a non square matrix");
-        }
-
-        $matrixArray = $this->getArray();
-        $identityMatrixArray = [];
-
-        foreach ($matrixArray as $lineIndex => $columns)
-        {
-            foreach ($columns as $columnIndex => $cellValue)
-            {
-                $identityMatrixArray[$lineIndex][$columnIndex] = ($lineIndex === $columnIndex) ? 1 : 0;
-            }
-        }
-        return new Matrix($identityMatrixArray);
     }
     public function isEqualTo(Matrix $otherMatrix)
     {
