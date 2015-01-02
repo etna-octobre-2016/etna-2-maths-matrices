@@ -70,6 +70,38 @@ class Matrix
         $html[] = '</table>';
         echo implode('', $html);
     }
+    public function getDeterminant()
+    {
+        if (!$this->isSquare())
+        {
+            throw new MatrixException('determinant not available for non square matrix');
+        }
+
+        $determinant = 0;
+        $matrixArray = $this->getArray();
+
+        if ($this->getLinesCount() === 2)
+        {
+            echo "appel de la fonction d'Alexis<br>";
+        }
+        else
+        {
+            foreach ($matrixArray[0] as $columnIndex => $cellValue)
+            {
+                $subMatrix = $this->getSubMatrix(0, $columnIndex);
+                $subMatrixDeterminant = $subMatrix->getDeterminant();
+
+                // @note: le signe du determinant change lorsque l'on passe d'une colonne à une autre
+                if ($columnIndex % 2 !== 0)
+                {
+                    $subMatrixDeterminant *= 1;
+                }
+
+                $determinant += $cellValue * $subMatrixDeterminant;
+            }
+        }
+        return $determinant;
+    }
     public function getIdentityMatrix()
     {
         if (!$this->isSquare())
