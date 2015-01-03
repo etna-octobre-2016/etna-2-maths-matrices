@@ -1,4 +1,5 @@
-<?php
+<?php namespace Matrix;
+
 class MatrixCalculator
 {
     // PUBLIC STATIC METHODS

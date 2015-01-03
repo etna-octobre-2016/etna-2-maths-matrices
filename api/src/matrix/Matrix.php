@@ -1,4 +1,5 @@
-<?php
+<?php namespace Matrix;
+
 class Matrix
 {
     private $array;
