@@ -48,6 +48,40 @@ class ApplicationRouter
         }
         return new SilexResponse($app->serialize($response), 200, self::getResponseHeaders());
     }
+    public static function multiply(SilexRequest $request, Application $app)
+    {
+        $aMatrixArray    = $request->request->get('A_matrix');
+        $bMatrixArray    = $request->request->get('B_matrix');
+
+        if (is_array($aMatrixArray) && is_array($bMatrixArray))
+        {
+            try
+            {
+                $aMatrix  = new Matrix($aMatrixArray);
+                $bMatrix  = new Matrix($bMatrixArray);
+                $cMatrix  = MatrixCalculator::multiply($aMatrix, $bMatrix);
+                $response = [
+                    'status' => 'success',
+                    'result' => $cMatrix->getArray()
+                ];
+            }
+            catch (MatrixException $e)
+            {
+                $response = [
+                    'status'  => 'error',
+                    'message' => $e->getMessage()
+                ];
+            }
+        }
+        else
+        {
+            $response = [
+                'status'  => 'error',
+                'message' => 'An array for each matrix is expected'
+            ];
+        }
+        return new SilexResponse($app->serialize($response), 200, self::getResponseHeaders());
+    }
     public static function sub(SilexRequest $request, Application $app)
     {
         $aMatrixArray    = $request->request->get('A_matrix');
