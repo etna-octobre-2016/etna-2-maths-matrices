@@ -124,13 +124,17 @@ class Matrix
     }
     public function getTrace()
     {
-        if (!$this->isSquare()){
+        if (!$this->isSquare())
+        {
             throw new MatrixException("Your Matrix is not Square");
         }
+
         $matrixArray = $this->getArray();
         $nbCol       = $this->getColumnsCount();
+        $result      = 0;
 
-        for ($i=0;$i<$nbCol;++$i){
+        for ($i = 0; $i < $nbCol; ++$i)
+        {
             $result += $matrixArray[$i][$i];
         }
         return $result;
