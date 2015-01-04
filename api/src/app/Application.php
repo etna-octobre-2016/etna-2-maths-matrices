@@ -76,6 +76,9 @@ class Application
         $this->silexApplication->post('/multiply/', function(SilexRequest $request) use ($app) {
             return ApplicationRouter::multiply($request, $app);
         });
+        $this->silexApplication->post('/multiply-real/', function(SilexRequest $request) use ($app) {
+            return ApplicationRouter::multiplyByReal($request, $app);
+        });
         $this->silexApplication->post('/sub/', function(SilexRequest $request) use ($app) {
             return ApplicationRouter::sub($request, $app);
         });

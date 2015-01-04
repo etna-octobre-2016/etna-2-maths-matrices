@@ -82,6 +82,39 @@ class ApplicationRouter
         }
         return new SilexResponse($app->serialize($response), 200, self::getResponseHeaders());
     }
+    public static function multiplyByReal(SilexRequest $request, Application $app)
+    {
+        $real         = $request->request->get('real');
+        $aMatrixArray = $request->request->get('A_matrix');
+
+        if (is_array($aMatrixArray) && is_numeric($real))
+        {
+            try
+            {
+                $aMatrix  = new Matrix($aMatrixArray);
+                $bMatrix  = MatrixCalculator::multiplyByReal($aMatrix, $real);
+                $response = [
+                    'status' => 'success',
+                    'result' => $bMatrix->getArray()
+                ];
+            }
+            catch (MatrixException $e)
+            {
+                $response = [
+                    'status'  => 'error',
+                    'message' => $e->getMessage()
+                ];
+            }
+        }
+        else
+        {
+            $response = [
+                'status'  => 'error',
+                'message' => 'An array for each matrix is expected'
+            ];
+        }
+        return new SilexResponse($app->serialize($response), 200, self::getResponseHeaders());
+    }
     public static function sub(SilexRequest $request, Application $app)
     {
         $aMatrixArray    = $request->request->get('A_matrix');
