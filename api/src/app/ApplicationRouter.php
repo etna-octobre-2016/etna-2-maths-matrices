@@ -110,7 +110,7 @@ class ApplicationRouter
         {
             $response = [
                 'status'  => 'error',
-                'message' => 'An array for each matrix is expected'
+                'message' => 'An array for the matrix and a numeric value are expected'
             ];
         }
         return new SilexResponse($app->serialize($response), 200, self::getResponseHeaders());
@@ -176,7 +176,7 @@ class ApplicationRouter
         {
             $response = [
                 'status'  => 'error',
-                'message' => 'An array for each matrix is expected'
+                'message' => 'An array for the matrix is expected'
             ];
         }
         return new SilexResponse($app->serialize($response), 200, self::getResponseHeaders());
