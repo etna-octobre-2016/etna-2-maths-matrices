@@ -149,6 +149,37 @@ class ApplicationRouter
         }
         return new SilexResponse($app->serialize($response), 200, self::getResponseHeaders());
     }
+    public static function trace(SilexRequest $request, Application $app)
+    {
+        $aMatrixArray = $request->request->get('A_matrix');
+
+        if (is_array($aMatrixArray))
+        {
+            try
+            {
+                $aMatrix  = new Matrix($aMatrixArray);
+                $response = [
+                    'status' => 'success',
+                    'result' => $aMatrix->getTrace()
+                ];
+            }
+            catch (MatrixException $e)
+            {
+                $response = [
+                    'status'  => 'error',
+                    'message' => $e->getMessage()
+                ];
+            }
+        }
+        else
+        {
+            $response = [
+                'status'  => 'error',
+                'message' => 'An array for the matrix is expected'
+            ];
+        }
+        return new SilexResponse($app->serialize($response), 200, self::getResponseHeaders());
+    }
     public static function transpose(SilexRequest $request, Application $app)
     {
         $aMatrixArray = $request->request->get('A_matrix');
