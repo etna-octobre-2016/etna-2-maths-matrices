@@ -70,13 +70,14 @@ class Application
         $this->silexApplication->get('/', function(SilexRequest $request) use ($app) {
             return ApplicationRouter::welcome($request, $app);
         });
-
-        $this->silexApplication->get('/welcome/', function(SilexRequest $request) use ($app) {
-            return ApplicationRouter::welcome($request, $app);
-        });
-
         $this->silexApplication->post('/add/', function(SilexRequest $request) use ($app) {
             return ApplicationRouter::add($request, $app);
+        });
+        $this->silexApplication->post('/sub/', function(SilexRequest $request) use ($app) {
+            return ApplicationRouter::sub($request, $app);
+        });
+        $this->silexApplication->get('/welcome/', function(SilexRequest $request) use ($app) {
+            return ApplicationRouter::welcome($request, $app);
         });
 
         // default route
