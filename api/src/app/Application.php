@@ -82,6 +82,9 @@ class Application
         $this->silexApplication->post('/sub/', function(SilexRequest $request) use ($app) {
             return ApplicationRouter::sub($request, $app);
         });
+        $this->silexApplication->post('/transpose/', function(SilexRequest $request) use ($app) {
+            return ApplicationRouter::transpose($request, $app);
+        });
         $this->silexApplication->get('/welcome/', function(SilexRequest $request) use ($app) {
             return ApplicationRouter::welcome($request, $app);
         });
