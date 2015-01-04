@@ -1,0 +1,15 @@
+{
+    "config":{
+        "vendor-dir" : "vendors"
+    },
+    "require":{
+        "silex/silex"        : "1.2.2",
+        "symfony/serializer" : "2.6.1"
+    },
+    "autoload":{
+        "psr-4":{
+            "App\\"     : "src/app",
+            "Matrix\\"  : "src/matrix"
+        }
+    }
+}
