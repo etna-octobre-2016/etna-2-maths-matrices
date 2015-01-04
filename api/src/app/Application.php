@@ -1,13 +1,13 @@
 <?php namespace App;
 
+// PHP core classes
 use Exception;
-use Matrix\Matrix;
-use Matrix\MatrixCalculator;
-use Matrix\MatrixException;
+
+// Vendors classes
 use Silex\Application                           as SilexApplication;
-use Silex\Provider\SerializerServiceProvider    as SilexSerializerProvider;
 use Symfony\Component\HttpFoundation\Request    as SilexRequest;
 use Symfony\Component\HttpFoundation\Response   as SilexResponse;
+use Silex\Provider\SerializerServiceProvider    as SilexSerializerProvider;
 
 class Application
 {
@@ -30,6 +30,10 @@ class Application
     public function run()
     {
         $this->silexApplication->run();
+    }
+    public function serialize($data, $format = 'json')
+    {
+        return $this->silexApplication['serializer']->serialize($data, $format);
     }
 
     // PRIVATE METHODS
@@ -59,62 +63,27 @@ class Application
     {
         $_SERVER['REQUEST_URI'] = rtrim($_SERVER['REQUEST_URI'], '/') . '/';
     }
-    private function serialize($data, $format = 'json')
-    {
-        return $this->silexApplication['serializer']->serialize($data, $format);
-    }
     private function setRoutes()
     {
         $app = $this;
-        $responseHeaders = ['Content-Type' => 'application/json'];
 
-        $this->silexApplication->get('/', function(SilexRequest $request) {
-            return new SilexResponse('Welcome to the Matrssdix API', 200);
+        $this->silexApplication->get('/', function(SilexRequest $request) use ($app) {
+            return ApplicationRouter::welcome($request, $app);
         });
 
-        $this->silexApplication->post('/add/', function(SilexRequest $request) use ($app, $responseHeaders) {
+        $this->silexApplication->get('/welcome/', function(SilexRequest $request) use ($app) {
+            return ApplicationRouter::welcome($request, $app);
+        });
 
-            $aMatrixArray = $request->request->get('A_matrix');
-            $bMatrixArray = $request->request->get('B_matrix');
-
-            if (is_array($aMatrixArray) && is_array($bMatrixArray))
-            {
-                try
-                {
-                    $aMatrix  = new Matrix($aMatrixArray);
-                    $bMatrix  = new Matrix($bMatrixArray);
-                    $cMatrix  = MatrixCalculator::add($aMatrix, $bMatrix);
-                    $response = [
-                        'status' => 'success',
-                        'result' => $cMatrix->getArray()
-                    ];
-                }
-                catch (MatrixException $e)
-                {
-                    $response = [
-                        'status'  => 'error',
-                        'message' => $e->getMessage()
-                    ];
-                }
-            }
-            else
-            {
-                $response = [
-                    'status'  => 'error',
-                    'message' => 'An array for each matrix is expected'
-                ];
-            }
-            return new SilexResponse($app->serialize($response), 200, $responseHeaders);
+        $this->silexApplication->post('/add/', function(SilexRequest $request) use ($app) {
+            return ApplicationRouter::add($request, $app);
         });
 
         // default route
-        $this->silexApplication->error(function (Exception $e) use ($app, $responseHeaders) {
+        $this->silexApplication->error(function (Exception $e) use ($app) {
 
-            $response = [
-                'status'  => 'error',
-                'message' => 'route not found'
-            ];
-            return new SilexResponse($app->serialize($response), 200, $responseHeaders);
+            $response = ['status' => 'error', 'message' => 'route not found'];
+            return new SilexResponse($app->serialize($response), 200, ['Content-Type' => 'application/json']);
         });
     }
 }
