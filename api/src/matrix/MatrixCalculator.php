@@ -91,13 +91,45 @@ class MatrixCalculator
     {
         if (!$matrix->isSquare() || $matrix->getLinesCount() !== 2)
         {
-            throw new MatrixException('2x2 matrix excepted');
+            throw new MatrixException('2x2 matrix is excepted');
         }
 
         $array = $matrix->getArray();
         return ($array[0][0] * $array[1][1]) - ($array[0][1] * $array[1][0]);
     }
+    public static function getMatriceTranspose(Matrix $matrix){
+        if (!$matrix->isSquare())
+            throw new MatrixException('Matrix is not Square for Inverse');
 
+        $Tranpose   = array();
+        $nbLine     = $matrix->getLinesCount;
+        $nbCol      = $matrix->getColumnsCount;
+        $i          = 0;
+        $j          = 0;
+
+        $determinant    = $matrix->getDeterminant();
+        if($determinant != 0)
+        {
+            while ($i < $nbLine)
+            {
+                while($j < $nbCol)
+                {
+                   $sub = $matrix->getSubMatrix($i,$j);
+                   $subMatrixDeterminant = $sub->getDeterminant();
+                   if($j){
+                        $subMatrixDeterminant = -1 * $subMatrixDeterminant ;
+                   }
+                   $Transpose[$i][$j] = $subMatrixDeterminant;
+                }
+            }
+            return $Transpose;
+        }
+        else
+            throw new MatrixException('Determinant is null -> 0');
+    }
+    public static function Inverse(){
+        
+    }
     // PRIVATE STATIC METHODS
     ///////////////////////////////////////////////////////////////////////////
 
