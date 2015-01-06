@@ -57,15 +57,18 @@ class ApplicationRouter
             try
             {
                 // DEBUT DU CODE APPELLANT
-                echo "test";
+                echo "------ Test Inverse ------ <br><br>";
                 $aMatrix = new Matrix($aMatrixArray);
-                $bMatrix = MatrixCalculator::getMatriceTranspose($aMatrix);
-
-
-                // $response = [
-                //     'status' => 'success',
-                //     'result' => $bMatrix->getArray()
-                // ];
+                $aMatrix->debugHTML("MATRICE");
+                echo "<br>";
+                echo $aMatrix->getDeterminant();
+                echo "<br>";
+                $result = MatrixCalculator::getMatriceForTranspose($aMatrix);
+                $result->debugHTML("Matrice for transpose");
+                $response = [
+                    'status' => 'success',
+                    'result' => true
+                ];
 
                 // FIN DU CODE APPELLANT
             }

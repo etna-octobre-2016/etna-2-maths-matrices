@@ -97,35 +97,44 @@ class MatrixCalculator
         $array = $matrix->getArray();
         return ($array[0][0] * $array[1][1]) - ($array[0][1] * $array[1][0]);
     }
-    public static function getMatriceTranspose(Matrix $matrix){
-        if (!$matrix->isSquare())
+    public static function getMatriceForTranspose(Matrix $matrix){
+        if (!$matrix->isSquare()){
             throw new MatrixException('Matrix is not Square for Inverse');
+        }
 
-        $Tranpose   = array();
-        $nbLine     = $matrix->getLinesCount;
-        $nbCol      = $matrix->getColumnsCount;
-        $i          = 0;
-        $j          = 0;
-
+        $matriceResult  = array();
+        $nbLine         = $matrix->getLinesCount();
+        $nbCol          = $matrix->getColumnsCount();
         $determinant    = $matrix->getDeterminant();
-        if($determinant != 0)
+        $i              = 0;
+        $j              = 0;
+
+        if($determinant !== 0)
         {
             while ($i < $nbLine)
             {
                 while($j < $nbCol)
                 {
-                   $sub = $matrix->getSubMatrix($i,$j);
-                   $subMatrixDeterminant = $sub->getDeterminant();
-                   if($j){
-                        $subMatrixDeterminant = -1 * $subMatrixDeterminant ;
-                   }
-                   $Transpose[$i][$j] = $subMatrixDeterminant;
+                    $sub                   = $matrix->getSubMatrix($i,$j);
+                    $subMatrixDeterminant  = $sub->getDeterminant();
+                    
+                    if(($i%2===0  && $j%2!==0) || ($i%2!==0  && $j%2===0))
+                    {
+                        $subMatrixDeterminant = -1 * $subMatrixDeterminant;
+                    }
+                    // $sub->debugHTML("sousmat");
+                    $matriceResult[$i][$j] = $subMatrixDeterminant;
+                    $j++;
                 }
+                $j=0;
+                $i++;
             }
-            return $Transpose;
         }
         else
+        {
             throw new MatrixException('Determinant is null -> 0');
+        }
+        return $matriceResult;
     }
     public static function Inverse(){
         
