@@ -73,6 +73,9 @@ class Application
         $this->silexApplication->post('/add/', function(SilexRequest $request) use ($app) {
             return ApplicationRouter::add($request, $app);
         });
+        $this->silexApplication->post('/inverse/', function(SilexRequest $request) use ($app) {
+            return ApplicationRouter::inverse($request, $app);
+        });
         $this->silexApplication->post('/multiply/', function(SilexRequest $request) use ($app) {
             return ApplicationRouter::multiply($request, $app);
         });
