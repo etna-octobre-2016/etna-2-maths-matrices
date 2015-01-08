@@ -91,11 +91,59 @@ class MatrixCalculator
     {
         if (!$matrix->isSquare() || $matrix->getLinesCount() !== 2)
         {
-            throw new MatrixException('2x2 matrix excepted');
+            throw new MatrixException('2x2 matrix is excepted');
         }
 
         $array = $matrix->getArray();
         return ($array[0][0] * $array[1][1]) - ($array[0][1] * $array[1][0]);
+    }
+    public static function invert(Matrix $matrix)
+    {
+        $determinant = $matrix->getDeterminant();
+
+        if ($determinant === 0)
+        {
+            throw new MatrixException('this matrix cannot be inverted');
+        }
+
+        $matrixArray = $matrix->getArray();
+
+        if ($matrix->getOrder() > 2)
+        {
+            $determinantMatrixArray = [];
+
+            foreach ($matrixArray as $lineIndex => $columns)
+            {
+                foreach ($columns as $columnIndex => $cellValue)
+                {
+                    $subMatrix = $matrix->getSubMatrix($lineIndex, $columnIndex);
+                    $subMatrixDeterminant = $subMatrix->getDeterminant();
+
+                    // @note: le signe du determinant change lorsque l'on passe d'une colonne à une autre
+                    if (($lineIndex % 2 === 0 && $columnIndex % 2 !== 0) || ($lineIndex % 2 !== 0 && $columnIndex % 2 === 0))
+                    {
+                        $subMatrixDeterminant *= -1;
+                    }
+
+                    $determinantMatrixArray[$lineIndex][$columnIndex] = $subMatrixDeterminant;
+                }
+            }
+
+            $inverseMatrix = self::multiplyByReal(
+                self::transpose(new Matrix($determinantMatrixArray)), (1 / $determinant)
+            );
+        }
+        else
+        {
+            $inverseMatrix = self::multiplyByReal(
+                new Matrix([
+                    [$matrixArray[1][1], -$matrixArray[0][1]],
+                    [-$matrixArray[1][0], $matrixArray[0][0]],
+                ]),
+                (1 / $determinant)
+            );
+        }
+        return $inverseMatrix;
     }
 
     // PRIVATE STATIC METHODS
