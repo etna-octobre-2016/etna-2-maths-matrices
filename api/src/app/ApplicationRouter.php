@@ -48,7 +48,7 @@ class ApplicationRouter
         }
         return new SilexResponse($app->serialize($response), 200, self::getResponseHeaders());
     }
-    public static function inverse(SilexRequest $request, Application $app)
+    public static function invert(SilexRequest $request, Application $app)
     {
         $aMatrixArray = $request->request->get('A_matrix');
 
@@ -56,13 +56,12 @@ class ApplicationRouter
         {
             try
             {
-                // DEBUT DU CODE APPELLANT
                 $aMatrix = new Matrix($aMatrixArray);
                 $aMatrix->debugHTML("MATRICE");
                 echo "<br>";
-                $result = MatrixCalculator::getMatriceForTranspose($aMatrix);
-                $result->debugHTML("Matrice for transpose");
-                echo "<br>";
+                $result = MatrixCalculator::invert($aMatrix);
+                $result->debugHTML("Matrice inverse");
+
                 $response = [
                     'status' => 'success',
                     'result' => true
