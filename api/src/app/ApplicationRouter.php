@@ -56,18 +56,12 @@ class ApplicationRouter
         {
             try
             {
-                $aMatrix = new Matrix($aMatrixArray);
-                $aMatrix->debugHTML("MATRICE");
-                echo "<br>";
-                $result = MatrixCalculator::invert($aMatrix);
-                $result->debugHTML("Matrice inverse");
-
-                $response = [
+                $aMatrix       = new Matrix($aMatrixArray);
+                $inverseMatrix = MatrixCalculator::invert($aMatrix);
+                $response      = [
                     'status' => 'success',
-                    'result' => true
+                    'result' => $inverseMatrix->getArray()
                 ];
-
-                // FIN DU CODE APPELLANT
             }
             catch (MatrixException $e)
             {
