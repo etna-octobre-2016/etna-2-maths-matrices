@@ -33,6 +33,14 @@ class Matrix
     {
         return $this->linesCount;
     }
+    public function getOrder()
+    {
+        if (!$this->isSquare())
+        {
+            throw new MatrixException('cannot get the order from a non square matrix');
+        }
+        return $this->getLinesCount();
+    }
 
     // PUBLIC METHODS
     ////////////////////////////////////////////////////////////////////////////////////////
