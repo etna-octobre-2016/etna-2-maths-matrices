@@ -102,12 +102,13 @@ class MatrixCalculator
             throw new MatrixException('Matrix is not Square for Inverse');
         }
 
-        $matriceResult  = array();
-        $nbLine         = $matrix->getLinesCount();
-        $nbCol          = $matrix->getColumnsCount();
-        $determinant    = $matrix->getDeterminant();
-        $i              = 0;
-        $j              = 0;
+        $matrice            = array();
+        $ligneDeterminant   = array();
+        $nbLine             = $matrix->getLinesCount();
+        $nbCol              = $matrix->getColumnsCount();
+        $determinant        = $matrix->getDeterminant();
+        $i                  = 0;
+        $j                  = 0;
 
         if($determinant !== 0)
         {
@@ -122,10 +123,10 @@ class MatrixCalculator
                     {
                         $subMatrixDeterminant = -1 * $subMatrixDeterminant;
                     }
-                    // $sub->debugHTML("sousmat");
-                    $matriceResult[$i][$j] = $subMatrixDeterminant;
+                    $ligneDeterminant[$i][$j] += $subMatrixDeterminant;
                     $j++;
                 }
+                $matrice = $ligneDeterminant; 
                 $j=0;
                 $i++;
             }
@@ -134,7 +135,8 @@ class MatrixCalculator
         {
             throw new MatrixException('Determinant is null -> 0');
         }
-        return $matriceResult;
+
+        return new Matrix($matrice);
     }
     public static function Inverse(){
         
