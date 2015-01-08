@@ -97,50 +97,55 @@ class MatrixCalculator
         $array = $matrix->getArray();
         return ($array[0][0] * $array[1][1]) - ($array[0][1] * $array[1][0]);
     }
-    public static function getMatriceForTranspose(Matrix $matrix){
-        if (!$matrix->isSquare()){
-            throw new MatrixException('Matrix is not Square for Inverse');
+    public static function invert(Matrix $matrix)
+    {
+        $determinant = $matrix->getDeterminant();
+
+        if ($determinant === 0)
+        {
+            throw new MatrixException('this matrix cannot be inverted');
         }
 
-        $matrice            = array();
-        $ligneDeterminant   = array();
-        $nbLine             = $matrix->getLinesCount();
-        $nbCol              = $matrix->getColumnsCount();
-        $determinant        = $matrix->getDeterminant();
-        $i                  = 0;
-        $j                  = 0;
+        $matrixArray = $matrix->getArray();
 
-        if($determinant !== 0)
+        if ($matrix->getOrder() > 2)
         {
-            while ($i < $nbLine)
+            $determinantMatrixArray = [];
+
+            foreach ($matrixArray as $lineIndex => $columns)
             {
-                while($j < $nbCol)
+                foreach ($columns as $columnIndex => $cellValue)
                 {
-                    $sub                   = $matrix->getSubMatrix($i,$j);
-                    $subMatrixDeterminant  = $sub->getDeterminant();
-                    
-                    if(($i%2===0  && $j%2!==0) || ($i%2!==0  && $j%2===0))
+                    $subMatrix = $matrix->getSubMatrix($lineIndex, $columnIndex);
+                    $subMatrixDeterminant = $subMatrix->getDeterminant();
+
+                    // @note: le signe du determinant change lorsque l'on passe d'une colonne à une autre
+                    if (($lineIndex % 2 === 0 && $columnIndex % 2 !== 0) || ($lineIndex % 2 !== 0 && $columnIndex % 2 === 0))
                     {
-                        $subMatrixDeterminant = -1 * $subMatrixDeterminant;
+                        $subMatrixDeterminant *= -1;
                     }
-                    $ligneDeterminant[$i][$j] += $subMatrixDeterminant;
-                    $j++;
+
+                    $determinantMatrixArray[$lineIndex][$columnIndex] = $subMatrixDeterminant;
                 }
-                $matrice = $ligneDeterminant; 
-                $j=0;
-                $i++;
             }
+
+            $inverseMatrix = self::multiplyByReal(
+                self::transpose(new Matrix($determinantMatrixArray)), (1 / $determinant)
+            );
         }
         else
         {
-            throw new MatrixException('Determinant is null -> 0');
+            $inverseMatrix = self::multiplyByReal(
+                new Matrix([
+                    [$matrixArray[1][1], -$matrixArray[0][1]],
+                    [-$matrixArray[1][0], $matrixArray[0][0]],
+                ]),
+                (1 / $determinant)
+            );
         }
+        return $inverseMatrix;
+    }
 
-        return new Matrix($matrice);
-    }
-    public static function Inverse(){
-        
-    }
     // PRIVATE STATIC METHODS
     ///////////////////////////////////////////////////////////////////////////
 
