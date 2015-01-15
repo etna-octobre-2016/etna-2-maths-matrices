@@ -87,16 +87,6 @@ class MatrixCalculator
         }
         return new Matrix($resultMatrixArray);
     }
-    public static function determ22(Matrix $matrix)
-    {
-        if (!$matrix->isSquare() || $matrix->getLinesCount() !== 2)
-        {
-            throw new MatrixException('2x2 matrix is excepted');
-        }
-
-        $array = $matrix->getArray();
-        return ($array[0][0] * $array[1][1]) - ($array[0][1] * $array[1][0]);
-    }
     public static function invert(Matrix $matrix)
     {
         $determinant = $matrix->getDeterminant();
