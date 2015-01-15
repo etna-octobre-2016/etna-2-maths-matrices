@@ -86,9 +86,10 @@ class Matrix
             throw new MatrixException('determinant not available for non square matrix');
         }
 
-        if ($this->getLinesCount() === 2)
+        if ($this->getOrder() === 2)
         {
-            $determinant = MatrixCalculator::determ22($this);
+            $matrixArray = $this->getArray();
+            $determinant = ($matrixArray[0][0] * $matrixArray[1][1]) - ($matrixArray[0][1] * $matrixArray[1][0]);
         }
         else
         {

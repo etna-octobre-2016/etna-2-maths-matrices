@@ -73,6 +73,10 @@ class MatrixCalculator
         }
         return new Matrix($matrixArray);
     }
+    public static function resolveLinearSystem(Matrix $aMatrix, Matrix $yMatrix)
+    {
+        return self::multiply(self::invert($aMatrix), $yMatrix);
+    }
     public static function transpose(Matrix $matrix)
     {
         $matrixArray       = $matrix->getArray();
@@ -86,16 +90,6 @@ class MatrixCalculator
             }
         }
         return new Matrix($resultMatrixArray);
-    }
-    public static function determ22(Matrix $matrix)
-    {
-        if (!$matrix->isSquare() || $matrix->getLinesCount() !== 2)
-        {
-            throw new MatrixException('2x2 matrix is excepted');
-        }
-
-        $array = $matrix->getArray();
-        return ($array[0][0] * $array[1][1]) - ($array[0][1] * $array[1][0]);
     }
     public static function invert(Matrix $matrix)
     {
