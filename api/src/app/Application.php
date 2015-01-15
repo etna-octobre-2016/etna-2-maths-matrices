@@ -66,36 +66,41 @@ class Application
     private function setRoutes()
     {
         $app = $this;
+        $routes = [
+            'get' => [
+                'welcome'       => 'ApplicationRouter::welcome'
+            ],
+            'post' => [
+                'add'           => 'ApplicationRouter::add',
+                'gauss'         => 'ApplicationRouter::gauss',
+                'invert'        => 'ApplicationRouter::invert',
+                'multiply'      => 'ApplicationRouter::multiply',
+                'multiply-real' => 'ApplicationRouter::multiplyByReal',
+                'sub'           => 'ApplicationRouter::sub',
+                'trace'         => 'ApplicationRouter::trace',
+                'transpose'     => 'ApplicationRouter::transpose'
+            ]
+        ];
 
-        $this->silexApplication->get('/', function(SilexRequest $request) use ($app) {
-            return ApplicationRouter::welcome($request, $app);
-        });
-        $this->silexApplication->post('/add/', function(SilexRequest $request) use ($app) {
-            return ApplicationRouter::add($request, $app);
-        });
-        $this->silexApplication->post('/invert/', function(SilexRequest $request) use ($app) {
-            return ApplicationRouter::invert($request, $app);
-        });
-        $this->silexApplication->post('/multiply/', function(SilexRequest $request) use ($app) {
-            return ApplicationRouter::multiply($request, $app);
-        });
-        $this->silexApplication->post('/multiply-real/', function(SilexRequest $request) use ($app) {
-            return ApplicationRouter::multiplyByReal($request, $app);
-        });
-        $this->silexApplication->post('/sub/', function(SilexRequest $request) use ($app) {
-            return ApplicationRouter::sub($request, $app);
-        });
-        $this->silexApplication->post('/trace/', function(SilexRequest $request) use ($app) {
-            return ApplicationRouter::trace($request, $app);
-        });
-        $this->silexApplication->post('/transpose/', function(SilexRequest $request) use ($app) {
-            return ApplicationRouter::transpose($request, $app);
-        });
-        $this->silexApplication->get('/welcome/', function(SilexRequest $request) use ($app) {
-            return ApplicationRouter::welcome($request, $app);
-        });
+        // routes initialization
+        foreach ($routes as $method => &$uriList)
+        {
+            foreach ($uriList as $uri => $routerHandlerName)
+            {
+                $this->silexApplication->$method('/'.$uri.'/', function(SilexRequest $request) use ($routerHandlerName, $app) {
+
+                    return call_user_func(__NAMESPACE__.'\\'.$routerHandlerName, $request, $app);
+                });
+            }
+        }
 
         // default route
+        $this->silexApplication->get('/', function(SilexRequest $request) use ($app) {
+
+            return ApplicationRouter::welcome($request, $app);
+        });
+
+        // invalid route
         $this->silexApplication->error(function (Exception $e) use ($app) {
 
             $response = ['status' => 'error', 'message' => 'route not found'];
