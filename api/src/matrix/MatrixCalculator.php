@@ -73,6 +73,10 @@ class MatrixCalculator
         }
         return new Matrix($matrixArray);
     }
+    public static function resolveLinearSystem(Matrix $aMatrix, Matrix $yMatrix)
+    {
+        return self::multiply(self::invert($aMatrix), $yMatrix);
+    }
     public static function transpose(Matrix $matrix)
     {
         $matrixArray       = $matrix->getArray();
