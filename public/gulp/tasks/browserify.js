@@ -6,6 +6,7 @@ var browserify  = require('browserify'),
 gulp.task('browserify', function(){
 
     return browserify('./src/js/src/index.js')
+        .transform('browserify-shim')
         .bundle()
         .on('error', gutil.log)
         .pipe(source('app.js'))
