@@ -1,25 +1,42 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-// Dependencies
-var $   = require("../../vendors/zepto/zepto"),
-    Can = require("../../vendors/canjs/can.zepto");
+require("./app").init();
 
-// Templates
-var todos = new Can.List([
-    {name: "Faire les courses"},
-    {name: "Apprendre CanJS"},
-    {name: "Aller aux toilettes"}
-]);
+},{"./app":2}],2:[function(require,module,exports){
+var vendors = require("./vendors"),
+    $       = vendors.Zepto,
+    Can     = vendors.Can;
 
-console.log(todos);
+module.exports = {
 
-$("body").html(Can.view("templates/test.ejs", {todos: todos}));
+    deps: {},
 
-window.test = function(){
+    init: function()
+    {
+        console.log("init app");
 
-    todos.attr(1, {name:"Maitriser CanJS"});
+        // Templates
+        var todos = new Can.List([
+            {name: "Faire les courses"},
+            {name: "Apprendre CanJS 6"},
+            {name: "Aller aux toilettes"}
+        ]);
+
+        $("body").html(Can.view("templates/test.ejs", {todos: todos}));
+
+        window.test = function(){
+
+            todos.attr(1, {name:"Maitriser CanJS"});
+        };
+    }
 };
 
-},{"../../vendors/canjs/can.zepto":2,"../../vendors/zepto/zepto":3}],2:[function(require,module,exports){
+},{"./vendors":3}],3:[function(require,module,exports){
+module.exports = {
+    Can     : require("../../vendors/canjs/can.zepto"),
+    Zepto   : require("../../vendors/zepto/zepto")
+};
+
+},{"../../vendors/canjs/can.zepto":4,"../../vendors/zepto/zepto":5}],4:[function(require,module,exports){
 (function (global){
 
 ; $ = global.$ = require("/Users/ahemt_s/Documents/etna/TCM-MAT2/Matrices/git/public/src/vendors/zepto/zepto.js");
@@ -9662,7 +9679,7 @@ window.test = function(){
 }).call(global, undefined, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"/Users/ahemt_s/Documents/etna/TCM-MAT2/Matrices/git/public/src/vendors/zepto/zepto.js":3}],3:[function(require,module,exports){
+},{"/Users/ahemt_s/Documents/etna/TCM-MAT2/Matrices/git/public/src/vendors/zepto/zepto.js":5}],5:[function(require,module,exports){
 (function (global){
 ;__browserify_shim_require__=require;(function browserifyShim(module, exports, require, define, browserify_shim__define__module__export__) {
 /* Zepto v1.1.6 - zepto event ajax form ie - zeptojs.com/license */
