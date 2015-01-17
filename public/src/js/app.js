@@ -1,32 +1,36 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-require("./app").init();
+require("./application").init();
 
-},{"./app":2}],2:[function(require,module,exports){
+},{"./application":2}],2:[function(require,module,exports){
 var vendors = require("./vendors"),
     $       = vendors.Zepto,
     Can     = vendors.Can;
 
 module.exports = {
 
-    deps: {},
+    // PUBLIC METHODS
+    /////////////////////////////////////////////////////////
 
-    init: function()
-    {
-        console.log("init app");
+    init: function(){
 
-        // Templates
-        var todos = new Can.List([
-            {name: "Faire les courses"},
-            {name: "Apprendre CanJS 6"},
-            {name: "Aller aux toilettes"}
-        ]);
+        this._createComponent();
+        this._render();
+    },
 
-        $("body").html(Can.view("templates/test.ejs", {todos: todos}));
+    // PRIVATE METHODS
+    /////////////////////////////////////////////////////////
 
-        window.test = function(){
+    _createComponent: function(){
 
-            todos.attr(1, {name:"Maitriser CanJS"});
-        };
+        Can.Component.extend({
+
+            tag         : "component-app",
+            template    : Can.view("templates/app.ejs")
+        });
+    },
+    _render: function(){
+
+        $("#main").html(Can.view("templates/main.ejs", {}));
     }
 };
 
