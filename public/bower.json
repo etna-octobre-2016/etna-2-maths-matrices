@@ -1,5 +1,9 @@
 {
   "name": "etna-maths-matrix-project",
   "version": "0.1",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "zepto": "1.1.6",
+    "canjs": "2.1.4"
+  }
 }
