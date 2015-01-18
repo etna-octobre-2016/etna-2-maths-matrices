@@ -9,7 +9,7 @@ gulp.task('browserify', function(){
         .transform('browserify-shim')
         .bundle()
         .on('error', gutil.log)
-        .pipe(source('app.js'))
+        .pipe(source('main.js'))
         .pipe(gulp.dest('src/js'))
         .pipe(global.browserSyncReload({ stream:true }));
 });

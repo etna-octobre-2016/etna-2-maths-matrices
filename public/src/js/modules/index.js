@@ -1,1 +1,1 @@
-require("./application").init();
+require("./app").init();
