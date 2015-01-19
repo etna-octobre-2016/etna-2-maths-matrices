@@ -6,12 +6,12 @@
 }
 .app__wrapper
 {
-    @include linear-gradient(rgba(#FFF, 0.1), rgba(#FFF, 0.005));
+    @include linear-gradient(rgba($color-pastel-green, 0.08), rgba($color-pastel-green, 0.005));
 
-    border              : 1px solid rgba($color-pastel-green, 0.6);
-    box-shadow          : 0 0 2em rgba($color-pastel-green, 0.5);
-    padding             : 15px;
-    position            : absolute; bottom: 50px; left: 50px; right: 50px; top: 50px;
+    border      : 1px solid rgba($color-pastel-green, 0.6);
+    box-shadow  : 0 0 2em rgba($color-pastel-green, 0.5);
+    padding     : 15px;
+    position    : absolute; bottom: 50px; left: 50px; right: 50px; top: 50px;
 }
 .app__header
 {
@@ -19,9 +19,11 @@
 }
 .app__header__title
 {
-    color           : $color-pastel-green;
-    font-family     : Roboto-Thin;
+    color           : lighten($color-pastel-green, 20%);
+    font-family     : Roboto-Light;
     font-size       : 3rem;
     text-align      : center;
+    text-rendering  : geometricPrecision;
+    text-shadow     : $color-midnight-moss 0 0.08em 0, $color-pastel-green 0 0 0.08em;
     text-transform  : uppercase;
 }
