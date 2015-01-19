@@ -8,7 +8,56 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <main id="main"></main>
+    <canvas id="matrix-canvas"></canvas>
+    <main class="app">
+        <div class="app__wrapper">
+            <header class="app__header">
+                <h1 class="app__header__title">
+                    Matrix Calculator
+                </h1>
+            </header>
+            <nav class="app__nav">
+                <ul class="app__nav__items">
+                    <li class="app__nav__item">
+                        <a class="app__nav__item__link" href="#!add">
+                            Addition
+                        </a>
+                    </li>
+                    <li class="app__nav__item">
+                        <a class="app__nav__item__link" href="#!sub">
+                            Soustraction
+                        </a>
+                    </li>
+                    <li class="app__nav__item">
+                        <a class="app__nav__item__link" href="#!multiply">
+                            Produit
+                        </a>
+                    </li>
+                    <li class="app__nav__item">
+                        <a class="app__nav__item__link" href="#!multiply-by-real">
+                            Produit par un réel
+                        </a>
+                    </li>
+                    <li class="app__nav__item">
+                        <a class="app__nav__item__link" href="#!invert">
+                            Inverse
+                        </a>
+                    </li>
+                    <li class="app__nav__item">
+                        <a class="app__nav__item__link" href="#!gauss">
+                            Résolution de système linéaire
+                        </a>
+                    </li>
+                    <li class="app__nav__item">
+                        <a class="app__nav__item__link" href="#!transpose">
+                            Transposée
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <section class="app__component" id="component-container"></section>
+        </div>
+    </main>
     <script src="js/main.js"></script>
 </body>
 </html>

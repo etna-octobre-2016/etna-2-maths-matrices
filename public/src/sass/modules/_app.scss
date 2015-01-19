@@ -1,8 +1,30 @@
 .app
 {
+    background  : url("../assets/img/pattern-screen.png") center repeat;
+    display     : block;
+    min-height  : 100%;
+}
+.app__wrapper
+{
+    @include linear-gradient(rgba(#FFF, 0.1), rgba(#FFF, 0.005));
+
+    border              : 1px solid rgba($color-pastel-green, 0.6);
+    box-shadow          : 0 0 2em rgba($color-pastel-green, 0.5);
+    padding             : 15px;
+    position            : absolute; top: 50px; left: 50px; right: 50px; bottom: 50px;
+}
+.app__header
+{
     display: block;
 }
-.app__title
+.app__header__title
 {
-    text-align: center;
+    color           : $color-pastel-green;
+    font-family     : Roboto-Medium;
+    text-align      : center;
+    text-transform  : uppercase;
+}
+.app__nav
+{
+    display: block;
 }

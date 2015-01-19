@@ -5,5 +5,9 @@
   "dependencies": {
     "zepto": "1.1.6",
     "canjs": "2.1.4"
+  },
+  "devDependencies": {
+    "bourbon": "3.2.4",
+    "normalize.css": "3.0.2"
   }
 }

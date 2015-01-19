@@ -1,11 +1,31 @@
+"use strict";
+
 module.exports = {
 
-    init: function(){
+    // ATTRIBUTES
+    ////////////////////////////////////////////////////////////
 
-        console.log("init add component");
+    options: null,
+
+    // PUBLIC METHODS
+    ////////////////////////////////////////////////////////////
+
+    init: function(options){
+
+        this.options = options;
+        this._createComponent();
     },
     destroy: function(){
 
-        console.log("destroy add component");
+        this.options = null;
+    },
+
+    // PRIVATE METHODS
+    ////////////////////////////////////////////////////////////
+
+    _createComponent: function(){
+
+        console.log("create component");
+        console.log(this.options);
     }
 };
