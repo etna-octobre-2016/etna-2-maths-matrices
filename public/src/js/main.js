@@ -70,10 +70,6 @@ module.exports = {
         context.globalCompositeOperation = 'lighter';
         canvas.width = $(window).width();
         canvas.height = $(window).height();
-
-        console.log(canvas.width);
-        console.log(canvas.height);
-
         draw();
 
         var textStrip = ['诶', '比', '西', '迪', '伊', '吉', '艾', '杰', '开', '哦', '屁', '提', '维'];
@@ -81,7 +77,7 @@ module.exports = {
         var stripCount = 60, stripX = new Array(), stripY = new Array(), dY = new Array(), stripFontSize = new Array();
 
         for (var i = 0; i < stripCount; i++) {
-            stripX[i] = Math.floor(Math.random()*1265);
+            stripX[i] = Math.floor(Math.random()*canvas.width);
             stripY[i] = -100;
             dY[i] = Math.floor(Math.random()*7)+3;
             stripFontSize[i] = Math.floor(Math.random()*16)+8;
