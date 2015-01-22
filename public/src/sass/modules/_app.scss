@@ -6,7 +6,7 @@
 }
 .app__wrapper
 {
-    @include linear-gradient(rgba($color-pastel-green, 0.12), rgba($color-pastel-green, 0.0005));
+    @include linear-gradient(rgba($color-pastel-green, 0.1), rgba($color-pastel-green, 0.0005));
 
     border      : 1px solid $color-pastel-green;
     box-shadow  : 0 0 2em rgba($color-pastel-green, 0.5);
