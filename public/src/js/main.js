@@ -29,6 +29,7 @@ module.exports = {
             var saut		= "<br>";
             var libelleA	= "Matrice A";
             var libelleB	= "Matrice B";
+            var apiURL      = "http://api.matrix.maths.etna";
 
             /*######################## EVENT #############################*/
 
@@ -163,6 +164,31 @@ module.exports = {
                 });
             }
 
+            function buildHTMLTableFromMatrixArray(matrixArray)
+            {
+                var html,
+                    i,
+                    j;
+
+                html = '<table class="table">';
+
+                for (i = 0; i < matrixArray.length; i++)
+                {
+                    html += "<tr>";
+
+                    for (j = 0; j < matrixArray[i].length; j++)
+                    {
+                        html += '<td class="table__cell">' + matrixArray[i][j] + "</td>";
+                    }
+
+                    html += "</tr>";
+                }
+
+                html += "</table>";
+
+                return html;
+            }
+
             function getDialog(data,id){
                 var button = '<input id="'+id+'" class="calculate" type="submit" value="Calculer">';
 
@@ -202,9 +228,23 @@ module.exports = {
 
             /*** ADDITION  ***/
             function calcAdd(matA,matB){
-                $.post('/add/', {matriceA :matA, matriceB: matB}, function(data)
+                $.post(apiURL + "/add", {A_matrix:matA, B_matrix: matB}, function(data)
                 {
-                    $('#result-addsub').append(data);
+                    if (typeof data.status === "string")
+                    {
+                        if (data.status === "success")
+                        {
+                            $("#result").html(buildHTMLTableFromMatrixArray(data.result));
+                        }
+                        else
+                        {
+                            alert(data.message);
+                        }
+                    }
+                    else
+                    {
+                        alert("une erreur a eu lieu lors de la requête");
+                    }
                 })
             }
 
