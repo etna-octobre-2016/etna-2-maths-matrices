@@ -1,0 +1,43 @@
+$dropdown-arrow-size   : 6px;
+$dropdown-arrow-margin : -5px;
+
+.dropdown-list
+{
+
+    background-color : $color-midnight-moss;
+    border           : 1px solid $color-pastel-green;
+    color            : $color-pastel-green;
+    display          : inline-block;
+    position         : relative;
+
+    &::before
+    {
+        @include triangle($dropdown-arrow-size, $color-pastel-green, up);
+
+        content    : "";
+        display    : block;
+        margin-top : $dropdown-arrow-margin;
+        position   : absolute; right: 5px; top: 50%;
+    }
+
+    &::after
+    {
+        @include triangle($dropdown-arrow-size, $color-pastel-green, down);
+
+        content        : "";
+        display        : block;
+        margin-bottom  : $dropdown-arrow-margin;
+        position       : absolute; right: 5px; bottom: 50%;
+    }
+
+    select
+    {
+        @include appearance(none);
+
+        background-color : transparent;
+        border-style     : none;
+        display          : block;
+        padding          : 5px 20px 5px 5px;
+        width            : 100%;
+    }
+}
