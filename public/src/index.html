@@ -76,51 +76,64 @@
                                 Multiplication
                             </td>
                             <td class="app__calculator__body__column">
-                                <div id="matrice-A">
-                                    Matrice A
-                                    <select id="line-multA">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                    </select>
-                                    <select id="column-multA">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                    </select>
+                                <div class="app__control">
+                                    <label class="label">
+                                        <span class="label__text">
+                                            Matrice A
+                                        </span>
+                                        <div class="dropdown-list">
+                                            <select id="line-multA">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                        </div>
+                                        <div class="dropdown-list">
+                                            <select id="column-multA">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                        </div>
+                                    </label>
                                 </div>
-                                <div id="matrice-B">
-                                    Matrice B
-                                    <input class="input-home" id="input-mult" type="text" disabled="disabled"></input>
-                                    <select id="column-multB">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                    </select>
+                                <div class="app__control">
+                                    <label class="label">
+                                        <span class="label__text">
+                                            Matrice B
+                                        </span>
+                                        <input class="textfield" id="input-mult" type="text" disabled="disabled">
+                                        <div class="dropdown-list">
+                                            <select id="column-multB">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                        </div>
+                                    </label>
                                 </div>
-                                <br>
-                                <input id="set-multiply" type="submit" value="Set Matrix">
+                                <input class="button" id="set-multiply" type="submit" value="Set Matrix">
                             </td>
                         </tr>
                         <tr>

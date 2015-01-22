@@ -15,7 +15,8 @@ $dropdown-height       : 30px;
 
     &:hover
     {
-        background-color: $color-parsley;
+        background-color : $color-parsley;
+        color            : #FFF;
     }
 
     &::before
