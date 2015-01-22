@@ -16,11 +16,235 @@ module.exports = {
     init: function(){
 
         this._initCanvas();
+        this._initCalculator();
     },
 
     // PRIVATE METHODS
     /////////////////////////////////////////////////////////
 
+    _initCalculator: function()
+    {
+        $( document ).ready(function() {
+
+            var saut		= "<br>";
+            var libelleA	= "Matrice A";
+            var libelleB	= "Matrice B";
+
+            /*######################## EVENT #############################*/
+
+            $("#dialog").dialog({
+                autoOpen: false
+            });
+
+            /******************
+            **** Addition *****/
+            $( "#set-add" ).click(function()
+            {
+                buildMatriceHTMLAddSub("Addition / Soutraction","line-add","column-add");
+            });
+
+            /****************************
+            ****** Multiplication ******/
+            $( "#input-mult" ).val( $("#column-multA option:selected").val());
+
+            $( "#column-multA" ).change(function(){
+                $( "#input-mult" ).val( $("#column-multA option:selected").val());
+            });
+
+            $( "#set-multiply" ).click(function()
+            {
+                buildMatriceHTMLMultiply("Mutiply","line-multA","column-multA","column-multB");
+            });
+
+            /****************************
+            ******** Transpose **********/
+            $( "#set-transpose" ).click(function()
+            {
+                buildMatriceHTMLTranspose("Transpose","line-transpose","column-transpose");
+            });
+
+            /****************************
+            ******** Trace **********/
+            $( "#set-trace" ).click(function()
+            {
+                buildMatriceHTMLTrace("Trace","dim-trace");
+            });
+
+            /*########################## FUNCTIONS ##############################
+            ###*/
+            function getMatriceHTML(idmat,line,col){
+                var nbCol 	= $("#"+col+" option:selected").val();
+                var nbLine 	= $("#"+line+" option:selected").val();
+                var cell 	= '';
+                var line 	= '';
+                var cells	= '';
+                var i,j 	= 0;
+
+                for (i=0;i<nbLine;++i)
+                {
+                    cells = "";
+                    for (j=0;j<nbCol;++j)
+                    {
+                        cells += '<td><input id="in'+i+j+'" class="cells" data-row="'+i+'" data-col="'+j+'" value="" type="text"></input></td>';
+                    }
+                    line += "<tr>"+cells+"</tr>";
+                }
+                var matriceHTML = "<table id='"+idmat+"'>"+line+"</table>";
+
+                return matriceHTML;
+            }
+
+            function buildMatriceHTMLAddSub(title,line,col){
+                var idtab1 = "mat-addsub1";
+                var idtab2 = "mat-addsub2";
+                var tab1 = getMatriceHTML(idtab1,line,col);
+                var tab2 = getMatriceHTML(idtab2,line,col);
+                var html = title+saut+libelleA+saut+tab1+saut+libelleB+saut+tab2;
+                var idButton = "calc-addsub";
+                var op  = $("#operator-addSub option:selected").val();
+
+                getDialog(html,idButton);
+
+                $( "#"+idButton ).click(function(){
+                    var matA = getMatriceArray(idtab1);
+                    var matB = getMatriceArray(idtab2);
+                    if(op == '-'){
+                        calcSub(matA,matB);
+                    }else if(op =='+'){
+                        calcAdd(matA,matB);
+                    }else{return;}
+
+                });
+            }
+
+            function buildMatriceHTMLMultiply(title,lineA,colA,lineB){
+                var idtab1 = "mat-mult1";
+                var idtab2 = "mat-mult2";
+                var tab1 = getMatriceHTML(idtab1,lineA,colA);
+                var tab2 = getMatriceHTML(idtab2,colA,lineB);
+                var html = title+saut+libelleA+saut+tab1+saut+libelleB+saut+tab2;
+                var idButton = "calc-mult";
+                getDialog(html,idButton);
+
+                $( "#"+idButton).click(function(){
+                    var matA = getMatriceArray(idtab1);
+                    var matB = getMatriceArray(idtab2);
+                    calcMult(matA,matB)
+                });
+            }
+
+            function buildMatriceHTMLTranspose(title,line,col){
+                var idtab1 = "mat-transp1";
+                var tab1 = getMatriceHTML(idtab1,line,col);
+                var html = title+saut+libelleA+saut+tab1;
+                var idButton = "calc-transp";
+                getDialog(html,idButton);
+
+                $( "#"+idButton).click(function(){
+                    var matA = getMatriceArray(idtab1);
+                    calcTranspose(matA);
+                });
+            }
+
+            function buildMatriceHTMLTrace(title,dim){
+                var idtab1 = "mat-trace1";
+                var tab1 = getMatriceHTML(idtab1,dim,dim);
+                var html = title+saut+libelleA+saut+tab1+saut;
+                var idButton = "calc-trace";
+
+                getDialog(html,idButton);
+
+                $( "#"+idButton ).click(function(){
+                    var matA = getMatriceArray(idtab1);
+                    calcTrace(matA);
+                });
+            }
+
+            function getDialog(data,id){
+                var button = '<input id="'+id+'" class="calculate" type="submit" value="Calculer">';
+
+                $( "#dialog" ).html(data+saut+button).dialog("open");
+            }
+
+            function getMatriceArray(idtable){
+                var matriceArray = [];
+
+                /**** je pointe sur le tableau par l'id -> dans le tableau courant
+                , je check tout les inputs, puis je fait mon traitement
+                */
+                $('#'+idtable).find("input").each(function(i, input){
+                    var $input  = $(input);
+                    var value   = input.value;
+                    var i       = $input.data("row");
+                    var j       = $input.data("col");
+                    if (typeof matriceArray[i] === "undefined"){
+                        matriceArray[i] = [];
+                    }
+                    matriceArray[i][j] = value;
+                });
+                return matriceArray;
+            }
+
+            function getMatriceArray_generique(idtable){
+                var matrice = [];
+                /**** je pointe sur le tableau par l'id -> dans le tableau courant
+                , je check tout les inputs, puis je fait mon traitement
+                */
+                $('table[id^='+idtable+']').each(function(j, table) {
+                    $(table).find("input").each(function(i, input){
+                        var value = input.value;
+                    });
+                })
+            }
+
+            /*** ADDITION  ***/
+            function calcAdd(matA,matB){
+                $.post('/add/', {matriceA :matA, matriceB: matB}, function(data)
+                {
+                    $('#result-addsub').append(data);
+                })
+            }
+
+            /*** SOUSTRACTION  ***/
+            function calcSub(matA,matB){
+                $.post('/sub/', {matriceA :matA, matriceB: matB}, function(data)
+                {
+                    $('#result-addsub').append("data");
+                })
+            }
+
+            /*** MULTIPLICATION ***/
+            function calcMult(matA,matB){
+                $.post('/multiply/', {matriceA :matA, matriceB: matB}, function(data)
+                {
+                    $('#result-multiple').append(data);
+                })
+            }
+
+            function calcMultByReal(matA,matB){
+                $.post('/multiply-real/', {matriceA :matA, matriceB: matB}, function(data)
+                {
+                    $('#result-multiple').append(data);
+                })
+            }
+
+            /*** TRANSPOSE ***/
+            function calcTranspose(matA){
+                $.post('', {matriceA :matA}, function(data)
+                {
+                    $('#result-transpose').append(data);
+                })
+            }
+
+            /*** TRACE ***/
+            function calcTrace(matA,matB){
+                $.post('', {matriceA :matA, matriceB: matB}, function(data)
+                {
+                    $('#result-trace').append(data);
+                })
+            }
+        });
+    },
     _initCanvas: function(){
 
         var canvas = document.getElementById("matrix-canvas"),
