@@ -29,8 +29,10 @@ module.exports = {
             /*######################## EVENT #############################*/
 
             $("#dialog").dialog({
+                autoOpen : false,
+                height   : "auto",
                 modal    : true,
-                autoOpen : false
+                width    : "auto"
             });
 
             /******************
