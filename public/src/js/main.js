@@ -190,7 +190,7 @@ module.exports = {
                 $( "#"+idButton).click(function(){
                     var matA = getMatriceArray(idtab1);
                     var matB = getMatriceArray(idtab2);
-                    calcMult(matA,matB)
+                    calcGauss(matA,matB);
                 });
             }
 
@@ -360,6 +360,28 @@ module.exports = {
                         if (data.status === "success")
                         {
                             $("#result").html(buildHTMLTableFromMatrixArray([[data.result]]));
+                        }
+                        else
+                        {
+                            alert(data.message);
+                        }
+                    }
+                    else
+                    {
+                        alert("une erreur a eu lieu lors de la requête");
+                    }
+                });
+            }
+
+            /*** GAUSS ***/
+            function calcGauss(matA,matY){
+                $.post(apiURL + "/gauss", {A_matrix:matA, Y_matrix: matY}, function(data)
+                {
+                    if (typeof data.status === "string")
+                    {
+                        if (data.status === "success")
+                        {
+                            $("#result").html(buildHTMLTableFromMatrixArray(data.result));
                         }
                         else
                         {
