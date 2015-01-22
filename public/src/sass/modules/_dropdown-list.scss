@@ -1,14 +1,22 @@
 $dropdown-arrow-size   : 6px;
 $dropdown-arrow-margin : -5px;
+$dropdown-height       : 30px;
 
 .dropdown-list
 {
-
     background-color : $color-midnight-moss;
     border           : 1px solid $color-pastel-green;
+    box-sizing       : border-box;
     color            : $color-pastel-green;
     display          : inline-block;
+    height           : $dropdown-height;
     position         : relative;
+    transition       : background-color 0.2s;
+
+    &:hover
+    {
+        background-color: $color-parsley;
+    }
 
     &::before
     {
@@ -37,6 +45,7 @@ $dropdown-arrow-margin : -5px;
         background-color : transparent;
         border-style     : none;
         display          : block;
+        height           : 100%;
         padding          : 5px 20px 5px 5px;
         width            : 100%;
     }
