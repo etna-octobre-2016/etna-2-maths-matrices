@@ -2,8 +2,11 @@
   "name": "etna-maths-matrix-project",
   "version": "0.1",
   "private": true,
+  "dependencies": {
+    "jquery": "2.1.3"
+  },
   "devDependencies": {
-    "polymer": "0.5.2",
-    "bourbon": "4.0.2"
+    "bourbon": "3.2.4",
+    "normalize.css": "3.0.2"
   }
 }

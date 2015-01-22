@@ -1,0 +1,23 @@
+$textfield-height : 30px;
+$textfield-width  : 50px;
+
+.textfield
+{
+    background-color : $color-midnight-moss;
+    border           : 1px solid $color-pastel-green;
+    box-sizing       : border-box;
+    color            : $color-pastel-green;
+    display          : inline-block;
+    font-family      : sans-serif;
+    font-size        : 0.9rem;
+    height           : $textfield-height;
+    padding          : 5px;
+    transition       : background-color 0.2s;
+    width            : $textfield-width;
+
+    &:focus
+    {
+        background-color : $color-snow-flurry;
+        color            : $color-midnight-moss;
+    }
+}

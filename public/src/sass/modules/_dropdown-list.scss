@@ -1,0 +1,59 @@
+$dropdown-arrow-size   : 6px;
+$dropdown-arrow-margin : -5px;
+$dropdown-height       : 30px;
+$dropdown-width        : 50px;
+
+.dropdown-list
+{
+    background-color : $color-midnight-moss;
+    border           : 1px solid $color-pastel-green;
+    box-sizing       : border-box;
+    color            : $color-pastel-green;
+    display          : inline-block;
+    height           : $dropdown-height;
+    position         : relative;
+    transition       : background-color 0.2s;
+    width            : $dropdown-width;
+
+    &:hover
+    {
+        background-color : $color-parsley;
+        color            : #FFF;
+    }
+
+    &::before
+    {
+        @include triangle($dropdown-arrow-size, $color-pastel-green, up);
+
+        content        : "";
+        display        : block;
+        margin-top     : $dropdown-arrow-margin;
+        pointer-events : none;
+        position       : absolute; right: 5px; top: 50%;
+    }
+
+    &::after
+    {
+        @include triangle($dropdown-arrow-size, $color-pastel-green, down);
+
+        content        : "";
+        display        : block;
+        margin-bottom  : $dropdown-arrow-margin;
+        pointer-events : none;
+        position       : absolute; right: 5px; bottom: 50%;
+    }
+
+    select
+    {
+        @include appearance(none);
+
+        background-color : transparent;
+        border-style     : none;
+        display          : block;
+        font-family      : sans-serif;
+        font-size        : 0.9rem;
+        height           : 100%;
+        padding          : 5px 20px 5px 5px;
+        width            : 100%;
+    }
+}
