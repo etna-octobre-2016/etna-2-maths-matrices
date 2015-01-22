@@ -25,10 +25,11 @@ $dropdown-width        : 50px;
     {
         @include triangle($dropdown-arrow-size, $color-pastel-green, up);
 
-        content    : "";
-        display    : block;
-        margin-top : $dropdown-arrow-margin;
-        position   : absolute; right: 5px; top: 50%;
+        content        : "";
+        display        : block;
+        margin-top     : $dropdown-arrow-margin;
+        pointer-events : none;
+        position       : absolute; right: 5px; top: 50%;
     }
 
     &::after
@@ -38,6 +39,7 @@ $dropdown-width        : 50px;
         content        : "";
         display        : block;
         margin-bottom  : $dropdown-arrow-margin;
+        pointer-events : none;
         position       : absolute; right: 5px; bottom: 50%;
     }
 
