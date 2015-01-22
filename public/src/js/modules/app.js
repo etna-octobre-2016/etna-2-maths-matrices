@@ -241,15 +241,29 @@ module.exports = {
                     {
                         alert("une erreur a eu lieu lors de la requête");
                     }
-                })
+                });
             }
 
             /*** SOUSTRACTION  ***/
             function calcSub(matA,matB){
-                $.post('/sub/', {matriceA :matA, matriceB: matB}, function(data)
+                $.post(apiURL + "/sub", {A_matrix:matA, B_matrix: matB}, function(data)
                 {
-                    $('#result-addsub').append("data");
-                })
+                    if (typeof data.status === "string")
+                    {
+                        if (data.status === "success")
+                        {
+                            $("#result").html(buildHTMLTableFromMatrixArray(data.result));
+                        }
+                        else
+                        {
+                            alert(data.message);
+                        }
+                    }
+                    else
+                    {
+                        alert("une erreur a eu lieu lors de la requête");
+                    }
+                });
             }
 
             /*** MULTIPLICATION ***/
