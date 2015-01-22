@@ -70,6 +70,19 @@ module.exports = {
                 buildMatriceHTMLTrace("Trace","dim-trace");
             });
 
+            /****************************
+            ****** Gauss ******/
+            $( "#nb-equationBis" ).val( $("#nb-equation option:selected").val());
+
+            $( "#nb-equation" ).change(function(){
+                $( "#nb-equationBis" ).val( $("#nb-equation option:selected").val());
+            });
+
+            $( "#set-gauss" ).click(function()
+            {
+                buildMatriceHTMLGauss("Gauss","nb-equation","nb-inconnu","nb-equation","nb-colgauss2");
+            });
+
             /*########################## FUNCTIONS ##############################
             ###*/
             function getMatriceHTML(idmat,line,col){
@@ -157,6 +170,23 @@ module.exports = {
                 $( "#"+idButton ).click(function(){
                     var matA = getMatriceArray(idtab1);
                     calcTrace(matA);
+                });
+            }
+
+            function buildMatriceHTMLGauss(title,nbEqua,nbInconnu,nbEquaBis,nbColGauss2){
+                var idtab1 = "mat-gauss1";
+                var idtab2 = "mat-gauss2";
+                var libelleRes = "Matrice Y";
+                var tab1 = getMatriceHTML(idtab1,nbEqua,nbInconnu);
+                var tab2 = getMatriceHTML(idtab2,nbEquaBis,nbColGauss2);
+                var html = title+saut+libelleA+saut+tab1+saut+libelleRes+saut+tab2;
+                var idButton = "calc-gauss";
+                getDialog(html,idButton);
+
+                $( "#"+idButton).click(function(){
+                    var matA = getMatriceArray(idtab1);
+                    var matB = getMatriceArray(idtab2);
+                    calcMult(matA,matB)
                 });
             }
 
