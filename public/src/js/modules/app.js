@@ -100,7 +100,7 @@ module.exports = {
                 var tab2 = getMatriceHTML(idtab2,line,col);
                 var html = title+saut+libelleA+saut+tab1+saut+libelleB+saut+tab2;
                 var idButton = "calc-addsub";
-                var op  = $("#operator-addSub option:selected").val();
+                var op  = $("#operator-add-sub option:selected").val();
 
                 getDialog(html,idButton);
 
