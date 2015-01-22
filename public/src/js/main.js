@@ -301,10 +301,24 @@ module.exports = {
 
             /*** TRANSPOSE ***/
             function calcTranspose(matA){
-                $.post('', {matriceA :matA}, function(data)
+                $.post(apiURL + "/transpose", {A_matrix:matA}, function(data)
                 {
-                    $('#result-transpose').append(data);
-                })
+                    if (typeof data.status === "string")
+                    {
+                        if (data.status === "success")
+                        {
+                            $("#result").html(buildHTMLTableFromMatrixArray(data.result));
+                        }
+                        else
+                        {
+                            alert(data.message);
+                        }
+                    }
+                    else
+                    {
+                        alert("une erreur a eu lieu lors de la requête");
+                    }
+                });
             }
 
             /*** TRACE ***/
