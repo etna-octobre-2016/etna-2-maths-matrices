@@ -1,4 +1,5 @@
 $textfield-height : 30px;
+$textfield-width  : 50px;
 
 .textfield
 {
@@ -7,7 +8,10 @@ $textfield-height : 30px;
     box-sizing       : border-box;
     color            : $color-pastel-green;
     display          : inline-block;
+    font-family      : sans-serif;
+    font-size        : 0.9rem;
     height           : $textfield-height;
-    padding          : 5px 10px;
+    padding          : 5px;
     transition       : background-color 0.2s;
+    width            : $textfield-width;
 }

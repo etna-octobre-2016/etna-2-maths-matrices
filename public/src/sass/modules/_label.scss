@@ -1,0 +1,11 @@
+.label
+{
+    display: inline-block;
+}
+.label__text
+{
+    color        : $color-snow-flurry;
+    font-family  : Roboto-Thin;
+    font-size    : 0.9rem;
+    margin-right : 5px;
+}
