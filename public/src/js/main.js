@@ -33,7 +33,8 @@ module.exports = {
             /*######################## EVENT #############################*/
 
             $("#dialog").dialog({
-                autoOpen: false
+                modal    : true,
+                autoOpen : false
             });
 
             /******************
@@ -85,7 +86,7 @@ module.exports = {
                     cells = "";
                     for (j=0;j<nbCol;++j)
                     {
-                        cells += '<td><input id="in'+i+j+'" class="cells" data-row="'+i+'" data-col="'+j+'" value="" type="text"></input></td>';
+                        cells += '<td><input id="in'+i+j+'" class="textfield" data-row="'+i+'" data-col="'+j+'" type="text"></input></td>';
                     }
                     line += "<tr>"+cells+"</tr>";
                 }
