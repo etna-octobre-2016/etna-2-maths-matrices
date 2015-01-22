@@ -5,12 +5,6 @@ var vendors = require("./vendors"),
     $       = vendors.Zepto,
     Can     = vendors.Can;
 
-// Components
-var components = {
-
-    add: require("./add")
-};
-
 module.exports = {
 
     // PUBLIC METHODS
@@ -97,39 +91,6 @@ module.exports = {
                 stripY[j] += dY[j];
             }
           setTimeout(draw, 70);
-        }
-    },
-    _initComponent: function(name, options){
-
-        if (typeof components[name] !== "undefined")
-        {
-            components[name].init(options);
-        }
-    },
-    _initRouter: function(){
-
-        var self;
-
-        self = this;
-        Can.route(":page", {page: "welcome"});
-        Can.route.bind('page', function(e, newValue, oldValue) {
-
-            if (oldValue !== undefined)
-            {
-                self._destroyComponent(oldValue);
-            }
-            self._initComponent(newValue,{
-                containerSelector   : "#component-container",
-                vendors             : vendors
-            });
-        });
-        Can.route.ready();
-    },
-    _destroyComponent: function(name){
-
-        if (typeof components[name] !== "undefined")
-        {
-            components[name].destroy();
         }
     }
 };

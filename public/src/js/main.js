@@ -1,52 +1,13 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 require("./app").init();
 
-},{"./app":3}],2:[function(require,module,exports){
-"use strict";
-
-module.exports = {
-
-    // ATTRIBUTES
-    ////////////////////////////////////////////////////////////
-
-    options: null,
-
-    // PUBLIC METHODS
-    ////////////////////////////////////////////////////////////
-
-    init: function(options){
-
-        this.options = options;
-        this._createComponent();
-    },
-    destroy: function(){
-
-        this.options = null;
-    },
-
-    // PRIVATE METHODS
-    ////////////////////////////////////////////////////////////
-
-    _createComponent: function(){
-
-        console.log("create component");
-        console.log(this.options);
-    }
-};
-
-},{}],3:[function(require,module,exports){
+},{"./app":2}],2:[function(require,module,exports){
 "use strict";
 
 // Vendors
 var vendors = require("./vendors"),
     $       = vendors.Zepto,
     Can     = vendors.Can;
-
-// Components
-var components = {
-
-    add: require("./add")
-};
 
 module.exports = {
 
@@ -135,49 +96,16 @@ module.exports = {
             }
           setTimeout(draw, 70);
         }
-    },
-    _initComponent: function(name, options){
-
-        if (typeof components[name] !== "undefined")
-        {
-            components[name].init(options);
-        }
-    },
-    _initRouter: function(){
-
-        var self;
-
-        self = this;
-        Can.route(":page", {page: "welcome"});
-        Can.route.bind('page', function(e, newValue, oldValue) {
-
-            if (oldValue !== undefined)
-            {
-                self._destroyComponent(oldValue);
-            }
-            self._initComponent(newValue,{
-                containerSelector   : "#component-container",
-                vendors             : vendors
-            });
-        });
-        Can.route.ready();
-    },
-    _destroyComponent: function(name){
-
-        if (typeof components[name] !== "undefined")
-        {
-            components[name].destroy();
-        }
     }
 };
 
-},{"./add":2,"./vendors":4}],4:[function(require,module,exports){
+},{"./vendors":3}],3:[function(require,module,exports){
 module.exports = {
     Can     : require("../../vendors/canjs/can.zepto"),
     Zepto   : require("../../vendors/zepto/zepto")
 };
 
-},{"../../vendors/canjs/can.zepto":5,"../../vendors/zepto/zepto":6}],5:[function(require,module,exports){
+},{"../../vendors/canjs/can.zepto":4,"../../vendors/zepto/zepto":5}],4:[function(require,module,exports){
 (function (global){
 
 ; $ = global.$ = require("/Users/ahemt_s/Documents/etna/TCM-MAT2/Matrices/git/public/src/vendors/zepto/zepto.js");
@@ -9820,7 +9748,7 @@ module.exports = {
 }).call(global, undefined, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"/Users/ahemt_s/Documents/etna/TCM-MAT2/Matrices/git/public/src/vendors/zepto/zepto.js":6}],6:[function(require,module,exports){
+},{"/Users/ahemt_s/Documents/etna/TCM-MAT2/Matrices/git/public/src/vendors/zepto/zepto.js":5}],5:[function(require,module,exports){
 (function (global){
 ;__browserify_shim_require__=require;(function browserifyShim(module, exports, require, define, browserify_shim__define__module__export__) {
 /* Zepto v1.1.6 - zepto event ajax form ie - zeptojs.com/license */

@@ -6,7 +6,7 @@
 }
 .app__wrapper
 {
-    @include linear-gradient(rgba($color-pastel-green, 0.1), rgba($color-pastel-green, 0.005));
+    @include linear-gradient(rgba($color-pastel-green, 0.12), rgba($color-pastel-green, 0.0005));
 
     border      : 1px solid $color-pastel-green;
     box-shadow  : 0 0 2em rgba($color-pastel-green, 0.5);
@@ -22,9 +22,9 @@
     background-color    : $color-midnight-moss;
     border              : 1px solid $color-pastel-green;
     box-shadow          : 0 0 0.6em rgba($color-pastel-green, 0.5);
-    color               : lighten($color-pastel-green, 20%);
+    color               : rgba($color-pastel-green, 0.7);
     display             : inline-block;
-    font-family         : Roboto-Thin;
+    font-family         : Roboto-Light;
     font-size           : 3rem;
     height              : 50px;
     line-height         : 50px;
@@ -32,4 +32,36 @@
     padding             : 8px 10px;
     text-align          : center;
     text-transform      : uppercase;
+}
+.app__container
+{
+    padding: 15px;
+}
+.app__calculator
+{
+    border-collapse : collapse;
+    margin-top      : 40px;
+    table-layout    : fixed;
+    width           : 100%;
+}
+.app__calculator__header__column
+{
+    color       : lighten($color-pastel-green, 30%);
+    font-size   : 2rem;
+    font-family : Roboto-Light;
+    text-align  : center;
+}
+.app__calculator__body__column
+{
+    background-color    : rgba($color-snow-flurry, 0.15);
+    border              : 1px solid $color-midnight-moss;
+    padding             : 40px 20px;
+    text-align          : center;
+
+    &.is-title
+    {
+        color       : $color-snow-flurry;
+        font-size   : 1.4rem;
+        font-family : Roboto-Thin;
+    }
 }
