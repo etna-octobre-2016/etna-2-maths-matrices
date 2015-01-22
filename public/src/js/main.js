@@ -272,10 +272,24 @@ module.exports = {
 
             /*** MULTIPLICATION ***/
             function calcMult(matA,matB){
-                $.post('/multiply/', {matriceA :matA, matriceB: matB}, function(data)
+                $.post(apiURL + "/multiply", {A_matrix:matA, B_matrix: matB}, function(data)
                 {
-                    $('#result-multiple').append(data);
-                })
+                    if (typeof data.status === "string")
+                    {
+                        if (data.status === "success")
+                        {
+                            $("#result").html(buildHTMLTableFromMatrixArray(data.result));
+                        }
+                        else
+                        {
+                            alert(data.message);
+                        }
+                    }
+                    else
+                    {
+                        alert("une erreur a eu lieu lors de la requête");
+                    }
+                });
             }
 
             function calcMultByReal(matA,matB){
