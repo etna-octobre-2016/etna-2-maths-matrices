@@ -1,4 +1,3 @@
 module.exports = {
-    Can     : require("../../vendors/canjs/can.zepto"),
-    Zepto   : require("../../vendors/zepto/zepto")
+    jQuery: require("../../vendors/jquery/dist/jquery")
 };

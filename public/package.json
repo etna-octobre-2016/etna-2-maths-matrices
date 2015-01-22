@@ -18,18 +18,11 @@
     "postinstall": "bower install"
   },
   "browser": {
-    "Zepto": "src/vendors/zepto/zepto.js",
-    "CanJS": "src/vendors/canjs/can.zepto.js"
+    "jQuery": "src/vendors/jquery/dist/jquery.js"
   },
   "browserify-shim": {
-    "Zepto": {
+    "jQuery": {
       "exports": "$"
-    },
-    "CanJS": {
-      "exports": "can",
-      "depends": [
-        "Zepto:$"
-      ]
     }
   }
 }

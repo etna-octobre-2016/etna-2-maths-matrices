@@ -2,8 +2,7 @@
 
 // Vendors
 var vendors = require("./vendors"),
-    $       = vendors.Zepto,
-    Can     = vendors.Can;
+    $       = vendors.jQuery;
 
 module.exports = {
 
@@ -13,7 +12,6 @@ module.exports = {
     init: function(){
 
         this._initCanvas();
-        this._initRouter();
     },
 
     // PRIVATE METHODS
