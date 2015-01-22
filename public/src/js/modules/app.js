@@ -319,10 +319,24 @@ module.exports = {
 
             /*** TRACE ***/
             function calcTrace(matA,matB){
-                $.post('', {matriceA :matA, matriceB: matB}, function(data)
+                $.post(apiURL + "/trace", {A_matrix:matA}, function(data)
                 {
-                    $('#result-trace').append(data);
-                })
+                    if (typeof data.status === "string")
+                    {
+                        if (data.status === "success")
+                        {
+                            $("#result").html(buildHTMLTableFromMatrixArray([[data.result]]));
+                        }
+                        else
+                        {
+                            alert(data.message);
+                        }
+                    }
+                    else
+                    {
+                        alert("une erreur a eu lieu lors de la requête");
+                    }
+                });
             }
         });
     },
