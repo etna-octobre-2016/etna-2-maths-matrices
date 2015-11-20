@@ -36,7 +36,7 @@ class Polynome
                 $k++;
             }
         }
-        return res;
+        return $res;
     }
 
 }
