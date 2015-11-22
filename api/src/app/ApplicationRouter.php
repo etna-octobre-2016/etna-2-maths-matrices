@@ -14,7 +14,7 @@ class ApplicationRouter
     // PUBLIC STATIC METHODS
     ////////////////////////////////////////////////////////////////////////////////////////
 
-    public static function add(SilexRequest $request, Application $app)
+    public static function matrixAdd(SilexRequest $request, Application $app)
     {
         $aMatrixArray    = $request->request->get('A_matrix');
         $bMatrixArray    = $request->request->get('B_matrix');
@@ -48,7 +48,7 @@ class ApplicationRouter
         }
         return new SilexResponse($app->serialize($response), 200, self::getResponseHeaders());
     }
-    public static function gauss(SilexRequest $request, Application $app)
+    public static function matrixGauss(SilexRequest $request, Application $app)
     {
         $aMatrixArray = $request->request->get('A_matrix');
         $yMatrixArray = $request->request->get('Y_matrix');
@@ -82,7 +82,7 @@ class ApplicationRouter
         }
         return new SilexResponse($app->serialize($response), 200, self::getResponseHeaders());
     }
-    public static function invert(SilexRequest $request, Application $app)
+    public static function matrixInvert(SilexRequest $request, Application $app)
     {
         $aMatrixArray = $request->request->get('A_matrix');
 
@@ -114,7 +114,7 @@ class ApplicationRouter
         }
         return new SilexResponse($app->serialize($response), 200, self::getResponseHeaders());
     }
-    public static function multiply(SilexRequest $request, Application $app)
+    public static function matrixMultiply(SilexRequest $request, Application $app)
     {
         $aMatrixArray    = $request->request->get('A_matrix');
         $bMatrixArray    = $request->request->get('B_matrix');
@@ -148,7 +148,7 @@ class ApplicationRouter
         }
         return new SilexResponse($app->serialize($response), 200, self::getResponseHeaders());
     }
-    public static function multiplyByReal(SilexRequest $request, Application $app)
+    public static function matrixMultiplyByReal(SilexRequest $request, Application $app)
     {
         $real         = $request->request->get('real');
         $aMatrixArray = $request->request->get('A_matrix');
@@ -181,7 +181,7 @@ class ApplicationRouter
         }
         return new SilexResponse($app->serialize($response), 200, self::getResponseHeaders());
     }
-    public static function sub(SilexRequest $request, Application $app)
+    public static function matrixSub(SilexRequest $request, Application $app)
     {
         $aMatrixArray    = $request->request->get('A_matrix');
         $bMatrixArray    = $request->request->get('B_matrix');
@@ -215,7 +215,7 @@ class ApplicationRouter
         }
         return new SilexResponse($app->serialize($response), 200, self::getResponseHeaders());
     }
-    public static function trace(SilexRequest $request, Application $app)
+    public static function matrixTrace(SilexRequest $request, Application $app)
     {
         $aMatrixArray = $request->request->get('A_matrix');
 
@@ -246,7 +246,7 @@ class ApplicationRouter
         }
         return new SilexResponse($app->serialize($response), 200, self::getResponseHeaders());
     }
-    public static function transpose(SilexRequest $request, Application $app)
+    public static function matrixTranspose(SilexRequest $request, Application $app)
     {
         $aMatrixArray = $request->request->get('A_matrix');
 
@@ -283,6 +283,14 @@ class ApplicationRouter
         $response = [
             'status'  => 'success',
             'message' => 'Welcome to the Matrix Project API'
+        ];
+        return new SilexResponse($app->serialize($response), 200, self::getResponseHeaders());
+    }
+    public static function polynomialRoots(SilexRequest $request, Application $app)
+    {
+        $response = [
+            'status'  => 'success',
+            'message' => 'test classe polynomial'
         ];
         return new SilexResponse($app->serialize($response), 200, self::getResponseHeaders());
     }
