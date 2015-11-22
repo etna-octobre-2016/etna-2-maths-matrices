@@ -1,0 +1,47 @@
+{
+    "browserSync": {
+        "ghostMode": false,
+        "open": false,
+        "server": {
+            "baseDir": ["tmp", "src"]
+        }
+    },
+    "paths": {
+        "buffer": "tmp/_buffer",
+        "dist": "dist",
+        "src": "src",
+        "tmp": "tmp"
+    },
+    "replace": {},
+    "sass": {
+        "dev": {
+            "errLogToConsole": true,
+            "outputStyle": "nested"
+        },
+        "dist": {
+            "errLogToConsole": true,
+            "outputStyle": "compressed"
+        }
+    },
+    "static": {
+        "paths": [
+            "src/assets/**/!(*.svg)",
+            "src/vendors/crossroads/dist/**/*",
+            "src/vendors/lodash/**/*",
+            "src/vendors/js-signals/dist/**/*",
+            "src/vendors/normalize.css/*",
+            "src/vendors/requirejs/**/*",
+            "src/vendors/requirejs-text/**/*",
+            "src/vendors/vue/dist/**/*"
+        ]
+    },
+    "svgSprite": {
+        "log": "verbose",
+        "mode": {
+            "symbol": {
+                "dest": "./",
+                "sprite": "sprite.svg"
+            }
+        }
+    }
+}
