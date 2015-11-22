@@ -11,8 +11,22 @@ use Matrix\MatrixException;
 
 class ApplicationRouter
 {
-    // PUBLIC STATIC METHODS
-    ////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    // GENERIC PUBLIC STATIC METHODS
+    ////////////////////////////////////////////////////////////////////////////
+
+    public static function welcome(SilexRequest $request, Application $app)
+    {
+        $response = [
+            'status'  => 'success',
+            'message' => 'Welcome to the Matrix Project API'
+        ];
+        return new SilexResponse($app->serialize($response), 200, self::getResponseHeaders());
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    // MATRIX PUBLIC STATIC METHODS
+    ////////////////////////////////////////////////////////////////////////////
 
     public static function matrixAdd(SilexRequest $request, Application $app)
     {
@@ -278,14 +292,11 @@ class ApplicationRouter
         }
         return new SilexResponse($app->serialize($response), 200, self::getResponseHeaders());
     }
-    public static function welcome(SilexRequest $request, Application $app)
-    {
-        $response = [
-            'status'  => 'success',
-            'message' => 'Welcome to the Matrix Project API'
-        ];
-        return new SilexResponse($app->serialize($response), 200, self::getResponseHeaders());
-    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    // POLYNOMIAL PUBLIC STATIC METHODS
+    ////////////////////////////////////////////////////////////////////////////
+
     public static function polynomialRoots(SilexRequest $request, Application $app)
     {
         $response = [
@@ -295,8 +306,9 @@ class ApplicationRouter
         return new SilexResponse($app->serialize($response), 200, self::getResponseHeaders());
     }
 
+    ////////////////////////////////////////////////////////////////////////////
     // PRIVATE STATIC METHODS
-    ////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
 
     private static function getResponseHeaders()
     {
