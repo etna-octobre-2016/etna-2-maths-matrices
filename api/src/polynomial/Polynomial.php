@@ -23,6 +23,28 @@ class Polynomial
         {
             throw new PolynomialException('Max root is not an integer');
         }
+        if ($minRoot > $maxRoot)
+        {
+            throw new PolynomialException('Min root is greater than max root');
+        }
+        $coefficients = $this->coefficients;
+        $coefficientsCount = count($coefficients);
+        $max = $maxRoot + 1;
+        $roots = [];
+        for ($x = $minRoot; $x < $max; $x++)
+        {
+            $result = 0;
+            for ($i = 0; $i < $coefficientsCount; $i++)
+            {
+                $a = $coefficients[$i];
+                $result = $result + $a * pow($x, ($coefficientsCount - $i - 1));
+            }
+            if ($result === 0)
+            {
+                $roots[] = $x;
+            }
+        }
+        return $roots;
     }
 
     //////////////////////////////////////////////////////////////////////////
