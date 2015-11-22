@@ -15,7 +15,14 @@ class Polynomial
     }
     public function getRoots($minRoot, $maxRoot)
     {
-
+        if (!is_int($minRoot))
+        {
+            throw new PolynomialException('Min root is not an integer');
+        }
+        if (!is_int($maxRoot))
+        {
+            throw new PolynomialException('Max root is not an integer');
+        }
     }
 
     //////////////////////////////////////////////////////////////////////////

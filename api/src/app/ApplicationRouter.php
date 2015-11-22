@@ -306,9 +306,11 @@ class ApplicationRouter
         try
         {
             $polynomial = new Polynomial($coefficients);
+            $minRoot = $request->request->get('minRoot');
+            $maxRoot = $request->request->get('maxRoot');
             $response = [
                 'status'  => 'success',
-                'result'  => []
+                'result'  => $polynomial->getRoots($minRoot, $maxRoot)
             ];
         }
         catch (PolynomialException $e)
