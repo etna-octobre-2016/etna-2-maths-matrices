@@ -1,0 +1,23 @@
+.button
+{
+    @include appearance(none);
+    @include transition(all 0.3s ease-in-out);
+
+    background-color: $color-white;
+    border:           1px solid $color-black;
+    box-sizing:       border-box;
+    color:            $color-black;
+    padding:          8px 16px;
+
+    &:hover
+    {
+        background-color: $color-black;
+        color:            $color-white;
+    }
+    &[disabled]
+    {
+        background-color: $color-grey-nobel !important;
+        border-color:     $color-grey-nobel !important;
+        color:            $color-black !important;
+    }
+}

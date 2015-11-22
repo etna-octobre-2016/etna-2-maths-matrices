@@ -13,7 +13,7 @@
     "yargs": "3.10.0"
   },
   "scripts": {
-    "clean": "rm -rf node_modules src/vendors",
+    "clean": "rm -rf node_modules src/vendors tmp",
     "install_bower": "npm install -g bower@1.3.12",
     "install_gulp": "npm install -g gulp@3.8.11",
     "preinstall": "npm run install_bower && npm run install_gulp",

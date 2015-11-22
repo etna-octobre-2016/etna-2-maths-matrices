@@ -12,7 +12,17 @@
         "src": "src",
         "tmp": "tmp"
     },
-    "replace": {},
+    "replace": {
+        "development": {
+            "JS_MAIN": "app"
+        },
+        "preprod": {
+            "JS_MAIN": "app.min"
+        },
+        "production": {
+            "JS_MAIN": "app.min"
+        }
+    },
     "sass": {
         "dev": {
             "errLogToConsole": true,

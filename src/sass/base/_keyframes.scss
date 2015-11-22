@@ -1,0 +1,13 @@
+// @note: here you can define reusable keyframes
+// example:
+/* @include keyframes(fadeIn)
+{
+    from
+    {
+        @include transform(scale(0));
+    }
+    to
+    {
+        @include transform(scale(1));
+    }
+} */
