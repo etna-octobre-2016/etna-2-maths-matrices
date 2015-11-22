@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Response as SilexResponse;
 use Matrix\Matrix;
 use Matrix\MatrixCalculator;
 use Matrix\MatrixException;
+use Polynomial\Polynomial;
+use Polynomial\PolynomialException;
 
 class ApplicationRouter
 {
@@ -299,10 +301,23 @@ class ApplicationRouter
 
     public static function polynomialRoots(SilexRequest $request, Application $app)
     {
-        $response = [
-            'status'  => 'success',
-            'message' => 'test classe polynomial'
-        ];
+        $coefficients = $request->request->get('coefficients');
+
+        try
+        {
+            $polynomial = new Polynomial($coefficients);
+            $response = [
+                'status'  => 'success',
+                'result'  => []
+            ];
+        }
+        catch (PolynomialException $e)
+        {
+            $response = [
+                'status'  => 'error',
+                'message' => $e->getMessage()
+            ];
+        }
         return new SilexResponse($app->serialize($response), 200, self::getResponseHeaders());
     }
 

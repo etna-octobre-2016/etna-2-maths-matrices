@@ -8,12 +8,12 @@ class Polynomial
     // PUBLIC INSTANCE METHODS
     //////////////////////////////////////////////////////////////////////////
 
-    public __construct($coefficients)
+    public function __construct($coefficients)
     {
         $this->validateCoefficients($coefficients);
         $this->coefficients = $coefficients;
     }
-    public getRoots($minRoot, $maxRoot)
+    public function getRoots($minRoot, $maxRoot)
     {
 
     }
@@ -22,7 +22,7 @@ class Polynomial
     // PUBLIC STATIC METHODS
     //////////////////////////////////////////////////////////////////////////
 
-    public static validateCoefficients($coefficients)
+    public static function validateCoefficients($coefficients)
     {
         if (!is_array($coefficients))
         {
@@ -37,7 +37,7 @@ class Polynomial
         {
             if (!is_int($coefficients[$i]))
             {
-                throw new PolynomialException('Coefficient item #' + $i + ' is not an integer');
+                throw new PolynomialException('Coefficient item #'.$i.' is not an integer');
             }
         }
     }
