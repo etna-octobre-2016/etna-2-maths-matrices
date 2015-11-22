@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Polynomial\\' => array($baseDir . '/src/polynomial'),
     'Matrix\\' => array($baseDir . '/src/matrix'),
     'App\\' => array($baseDir . '/src/app'),
 );
