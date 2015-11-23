@@ -48,7 +48,8 @@ $loader-outer-circle-weight: 1px;
     {
         @include transform(scale(10));
         
-        opacity: 0;
+        background: #FFFFFF;
+        opacity:    0;
     }
 }
 .loader-outer
