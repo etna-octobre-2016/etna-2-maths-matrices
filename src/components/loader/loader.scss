@@ -1,0 +1,92 @@
+$loader-background-color:    #07121c;
+$loader-color:               #2187E7;
+$loader-inner-circle-size:   50px;
+$loader-inner-circle-weight: 4px;
+$loader-outer-circle-size:   100px;
+$loader-outer-circle-weight: 2px;
+
+@include keyframes(spin)
+{
+    0%
+    {
+        @include transform(rotate(0deg) translateX(-50%) translateY(-50%));
+    }
+    100%
+    {
+        @include transform(rotate(360deg) translateX(-50%) translateY(-50%));
+    }
+}
+@include keyframes(spinoff)
+{
+    0%
+    {
+        @include transform(rotate(0deg) translateX(-50%) translateY(-50%));
+    }
+    100%
+    {
+        @include transform(rotate(-360deg) translateX(-50%) translateY(-50%));
+    }
+}
+
+.loader
+{
+    background: $loader-background-color;
+    position:   absolute;
+        left:   0;
+        top:    0;
+    height:     100%;
+    width:      100%;
+    
+    &.fade-transition
+    {
+        @include transform(scale(1));
+        
+        opacity:    1;
+        transition: all 0.5s ease;
+    }
+    &.fade-enter, &.fade-leave
+    {
+        @include transform(scale(10));
+        
+        opacity: 0;
+    }
+}
+.loader-outer
+{
+    @include animation(spin 0.5s infinite linear);
+    @include transform-origin(0 0);
+    
+    background-color: rgba(0,0,0,0);
+    border:           $loader-outer-circle-weight solid rgba($loader-color, 0.8);
+    border-left:      $loader-outer-circle-weight solid rgba(0, 0, 0, 0);
+    border-radius:    100%;
+    border-top:       $loader-outer-circle-weight solid rgba(0, 0, 0, 0);
+    border-bottom:    $loader-outer-circle-weight solid rgba(0, 0, 0, 0);
+    box-shadow:       0 0 ($loader-outer-circle-weight * 6) $loader-color;
+    box-sizing:       content-box;
+    height:           $loader-outer-circle-size;
+    opacity:          0.9;
+    position:         absolute;
+        left:         50%;
+        top:          50%;
+    width:            $loader-outer-circle-size;
+}
+.loader-inner
+{
+    @include animation(spinoff 0.7s infinite linear);
+    @include transform-origin(0 0);
+    
+    background-color: rgba(0,0,0,0);
+    border:           $loader-inner-circle-weight solid rgba($loader-color, 0.8);
+    border-left:      $loader-inner-circle-weight solid rgba(0, 0, 0, 0);
+    border-radius:    100%;
+    border-top:       $loader-inner-circle-weight solid rgba(0, 0, 0, 0);
+    box-shadow:       0 0 ($loader-inner-circle-weight * 6) $loader-color;
+    box-sizing:       content-box;
+    height:           $loader-inner-circle-size;
+    opacity:          0.9;
+    position:         absolute;
+        left:         50%;
+        top:          50%;
+    width:            $loader-inner-circle-size;
+}

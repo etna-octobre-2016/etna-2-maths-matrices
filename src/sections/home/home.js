@@ -8,11 +8,23 @@ define(function(require)
         module.view = new Vue({
 
             components: {
-                "polynomial-roots": require("components/polynomial-roots/polynomial-roots")
+                "loader-component":           require("components/loader/loader"),
+                "polynomial-roots-component": require("components/polynomial-roots/polynomial-roots")
             },
-            data: {},
+            data: {
+                isLoading: true
+            },
             el: "#main",
-            template: template
+            template: template,
+            ready: function() {
+                
+                var timeoutID = setTimeout(function(){
+                    
+                    this.isLoading = false;
+                    clearTimeout(timeoutID);
+                    
+                }.bind(this), 1000);
+            }
         });
     }
 

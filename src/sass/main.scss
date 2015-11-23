@@ -20,5 +20,9 @@
 // Modules
 @import "modules/button";
 
+// Components
+@import "../components/loader/loader";
+@import "../components/polynomial-roots/polynomial-roots";
+
 // Sections
 @import "../sections/home/home";
