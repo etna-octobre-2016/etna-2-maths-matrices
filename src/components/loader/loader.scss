@@ -1,9 +1,9 @@
-$loader-background-color:    #07121c;
-$loader-color:               #2187E7;
-$loader-inner-circle-size:   50px;
-$loader-inner-circle-weight: 4px;
-$loader-outer-circle-size:   100px;
-$loader-outer-circle-weight: 2px;
+$loader-background-color:    #040a11;
+$loader-color:               #05a6b6;
+$loader-inner-circle-size:   30px;
+$loader-inner-circle-weight: 3px;
+$loader-outer-circle-size:   80px;
+$loader-outer-circle-weight: 1px;
 
 @include keyframes(spin)
 {
@@ -57,7 +57,7 @@ $loader-outer-circle-weight: 2px;
     @include transform-origin(0 0);
     
     background-color: rgba(0,0,0,0);
-    border:           $loader-outer-circle-weight solid rgba($loader-color, 0.8);
+    border:           $loader-outer-circle-weight solid rgba($loader-color, 0.7);
     border-left:      $loader-outer-circle-weight solid rgba(0, 0, 0, 0);
     border-radius:    100%;
     border-top:       $loader-outer-circle-weight solid rgba(0, 0, 0, 0);
@@ -73,11 +73,11 @@ $loader-outer-circle-weight: 2px;
 }
 .loader-inner
 {
-    @include animation(spinoff 0.7s infinite linear);
+    @include animation(spinoff 0.5s infinite linear);
     @include transform-origin(0 0);
     
     background-color: rgba(0,0,0,0);
-    border:           $loader-inner-circle-weight solid rgba($loader-color, 0.8);
+    border:           $loader-inner-circle-weight solid rgba($loader-color, 1);
     border-left:      $loader-inner-circle-weight solid rgba(0, 0, 0, 0);
     border-radius:    100%;
     border-top:       $loader-inner-circle-weight solid rgba(0, 0, 0, 0);
