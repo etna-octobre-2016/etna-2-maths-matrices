@@ -7,9 +7,12 @@ define(function(require)
     {
         module.view = new Vue({
 
-            data     : {},
-            el       : "#main",
-            template : template
+            components: {
+                "polynomial-roots": require("components/polynomial-roots/polynomial-roots")
+            },
+            data: {},
+            el: "#main",
+            template: template
         });
     }
 
