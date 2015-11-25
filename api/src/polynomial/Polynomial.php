@@ -46,6 +46,14 @@ class Polynomial
         }
         return $roots;
     }
+    public function getFactorise($equation)
+    {
+        $arrayRoots = getRoots();
+        $x          = null;
+        
+        $calc       = ($x - $arrayRoots[0])()
+
+    }
 
     //////////////////////////////////////////////////////////////////////////
     // PUBLIC STATIC METHODS
