@@ -1,5 +1,4 @@
-$loader-background-color:    #040a11;
-$loader-color:               #05a6b6;
+$loader-color:               #09d7ec;
 $loader-inner-circle-size:   30px;
 $loader-inner-circle-weight: 3px;
 $loader-outer-circle-size:   80px;
@@ -30,7 +29,7 @@ $loader-outer-circle-weight: 1px;
 
 .loader
 {
-    background: $loader-background-color;
+    background: url("../assets/backgrounds/noisy_net.png") center center repeat;
     position:   absolute;
         left:   0;
         top:    0;
@@ -48,8 +47,12 @@ $loader-outer-circle-weight: 1px;
     {
         @include transform(scale(10));
         
-        background: #FFFFFF;
-        opacity:    0;
+        opacity: 0;
+        
+        .loader-text
+        {
+            display: none;
+        }
     }
 }
 .loader-outer
@@ -63,7 +66,7 @@ $loader-outer-circle-weight: 1px;
     border-radius:    100%;
     border-top:       $loader-outer-circle-weight solid rgba(0, 0, 0, 0);
     border-bottom:    $loader-outer-circle-weight solid rgba(0, 0, 0, 0);
-    box-shadow:       0 0 ($loader-outer-circle-weight * 6) $loader-color;
+    box-shadow:       0 0 ($loader-outer-circle-weight * 3) $loader-color;
     box-sizing:       content-box;
     height:           $loader-outer-circle-size;
     opacity:          0.9;
@@ -82,7 +85,7 @@ $loader-outer-circle-weight: 1px;
     border-left:      $loader-inner-circle-weight solid rgba(0, 0, 0, 0);
     border-radius:    100%;
     border-top:       $loader-inner-circle-weight solid rgba(0, 0, 0, 0);
-    box-shadow:       0 0 ($loader-inner-circle-weight * 6) $loader-color;
+    box-shadow:       0 0 ($loader-inner-circle-weight * 3) $loader-color;
     box-sizing:       content-box;
     height:           $loader-inner-circle-size;
     opacity:          0.9;
@@ -90,4 +93,15 @@ $loader-outer-circle-weight: 1px;
         left:         50%;
         top:          50%;
     width:            $loader-inner-circle-size;
+}
+.loader-text
+{
+    @include transform(translateX(-50%) translateY(-50%));
+    
+    color:       $loader-color;
+    font-family: Orbitron, Arial, Helvetica, sans-serif;
+    margin-top:  $loader-outer-circle-size;
+    position:    absolute;
+        left:    50%;
+        top:     50%;
 }
