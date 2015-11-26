@@ -46,13 +46,24 @@ class Polynomial
         }
         return $roots;
     }
-    public function getFactorise($equation)
-    {
-        $arrayRoots = getRoots();
-        $x          = null;
-        
-        $calc       = ($x - $arrayRoots[0])()
 
+    public function getQuotient($equation)
+    {
+        $arrayRoots     = getRoots();
+        $coefficients   = $this->coefficients;
+
+        $res           = [];
+        //$operator    = $this->$operators;
+        //$x           = null;
+        //$qx          = ($x - $arrayRoots[0]);
+        //$px          = ($coefficients[0]*$x^3)$operator[0]($coefficients[1]*$x^2)$operator[1]($coefficients[2]*$x)$operator[2]($coefficients[3]);
+
+        $res[0] = $coefficients[0];                                    //quotient
+        $res[1] = $coefficients[1]+($arrayRoots[0]*$coefficients[0]);  //quotient
+        $res[2] = $arrayRoots[2]+($arrayRoots[0]*$res[1]);             //quotient
+        $res[3] = $arrayRoots[0]+($coefficients[3]*$res[2]);           //remainder
+
+        return $res;
     }
 
     //////////////////////////////////////////////////////////////////////////
