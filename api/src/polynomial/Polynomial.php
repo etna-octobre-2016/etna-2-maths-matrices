@@ -47,23 +47,42 @@ class Polynomial
         return $roots;
     }
 
-    public function getQuotient($equation)
+    public function getQuotients()
     {
-        $arrayRoots     = getRoots();
-        $coefficients   = $this->coefficients;
-
+        $arrayRoots    = getRoots();
+        $coefficients  = $this->coefficients;
         $res           = [];
         //$operator    = $this->$operators;
         //$x           = null;
         //$qx          = ($x - $arrayRoots[0]);
         //$px          = ($coefficients[0]*$x^3)$operator[0]($coefficients[1]*$x^2)$operator[1]($coefficients[2]*$x)$operator[2]($coefficients[3]);
 
-        $res[0] =   $coefficients[0];                                   //quotient
+        $res[0] =   $coefficients[0];                                    //quotient
         $res[1] =   $coefficients[1]  + ($arrayRoots[0]*$res[0]);       //quotient
-        $res[2] =   $coefficients[2]  + ($arrayRoots[0]*$res[1]);       //quotient
+        $res[2] =   $coefficients[2]  + ($arrayRoots[0]*$res[1]);      //quotient
         $res[3] =   $coefficients[3]  + ($arrayRoots[0]*$res[2]);     //remainder
 
         return $res;
+    }
+
+    public function getSolutions()
+    {
+        $quotient[]     = getQuotient();
+        $coefficients   = $this->coefficients;
+        $xtermCoef      = $quotient[1];
+        $commonFactor   = exp($xtermCoef/2)^2;
+        $x              = "x";
+        $result         = [];
+
+        // Polynome du 2nd degrés
+        // Les opérateurs de calcul sont contenus dans la tableau quotient
+        $left  = ($quotient[0]*$x/2 + $quotient[1]/2)^2;
+        $right = ($quotient[2]+$commonFactor);
+
+        $result[0] = null;
+        $result[1] = null;
+
+        return $result;
     }
 
     //////////////////////////////////////////////////////////////////////////
