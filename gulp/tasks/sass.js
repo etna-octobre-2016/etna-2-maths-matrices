@@ -14,6 +14,7 @@ function onSassError(callback, err)
         message: err.message,
         sound: true
     });
+    console.error(err.message);
     callback();
 }
 

@@ -1,4 +1,23 @@
 .polynomialroots
 {
-    background: pink;
+    height:   100%;
+    overflow: hidden;
+}
+.polynomialroots-menu
+{
+    background:   url("../assets/backgrounds/noisy_net.png") center center repeat;
+    box-sizing:   border-box;
+    border-right: 1px solid rgba($color-flash-blue, 0.2);
+    box-shadow:   inset -5px 0 5px rgba(#000000, 0.2);
+    float:        left;
+    height:       100%;
+    margin:       0;
+    width:        30%;
+}
+.polynomialroots-content
+{
+    background: rgba(#000000, 0.5);
+    float:      right;
+    height:     100%;
+    width:      70%;
 }
