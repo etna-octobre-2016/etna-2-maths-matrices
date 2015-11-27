@@ -1,23 +1,63 @@
+$polynomialroots-menu-width: 400px;
+
 .polynomialroots
 {
     height:   100%;
     overflow: hidden;
 }
+.polynomialroots.is-menu-active
+{
+    .polynomialroots-menu
+    {
+        @include transform(translateX(0));
+    }
+    .polynomialroots-content
+    {
+        @include transform(translateX($polynomialroots-menu-width));
+    }
+    .polynomialroots-overlay
+    {
+        opacity: 1;
+        height:  100%;
+        width:   100%;
+    }
+}
 .polynomialroots-menu
 {
+    @include transform(translateX(-100%));
+    
     background:   url("../assets/backgrounds/noisy_net.png") center center repeat;
-    box-sizing:   border-box;
     border-right: 1px solid rgba($color-flash-blue, 0.2);
     box-shadow:   inset -5px 0 5px rgba(#000000, 0.2);
-    float:        left;
     height:       100%;
     margin:       0;
-    width:        30%;
+     overflow-y:  scroll;
+    position:     fixed;
+        left:     0;
+        top:      0;
+        z-index:  200;
+    transition:   all 0.3s ease;
+    width:        $polynomialroots-menu-width;
 }
 .polynomialroots-content
 {
-    background: rgba(#000000, 0.5);
-    float:      right;
-    height:     100%;
-    width:      70%;
+    @include transform(translateX(0));
+    
+    background:      url("../assets/backgrounds/space.png") center center repeat;
+    background-size: cover;
+    height:          100%;
+    transition:      all 0.3s ease;
+}
+.polynomialroots-overlay
+{
+    background:  rgba(#000000, 0.6);
+    height:      0;
+    opacity:     0;
+    overflow:    hidden;
+    position:    fixed;
+        left:    0;
+        top:     0;
+        z-index: 100;
+    transition:  opacity 0.3s, width 0s 0.3s, height 0s 0.3s;
+    width:       0;
 }
