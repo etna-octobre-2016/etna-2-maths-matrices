@@ -23,7 +23,7 @@ define(function(require)
                     this.isLoading = false;
                     clearTimeout(timeoutID);
                     
-                }.bind(this), 1000);
+                }.bind(this), 2000);
             }
         });
     }

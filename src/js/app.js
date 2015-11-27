@@ -4,12 +4,14 @@ require.config({
     paths: {
 
         // vendors
-        cropper:    "../vendors/cropper/dist/cropper.min",
         crossroads: "../vendors/crossroads/dist/crossroads.min",
         ee:         "../vendors/eventEmitter/EventEmitter.min",
+        jquery:     "../vendors/jquery/dist/jquery.min",
+        lettering:  "../vendors/letteringjs/jquery.lettering",
         lodash:     "../vendors/lodash/lodash.min",
         signals:    "../vendors/js-signals/dist/signals.min", // @note: crossroads dependency
         text:       "../vendors/requirejs-text/text",
+        textillate: "../vendors/textillate/jquery.textillate",
         vue:        "../vendors/vue/dist/vue.min",
 
         // require paths
@@ -19,8 +21,11 @@ require.config({
         components: "../components"
     },
     shim: {
-        cropper: {
+        lettering: {
             deps: ["jquery"]
+        },
+        textillate: {
+            deps: ["jquery", "lettering"]
         }
     }
 });
