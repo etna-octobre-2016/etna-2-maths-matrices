@@ -12,6 +12,7 @@ require.config({
         signals:    "../vendors/js-signals/dist/signals.min", // @note: crossroads dependency
         text:       "../vendors/requirejs-text/text",
         textillate: "../vendors/textillate/jquery.textillate",
+        typedjs:    "../vendors/typed.js/dist/typed.min",
         vue:        "../vendors/vue/dist/vue.min",
 
         // require paths
@@ -26,6 +27,9 @@ require.config({
         },
         textillate: {
             deps: ["jquery", "lettering"]
+        },
+        typedjs: {
+            deps: ["jquery"]
         }
     }
 });

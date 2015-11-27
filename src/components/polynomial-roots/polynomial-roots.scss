@@ -43,9 +43,9 @@ $polynomialroots-menu-width: 400px;
     border-radius: 50%;
     cursor:        pointer;
     height:        54px;
-    margin-top:    20px;
-    margin-left:   20px;
-    position:      relative;
+    position:      absolute;
+        left:      20px;
+        top:       20px;
         z-index:   400;
     width:         54px;
 }
@@ -132,6 +132,25 @@ $polynomialroots-menu-width: 400px;
     overflow:        hidden;
     position:        relative;
     transition:      all 0.3s ease;
+}
+.polynomialroots-content-section
+{
+    height:   100%;
+    position: relative;
+}
+.polynomialroots-content-section-title
+{
+    background:     rgba(#111111, 0.7);
+    border:         1px solid $color-flash-blue;
+    box-shadow:     0 0 5px rgba(#000000, 0.5);
+    color:          #FFFFFF;
+    display:        none;
+    font-family:    Orbitron, Arial, Helvetica, sans-serif;
+    font-size:      1.2rem;
+    font-weight:    normal;
+    margin:         20px 20px 0 100px;
+    padding:        20px;
+    text-rendering: geometricPrecision;
 }
 .polynomialroots-content-overlay
 {

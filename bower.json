@@ -20,6 +20,7 @@
     "requirejs-text": "2.0.14",
     "requirejs": "2.1.16",
     "vue": "0.12.10",
-    "textillate": "0.4.0"
+    "textillate": "0.4.0",
+    "typed.js": "1.1.1"
   }
 }
