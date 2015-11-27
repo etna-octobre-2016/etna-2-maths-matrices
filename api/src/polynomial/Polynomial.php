@@ -66,12 +66,14 @@ class Polynomial
     {
         $quotient[]     = getQuotient();
         $coefficients   = $this->coefficients;
-        $xtermCoef      = $quotient[1];
-        $commonFactor   = pow( ($xtermCoef/2),2 );
+
+        // step 3
+        $xtermCoef      = ($quotient[1] / $quotient[0]);
+        $xtermHalfCoef  = ($xtermCoef / 2);
+        $commonFactor   = pow( ($xtermCoef),2 );
         $x              = "x";
         $result         = [];
 
-        // step 2
         // Polynome du 2nd degrés
         // Les opérateurs de calcul sont contenus dans la tableau quotient
         //$left  = pow( ($quotient[0]*$x/2 + $quotient[1]/2) , 2 );
