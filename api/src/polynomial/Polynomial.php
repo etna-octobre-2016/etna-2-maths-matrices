@@ -70,26 +70,26 @@ class Polynomial
         // step 3
         $xtermCoef      = ($quotient[1] / $quotient[0]);
         $xtermHalfCoef  = ($xtermCoef / 2);
-        $commonFactor   = pow( ($xtermCoef),2 );
+        $commonFactor   = pow( ($xtermHalfCoef),2 );
         $x              = "x";
         $result         = [];
 
+        //step 4, 5
         // Polynome du 2nd degrés
         // Les opérateurs de calcul sont contenus dans la tableau quotient
         //$left  = pow( ($quotient[0]*$x/2 + $quotient[1]/2) , 2 );
-
-        if ($quotient<0) { $quotient[2] = abs($quotient[2]) }
+        if ($quotient[2]<0) { $quotient[2] = abs($quotient[2]) }
         else { $quotient[2] = -$quotient[2] }
 
         $right = ($quotient[2]+$commonFactor);
 
-        // step 4
-        if ($quotient<0) { $quotient[1] = abs($quotient[1]) }
-        else { $quotient[1] = -$quotient[1] }
+        // step 6
+        if ($xtermHalfCoef<0) { $xtermHalfCoef = abs($xtermHalfCoef) }
+        else { $xtermHalfCoef = -$xtermHalfCoef }
 
-        $x1 = ( ($quotient[1]/2) + sqrt($right) ) / $quotient[0];
-
-        $x2 = ( ($quotient[1]/2) - sqrt($right) ) / $quotient[0];
+        // step 7
+        $x1 = ( $xtermHalfCoef + sqrt($right) );
+        $x2 = ( $xtermHalfCoef - sqrt($right) );
 
         $result[0] = $x1;
         $result[1] = $x2;
