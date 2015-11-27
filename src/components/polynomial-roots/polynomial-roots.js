@@ -7,8 +7,16 @@ define(function(require){
 
         data: function() {
 
-            return {};
+            return {
+                isMenuOpened: false
+            };
         },
-        template: template
+        template: template,
+        methods: {
+            onBurgerMenuClick: function() {
+                
+                this.isMenuOpened = !this.isMenuOpened;
+            }
+        }
     });
 });

@@ -5,7 +5,7 @@ $polynomialroots-menu-width: 400px;
     height:   100%;
     overflow: hidden;
 }
-.polynomialroots.is-menu-active
+.polynomialroots.is-menu-opened
 {
     .polynomialroots-menu
     {
@@ -15,7 +15,7 @@ $polynomialroots-menu-width: 400px;
     {
         @include transform(translateX($polynomialroots-menu-width));
     }
-    .polynomialroots-overlay
+    .polynomialroots-content-overlay
     {
         opacity: 1;
         height:  100%;
@@ -27,7 +27,6 @@ $polynomialroots-menu-width: 400px;
     @include transform(translateX(-100%));
     
     background:   url("../assets/backgrounds/noisy_net.png") center center repeat;
-    border-right: 1px solid rgba($color-flash-blue, 0.2);
     box-shadow:   inset -5px 0 5px rgba(#000000, 0.2);
     height:       100%;
     margin:       0;
@@ -39,6 +38,88 @@ $polynomialroots-menu-width: 400px;
     transition:   all 0.3s ease;
     width:        $polynomialroots-menu-width;
 }
+.polynomialroots-burger
+{
+    background:    rgba(#000000, 0.6);
+    border-radius: 50%;
+    height:        54px;
+    margin-top:    20px;
+    margin-left:   20px;
+    position:      relative;
+        z-index:   400;
+    width:         54px;
+}
+.polynomialroots-burger.is-opened
+{
+    .polynomialroots-burger-circle
+    {
+        stroke-dashoffset: -67;
+        stroke-dasharray: 160;
+    }
+    .polynomialroots-burger-stripe
+    {
+        @include transform(translateX(-50%) translateY(-50%) rotate(180deg));
+        
+        &::before
+        {
+            @include transform(translateY(0) rotate(45deg));
+        }
+        &::after
+        {
+            @include transform(translateY(0) rotate(-45deg));
+        }
+    }
+}
+.polynomialroots-burger:not(.is-opened):hover
+{
+    cursor: pointer;
+    
+    .polynomialroots-burger-stripe::before
+    {
+        @include transform(translateY(-8px));
+    }
+    .polynomialroots-burger-stripe::after
+    {
+        @include transform(translateY(8px));
+    }
+}
+.polynomialroots-burger-stripe
+{
+    @include transform(translateX(-50%) translateY(-50%));
+    
+    background: transparent;
+    height:     2px;
+    position:   absolute;
+        top:    50%;
+        left:   50%;
+    width:      22px;
+    
+    &::before, &::after
+    {
+        @include transform(translateY(-6px));
+        
+        background: #FFFFFF;
+        content:    "";
+        display:    block;
+        height:     2px;
+        position:   absolute;
+        transition: transform 0.3s ease 0.3s;
+        width:      100%;
+    }
+    &::after
+    {
+        @include transform(translateY(6px));
+    }
+}
+.polynomialroots-burger-circle
+{
+    fill:              transparent;
+    stroke-dasharray:  25 230;
+    stroke-dashoffset: 4;
+    stroke-width:      2px;
+    stroke:            #FFFFFF;
+    transition:        all 0.3s ease 0.3s;
+}
 .polynomialroots-content
 {
     @include transform(translateX(0));
@@ -46,9 +127,11 @@ $polynomialroots-menu-width: 400px;
     background:      url("../assets/backgrounds/space.png") center center repeat;
     background-size: cover;
     height:          100%;
+    overflow:        hidden;
+    position:        relative;
     transition:      all 0.3s ease;
 }
-.polynomialroots-overlay
+.polynomialroots-content-overlay
 {
     background:  rgba(#000000, 0.6);
     height:      0;
@@ -58,6 +141,6 @@ $polynomialroots-menu-width: 400px;
         left:    0;
         top:     0;
         z-index: 100;
-    transition:  opacity 0.3s, width 0s 0.3s, height 0s 0.3s;
+    transition:  opacity 0.3s, width 0s, height 0s;
     width:       0;
 }
