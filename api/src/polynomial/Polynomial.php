@@ -52,10 +52,6 @@ class Polynomial
         $arrayRoots    = getRoots();
         $coefficients  = $this->coefficients;
         $res           = [];
-        //$operator    = $this->$operators;
-        //$x           = null;
-        //$qx          = ($x - $arrayRoots[0]);
-        //$px          = ($coefficients[0]*$x^3)$operator[0]($coefficients[1]*$x^2)$operator[1]($coefficients[2]*$x)$operator[2]($coefficients[3]);
 
         $res[0] =   $coefficients[0];                                    //quotient
         $res[1] =   $coefficients[1]  + ($arrayRoots[0]*$res[0]);       //quotient
@@ -65,22 +61,36 @@ class Polynomial
         return $res;
     }
 
+    // voir exemple de calcul -> www.mathportal.org/calculators/solving-equations/quadratic-equation-solver.php?val1=1&combo1=2&val2=5&combo2=1&val3=6&rb1=s
     public function getSolutions()
     {
         $quotient[]     = getQuotient();
         $coefficients   = $this->coefficients;
         $xtermCoef      = $quotient[1];
-        $commonFactor   = exp($xtermCoef/2)^2;
+        $commonFactor   = pow( ($xtermCoef/2),2 );
         $x              = "x";
         $result         = [];
 
+        // step 2
         // Polynome du 2nd degrés
         // Les opérateurs de calcul sont contenus dans la tableau quotient
-        $left  = ($quotient[0]*$x/2 + $quotient[1]/2)^2;
+        //$left  = pow( ($quotient[0]*$x/2 + $quotient[1]/2) , 2 );
+
+        if ($quotient<0) { $quotient[2] = abs($quotient[2]) }
+        else { $quotient[2] = -$quotient[2] }
+
         $right = ($quotient[2]+$commonFactor);
 
-        $result[0] = null;
-        $result[1] = null;
+        // step 4
+        if ($quotient<0) { $quotient[1] = abs($quotient[1]) }
+        else { $quotient[1] = -$quotient[1] }
+
+        $x1 = ( ($quotient[1]/2) + sqrt($right) ) / $quotient[0];
+
+        $x2 = ( ($quotient[1]/2) - sqrt($right) ) / $quotient[0];
+
+        $result[0] = $x1;
+        $result[1] = $x2;
 
         return $result;
     }
