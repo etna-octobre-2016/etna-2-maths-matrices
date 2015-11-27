@@ -2,8 +2,7 @@ $polynomialroots-menu-width: 400px;
 
 .polynomialroots
 {
-    height:   100%;
-    overflow: hidden;
+    height: 100%;
 }
 .polynomialroots.is-menu-opened
 {
@@ -42,6 +41,7 @@ $polynomialroots-menu-width: 400px;
 {
     background:    rgba(#000000, 0.6);
     border-radius: 50%;
+    cursor:        pointer;
     height:        54px;
     margin-top:    20px;
     margin-left:   20px;
@@ -63,17 +63,19 @@ $polynomialroots-menu-width: 400px;
         &::before
         {
             @include transform(translateY(0) rotate(45deg));
+            
+            transition-delay: 0.3s;
         }
         &::after
         {
             @include transform(translateY(0) rotate(-45deg));
+            
+            transition-delay: 0.3s;
         }
     }
 }
 .polynomialroots-burger:not(.is-opened):hover
 {
-    cursor: pointer;
-    
     .polynomialroots-burger-stripe::before
     {
         @include transform(translateY(-8px));
@@ -103,7 +105,7 @@ $polynomialroots-menu-width: 400px;
         display:    block;
         height:     2px;
         position:   absolute;
-        transition: transform 0.3s ease 0.3s;
+        transition: transform 0.3s ease;
         width:      100%;
     }
     &::after
@@ -133,7 +135,7 @@ $polynomialroots-menu-width: 400px;
 }
 .polynomialroots-content-overlay
 {
-    background:  rgba(#000000, 0.6);
+    background:  rgba(#000000, 0.7);
     height:      0;
     opacity:     0;
     overflow:    hidden;

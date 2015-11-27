@@ -29,12 +29,13 @@ $loader-outer-circle-weight: 1px;
 
 .loader
 {
-    background: url("../assets/backgrounds/noisy_net.png") center center repeat;
-    position:   absolute;
-        left:   0;
-        top:    0;
-    height:     100%;
-    width:      100%;
+    background:  url("../assets/backgrounds/noisy_net.png") center center repeat;
+    position:    absolute;
+        left:    0;
+        top:     0;
+        z-index: 999;
+    height:      100%;
+    width:       100%;
     
     &.fade-transition
     {
@@ -98,10 +99,11 @@ $loader-outer-circle-weight: 1px;
 {
     @include transform(translateX(-50%) translateY(-50%));
     
-    color:       $loader-color;
-    font-family: Orbitron, Arial, Helvetica, sans-serif;
-    margin-top:  $loader-outer-circle-size;
-    position:    absolute;
-        left:    50%;
-        top:     50%;
+    color:          $loader-color;
+    font-family:    Orbitron, Arial, Helvetica, sans-serif;
+    margin-top:     $loader-outer-circle-size;
+    position:       absolute;
+        left:       50%;
+        top:        50%;
+    text-rendering: geometricPrecision;
 }
