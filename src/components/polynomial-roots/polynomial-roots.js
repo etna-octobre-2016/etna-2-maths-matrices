@@ -52,6 +52,18 @@ define(function(require){
                     
                 }.bind(this), delay); 
             }
+        },
+        watch: {
+            currentState: function(val) {
+                
+                if (val === "step-1")
+                {
+                    this.typeWrite(this.$$.step1Title, [
+                        "Étape 1 : ^500 racines entières d'un polynôme de degré 3.",
+                        "Saisissez les coefficients du polynôme pour obtenir les racines entières."
+                    ], 1000);
+                }
+            }
         }
     });
 });
