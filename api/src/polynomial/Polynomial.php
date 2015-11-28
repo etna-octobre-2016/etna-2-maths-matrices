@@ -62,9 +62,10 @@ class Polynomial
     }
 
     // voir exemple de calcul -> www.mathportal.org/calculators/solving-equations/quadratic-equation-solver.php?val1=1&combo1=2&val2=5&combo2=1&val3=6&rb1=s
+    // cette fonction retourne de solutions x1 et x2 depuis un polynome 2nd degré
     public function getSolutions()
     {
-        $quotient[]     = getQuotient();
+        $quotient[]     = getQuotients();
         $coefficients   = $this->coefficients;
 
         // step 3
