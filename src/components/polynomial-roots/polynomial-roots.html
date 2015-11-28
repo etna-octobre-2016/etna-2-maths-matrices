@@ -26,7 +26,17 @@
         </section>
         <section class="polynomialroots-content-section" v-if="currentState === 'step-1'">
             <h1 class="polynomialroots-content-section-title" v-el="step1Title">&nbsp;</h1>
-            <p style="color: #FFFFFF;">Step 1</p>
+            <div class="polynomialroots-content-section-container">
+                <div class="polynomialroots-formula">
+                    <input class="polynomialroots-formula-input" type="text">
+                    <span class="polynomialroots-formula-text">x<sup>3</sup> + </span>
+                    <input class="polynomialroots-formula-input" type="text">
+                    <span class="polynomialroots-formula-text">x<sup>2</sup> + </span>
+                    <input class="polynomialroots-formula-input" type="text">
+                    <span class="polynomialroots-formula-text">x<sup></sup> + </span>
+                    <input class="polynomialroots-formula-input" type="text">
+                </div>
+            </div>
         </section>
         <section class="polynomialroots-content-section" v-if="currentState === 'step-2'">
             <h1 class="polynomialroots-content-section-title" v-el="step2Title">&nbsp;</h1>
