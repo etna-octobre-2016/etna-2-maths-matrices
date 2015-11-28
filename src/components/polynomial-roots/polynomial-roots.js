@@ -31,6 +31,11 @@ define(function(require){
                 
                 this.isMenuOpened = !this.isMenuOpened;
             },
+            onStepButtonClick: function(step) {
+                
+                this.isMenuOpened = false;
+                this.currentState = "step-" + step;
+            },
             typeWrite: function(el, message, delay) {
                     
                 var timeoutID = setTimeout(function(){

@@ -1,4 +1,4 @@
-$polynomialroots-menu-width: 400px;
+$polynomialroots-menu-width: 300px;
 
 .polynomialroots
 {
@@ -29,13 +29,69 @@ $polynomialroots-menu-width: 400px;
     box-shadow:   inset -5px 0 5px rgba(#000000, 0.2);
     height:       100%;
     margin:       0;
-     overflow-y:  scroll;
+    overflow-y:   scroll;
+    padding:      20px;
     position:     fixed;
         left:     0;
         top:      0;
         z-index:  200;
     transition:   all 0.3s ease;
     width:        $polynomialroots-menu-width;
+}
+.polynomialroots-menu-button
+{
+    @include appearance(none);
+    
+    background: rgba(#000000, 0);
+    border:     1px solid $color-flash-blue;
+    box-shadow: inset 0 0 8px #000000;
+    box-sizing: border-box;
+    display:    block;
+    margin-top: 20px;
+    padding:    20px;
+    position:   relative;
+    transition: all 0.3s ease;
+    width:      100%;
+    
+    &:first-child
+    {
+        margin-top: 0;
+    }
+    &::before
+    {
+        @include transform(translateX(-50%));
+        
+        background:  $color-flash-blue;
+        content:     "";
+        display:     block;
+        height:      100%;
+        position:    absolute;
+            left:    50%;
+            top:     0;
+            z-index: 2;
+        transition:  width 0.3s ease;
+        width:       0;
+    }
+}
+.polynomialroots-menu-button:hover
+{
+    &::before
+    {
+        width: 100%;
+    }
+    .polynomialroots-menu-button-text
+    {
+        color: #000000;
+    }
+}
+.polynomialroots-menu-button-text
+{
+    color:       $color-flash-blue;
+    font-family: Orbitron, Arial, Helvetica, sans-serif;
+    font-size:   1rem;
+    transition:  all 0.3s ease;
+    position:    relative;
+        z-index: 3;
 }
 .polynomialroots-burger
 {
