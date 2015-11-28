@@ -10,6 +10,10 @@ define(function(require){
         data: function() {
 
             return {
+                a0: null,
+                a1: null,
+                a2: null,
+                a3: null,
                 currentState: "default",
                 isMenuOpened: false
             };
@@ -27,6 +31,10 @@ define(function(require){
             this.typeWrite(this.$$.welcomeTitle, message, 3000);
         },
         methods: {
+            observeCoefficients: function() {
+                
+                console.log("observeCoefficients");
+            },
             onBurgerMenuClick: function() {
                 
                 this.isMenuOpened = !this.isMenuOpened;
@@ -54,6 +62,22 @@ define(function(require){
             }
         },
         watch: {
+            a0: function() {
+                
+                this.observeCoefficients();
+            },
+            a1: function() {
+                
+                this.observeCoefficients();
+            },
+            a2: function() {
+                
+                this.observeCoefficients();
+            },
+            a3: function() {
+                
+                this.observeCoefficients();
+            },
             currentState: function(val) {
                 
                 if (val === "step-1")
