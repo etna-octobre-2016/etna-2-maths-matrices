@@ -3,6 +3,7 @@
 class Polynomial
 {
     private $coefficients;
+    private $isSquare;
 
     //////////////////////////////////////////////////////////////////////////
     // PUBLIC INSTANCE METHODS
@@ -12,6 +13,7 @@ class Polynomial
     {
         $this->validateCoefficients($coefficients);
         $this->coefficients = $coefficients;
+        $this->isSquare = False;
     }
     public function getRoots($minRoot, $maxRoot)
     {
@@ -92,10 +94,32 @@ class Polynomial
         $x1 = ( $xtermHalfCoef + sqrt($right) );
         $x2 = ( $xtermHalfCoef - sqrt($right) );
 
+        // check is square
+        if (sqrt($right) == 0){$this->isSquare = True}
+
         $result[0] = $x1;
         $result[1] = $x2;
 
         return $result;
+    }
+
+    // retourn la polynome factorisé sous forme de string
+    public function getResultFactorisation()
+    {
+        $quotient[]  = getQuotients();
+        $solutions[] = getSolutions();
+        $result      = "error";
+
+        if($quotient[1]==0)
+            $result = "( x - ".$solutions[0]." )^2 ( x - ".$solutions[1]." )";
+        elseif ($this->isSquare === True) {
+            $result = "( x - ".$solutions[0]." )^3";
+        }
+        else
+            $result = "( x - ".$quotient[0].")( x - ".$solutions[0]." )( x - ".$solutions[1]." )";
+
+        return $result;
+
     }
 
     //////////////////////////////////////////////////////////////////////////
