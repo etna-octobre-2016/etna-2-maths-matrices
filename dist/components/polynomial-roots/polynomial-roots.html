@@ -39,6 +39,17 @@
                     <span class="polynomialroots-formula-text">x<sup></sup> + </span>
                     <input class="polynomialroots-formula-input" maxlength="4" type="text" v-class="is-invalid:isA0Invalid" v-model="a0">
                 </div>
+                <div class="polynomialroots-result" v-if="step1.responseStatus === 'success'">
+                    <p class="polynomialroots-result-message">
+                        <span v-if="isStep1RootsListEmpty">Aucune racine n'a été trouvée pour ce polynôme</span>
+                        <span v-if="!isStep1RootsListEmpty">Voici la liste des racines de ce polynôme : <strong>{{step1RootsList}}</strong></span>
+                    </p>
+                </div>
+                <div class="polynomialroots-result" v-if="step1.responseStatus === 'error'">
+                    <p class="polynomialroots-result-message polynomialroots-result-message--error">
+                        Allo Houston ? On a un problème ! Il semblerait que le serveur ne soit pas joignable ou que le format des données reçus soit incorrect...
+                    </p>
+                </div>
             </div>
         </section>
         <section class="polynomialroots-content-section" v-if="currentState === 'step-2'">

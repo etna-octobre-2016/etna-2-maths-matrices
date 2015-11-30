@@ -1,4 +1,6 @@
 define(function(require)
 {
-    return {};
+    return {
+        polynomial: require("modules/api/polynomial")
+    };
 });

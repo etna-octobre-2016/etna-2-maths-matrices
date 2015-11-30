@@ -1,6 +1,7 @@
 define(function(require){
 
     var Vue      = require("vue"),
+        api      = require("core/api"),
         template = require("text!./polynomial-roots.html");
 
     require("typedjs");
@@ -19,7 +20,13 @@ define(function(require){
                 isA1Invalid: false,
                 isA2Invalid: false,
                 isA3Invalid: false,
-                isMenuOpened: false
+                isMenuOpened: false,
+                minRoot: -10,
+                maxRoot: 10,
+                step1: {
+                    responseStatus: null,
+                    roots: null
+                }
             };
         },
         template: template,
@@ -34,14 +41,23 @@ define(function(require){
             
             this.typeWrite(this.$$.welcomeTitle, message, 3000);
         },
+        computed: {
+            isStep1RootsListEmpty: function() {
+
+                return this.step1.roots.length === 0;
+            },
+            step1RootsList: function() {
+
+                return this.step1.roots.join(", ");
+            }
+        },
         methods: {
-            getCoefficientsArray: function()
-            {
+            getCoefficientsArray: function() {
                 return [
-                    this.a0,
-                    this.a1,
+                    this.a3,
                     this.a2,
-                    this.a3
+                    this.a1,
+                    this.a0
                 ];
             },
             isCoefficientValid: function(coefficient) {
@@ -59,10 +75,9 @@ define(function(require){
                 var coefficients,
                     i,
                     isCoefficientsListComplete,
-                    length;
-                
-                console.log("observeCoefficients");
-                
+                    length,
+                    params;
+
                 coefficients = this.getCoefficientsArray();
                 length = coefficients.length;
                 isCoefficientsListComplete = true;
@@ -76,16 +91,22 @@ define(function(require){
                 }
                 if (isCoefficientsListComplete)
                 {
-                    alert("go api !");
-                }
-                else
-                {
-                    console.log("not yet ready");
+                    params = {
+                        coefficients: coefficients.map(function(c){ return new Number(c); }),
+                        minRoot: this.minRoot,
+                        maxRoot: this.maxRoot
+                    };
+                    api.polynomial.getRoots(params, this.onRootsFetchComplete.bind(this));
                 }
             },
             onBurgerMenuClick: function() {
                 
                 this.isMenuOpened = !this.isMenuOpened;
+            },
+            onRootsFetchComplete: function(response) {
+                
+                this.step1.responseStatus = response.status;
+                this.step1.roots = (response.status === "success") ? response.result : null;
             },
             onStepButtonClick: function(step) {
                 
