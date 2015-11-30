@@ -1,13 +1,21 @@
 <section class="polynomialroots" v-class="is-menu-opened:isMenuOpened">
     <menu class="polynomialroots-menu">
-        
+        <button class="polynomialroots-menu-button" type="button" v-on="click:onStepButtonClick(1)">
+            <span class="polynomialroots-menu-button-text">Étape 1</span>
+        </button>
+        <button class="polynomialroots-menu-button" type="button" v-on="click:onStepButtonClick(2)">
+            <span class="polynomialroots-menu-button-text">Étape 2</span>
+        </button>
+        <button class="polynomialroots-menu-button" type="button" v-on="click:onStepButtonClick(3)">
+            <span class="polynomialroots-menu-button-text">Étape 3</span>
+        </button>
     </menu>
     <section class="polynomialroots-content">
         
         <!-- Burger icon -->
         <div class="polynomialroots-burger" v-class="is-opened:isMenuOpened" v-on="click:onBurgerMenuClick">
             <div class="polynomialroots-burger-stripe"></div>
-            <svg class="polynomialroots-burger-circle" x="0" y="0" viewBox="0 0 54 54">
+            <svg class="polynomialroots-burger-circle" x="0" y="0" viewbox="0 0 54 54">
                 <path d="M16.500,27.000 C16.500,27.000 24.939,27.000 38.500,27.000 C52.061,27.000 49.945,15.648 46.510,11.367 C41.928,5.656 34.891,2.000 27.000,2.000 C13.193,2.000 2.000,13.193 2.000,27.000 C2.000,40.807 13.193,52.000 27.000,52.000 C40.807,52.000 52.000,40.807 52.000,27.000 C52.000,13.000 40.837,2.000 27.000,2.000 "/>
             </svg>
         </div>
@@ -15,6 +23,31 @@
         <!-- Sections -->
         <section class="polynomialroots-content-section" v-if="currentState === 'default'">
             <h1 class="polynomialroots-content-section-title" v-el="welcomeTitle">&nbsp;</h1>
+        </section>
+        <section class="polynomialroots-content-section" v-if="currentState === 'step-1'">
+            <h1 class="polynomialroots-content-section-title" v-el="step1Title">&nbsp;</h1>
+            <div class="polynomialroots-content-section-container">
+                <h2 class="polynomialroots-content-section-subtitle">
+                    Étape 1 : racines entières d'un polynôme de degré 3.
+                </h2>
+                <div class="polynomialroots-formula">
+                    <input class="polynomialroots-formula-input" maxlength="4" type="text" v-class="is-invalid:isA3Invalid" v-model="a3">
+                    <span class="polynomialroots-formula-text">x<sup>3</sup> + </span>
+                    <input class="polynomialroots-formula-input" maxlength="4" type="text" v-class="is-invalid:isA2Invalid" v-model="a2">
+                    <span class="polynomialroots-formula-text">x<sup>2</sup> + </span>
+                    <input class="polynomialroots-formula-input" maxlength="4" type="text" v-class="is-invalid:isA1Invalid" v-model="a1">
+                    <span class="polynomialroots-formula-text">x<sup></sup> + </span>
+                    <input class="polynomialroots-formula-input" maxlength="4" type="text" v-class="is-invalid:isA0Invalid" v-model="a0">
+                </div>
+            </div>
+        </section>
+        <section class="polynomialroots-content-section" v-if="currentState === 'step-2'">
+            <h1 class="polynomialroots-content-section-title" v-el="step2Title">&nbsp;</h1>
+            <p style="color: #FFFFFF;">Step 2</p>
+        </section>
+        <section class="polynomialroots-content-section" v-if="currentState === 'step-3'">
+            <h1 class="polynomialroots-content-section-title" v-el="step3Title">&nbsp;</h1>
+            <p style="color: #FFFFFF;">Step 3</p>
         </section>
         
         <!-- Overlay -->
