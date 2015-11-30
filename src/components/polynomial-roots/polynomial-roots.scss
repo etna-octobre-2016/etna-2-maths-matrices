@@ -208,6 +208,14 @@ $polynomialroots-menu-width: 300px;
     padding:        20px;
     text-rendering: geometricPrecision;
 }
+.polynomialroots-content-section-subtitle
+{
+    color:          $color-flash-blue;
+    font-family:    Orbitron, Arial, Helvetica, sans-serif;
+    font-size:      1.2rem;
+    font-weight:    normal;
+    text-rendering: geometricPrecision;
+}
 .polynomialroots-content-section-container
 {
     background: rgba(#111111, 0.7);

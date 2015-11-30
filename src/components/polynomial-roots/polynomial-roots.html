@@ -27,6 +27,9 @@
         <section class="polynomialroots-content-section" v-if="currentState === 'step-1'">
             <h1 class="polynomialroots-content-section-title" v-el="step1Title">&nbsp;</h1>
             <div class="polynomialroots-content-section-container">
+                <h2 class="polynomialroots-content-section-subtitle">
+                    Étape 1 : racines entières d'un polynôme de degré 3.
+                </h2>
                 <div class="polynomialroots-formula">
                     <input class="polynomialroots-formula-input" maxlength="4" type="text" v-class="is-invalid:isA3Invalid" v-model="a3">
                     <span class="polynomialroots-formula-text">x<sup>3</sup> + </span>
