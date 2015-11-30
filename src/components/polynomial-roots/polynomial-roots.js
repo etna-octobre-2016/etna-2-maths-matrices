@@ -22,7 +22,11 @@ define(function(require){
                 isA3Invalid: false,
                 isMenuOpened: false,
                 minRoot: -10,
-                maxRoot: 10
+                maxRoot: 10,
+                step1: {
+                    responseStatus: null,
+                    roots: null
+                }
             };
         },
         template: template,
@@ -36,6 +40,16 @@ define(function(require){
             ];
             
             this.typeWrite(this.$$.welcomeTitle, message, 3000);
+        },
+        computed: {
+            isStep1RootsListEmpty: function() {
+
+                return this.step1.roots.length === 0;
+            },
+            step1RootsList: function() {
+
+                return this.step1.roots.join(", ");
+            }
         },
         methods: {
             getCoefficientsArray: function() {
@@ -82,24 +96,17 @@ define(function(require){
                         minRoot: this.minRoot,
                         maxRoot: this.maxRoot
                     };
-                    api.polynomial.getRoots(params, this.onRootsFetchComplete);
+                    api.polynomial.getRoots(params, this.onRootsFetchComplete.bind(this));
                 }
             },
             onBurgerMenuClick: function() {
                 
                 this.isMenuOpened = !this.isMenuOpened;
             },
-            onRootsFetchComplete: function(err, xhr) {
+            onRootsFetchComplete: function(response) {
                 
-                if (err)
-                {
-                    alert("une erreur a eu lieu");
-                    console.log(xhr);
-                }
-                else
-                {
-                    console.log(xhr.responseText);
-                }
+                this.step1.responseStatus = response.status;
+                this.step1.roots = (response.status === "success") ? response.result : null;
             },
             onStepButtonClick: function(step) {
                 

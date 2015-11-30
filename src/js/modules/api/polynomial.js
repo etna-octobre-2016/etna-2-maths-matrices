@@ -11,7 +11,19 @@ define(function(require){
                 .setMethod("POST")
                 .setBody(JSON.stringify(params))
                 .setHeaders({"Content-Type": "application/json"})
-                .send(callback);
+                .send(function(err, xhr){
+                    
+                    try
+                    {
+                        var response = JSON.parse(xhr.responseText);
+                        
+                        callback(response);
+                    }
+                    catch (e)
+                    {
+                        throw new Error("[API] polynomial: Error during getRoots response parsing");
+                    }
+                });
         }
     };
 });

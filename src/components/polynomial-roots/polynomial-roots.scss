@@ -277,3 +277,22 @@ $polynomialroots-menu-width: 300px;
         margin-left: 5px;
     }
 }
+.polynomialroots-result
+{
+    background: #EEEEEE;
+    padding:    0 20px 20px;
+}
+.polynomialroots-result-message
+{
+    border:     1px solid $color-genoa-blue;
+    color:      $color-genoa-blue;
+    font-size:  1.4rem;
+    margin:     0;
+    padding:    15px;
+    text-align: center;
+}
+.polynomialroots-result-message--error
+{
+    border-color: $color-red-tia-maria;
+    color:        $color-red-tia-maria;
+}
