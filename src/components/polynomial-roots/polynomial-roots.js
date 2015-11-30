@@ -68,7 +68,7 @@ define(function(require){
                 isCoefficientsListComplete = true;
                 for (i = 0; i < length; i++)
                 {
-                    if (coefficients[i].length === 0)
+                    if (coefficients[i].length === 0 || !this.isCoefficientValid(coefficients[i]))
                     {
                         isCoefficientsListComplete = false;
                         break;
@@ -76,7 +76,7 @@ define(function(require){
                 }
                 if (isCoefficientsListComplete)
                 {
-                    console.log("let's call the API !");
+                    alert("go api !");
                 }
                 else
                 {
