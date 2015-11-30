@@ -256,4 +256,10 @@ $polynomialroots-menu-width: 300px;
     font-family: CrimsonText, Arial, Helvetica, sans-serif;
     font-size:   3rem;
     font-style:  italic;
+    
+    sup, sub
+    {
+        font-size:   0.6em;
+        margin-left: 5px;
+    }
 }
