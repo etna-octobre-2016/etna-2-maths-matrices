@@ -40,10 +40,10 @@ define(function(require){
         methods: {
             getCoefficientsArray: function() {
                 return [
-                    this.a0,
-                    this.a1,
+                    this.a3,
                     this.a2,
-                    this.a3
+                    this.a1,
+                    this.a0
                 ];
             },
             isCoefficientValid: function(coefficient) {
@@ -78,7 +78,7 @@ define(function(require){
                 if (isCoefficientsListComplete)
                 {
                     params = {
-                        coefficients: coefficients,
+                        coefficients: coefficients.map(function(c){ return new Number(c); }),
                         minRoot: this.minRoot,
                         maxRoot: this.maxRoot
                     };

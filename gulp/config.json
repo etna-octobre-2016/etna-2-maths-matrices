@@ -14,12 +14,15 @@
     },
     "replace": {
         "development": {
+            "API_BASEURL": "http://localhost/api",
             "JS_MAIN": "app"
         },
         "preprod": {
+            "API_BASEURL": "../api",
             "JS_MAIN": "app.min"
         },
         "production": {
+            "API_BASEURL": "../api",
             "JS_MAIN": "app.min"
         }
     },

@@ -20,5 +20,6 @@ gulp.task("replace", function()
     return gulp.src(source)
         .pipe(replace("@@CACHE_BUST", (new Date()).getTime()))
         .pipe(replace("@@JS_MAIN", config.replace[argv.env].JS_MAIN))
+        .pipe(replace("@@API_BASEURL", config.replace[argv.env].API_BASEURL))
         .pipe(gulp.dest(destination));
 });

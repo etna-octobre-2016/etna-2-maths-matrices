@@ -7,7 +7,7 @@ define(function(require){
         getRoots: function(params, callback) {
             
             request
-                .setURL("api/polynomial/roots")
+                .setURL("@@API_BASEURL/polynomial/roots")
                 .setMethod("POST")
                 .setBody(JSON.stringify(params))
                 .setHeaders({"Content-Type": "application/json"})
