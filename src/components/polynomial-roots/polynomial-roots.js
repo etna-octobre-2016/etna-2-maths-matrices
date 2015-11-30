@@ -1,6 +1,7 @@
 define(function(require){
 
     var Vue      = require("vue"),
+        api      = require("core/api"),
         template = require("text!./polynomial-roots.html");
 
     require("typedjs");
@@ -19,7 +20,9 @@ define(function(require){
                 isA1Invalid: false,
                 isA2Invalid: false,
                 isA3Invalid: false,
-                isMenuOpened: false
+                isMenuOpened: false,
+                minRoot: -10,
+                maxRoot: 10
             };
         },
         template: template,
@@ -35,8 +38,7 @@ define(function(require){
             this.typeWrite(this.$$.welcomeTitle, message, 3000);
         },
         methods: {
-            getCoefficientsArray: function()
-            {
+            getCoefficientsArray: function() {
                 return [
                     this.a0,
                     this.a1,
@@ -59,10 +61,9 @@ define(function(require){
                 var coefficients,
                     i,
                     isCoefficientsListComplete,
-                    length;
-                
-                console.log("observeCoefficients");
-                
+                    length,
+                    params;
+
                 coefficients = this.getCoefficientsArray();
                 length = coefficients.length;
                 isCoefficientsListComplete = true;
@@ -76,16 +77,29 @@ define(function(require){
                 }
                 if (isCoefficientsListComplete)
                 {
-                    alert("go api !");
-                }
-                else
-                {
-                    console.log("not yet ready");
+                    params = {
+                        coefficients: coefficients,
+                        minRoot: this.minRoot,
+                        maxRoot: this.maxRoot
+                    };
+                    api.polynomial.getRoots(params, this.onRootsFetchComplete);
                 }
             },
             onBurgerMenuClick: function() {
                 
                 this.isMenuOpened = !this.isMenuOpened;
+            },
+            onRootsFetchComplete: function(err, xhr) {
+                
+                if (err)
+                {
+                    alert("une erreur a eu lieu");
+                    console.log(xhr);
+                }
+                else
+                {
+                    console.log(xhr.responseText);
+                }
             },
             onStepButtonClick: function(step) {
                 
