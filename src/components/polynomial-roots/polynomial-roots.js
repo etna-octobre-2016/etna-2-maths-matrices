@@ -15,6 +15,10 @@ define(function(require){
                 a2: null,
                 a3: null,
                 currentState: "default",
+                isA0Invalid: false,
+                isA1Invalid: false,
+                isA2Invalid: false,
+                isA3Invalid: false,
                 isMenuOpened: false
             };
         },
@@ -31,6 +35,16 @@ define(function(require){
             this.typeWrite(this.$$.welcomeTitle, message, 3000);
         },
         methods: {
+            isCoefficientValid: function(coefficient) {
+                
+                var value = new Number(coefficient);
+                
+                if (!isNaN(value))
+                {
+                    return true;
+                }
+                return false;
+            },
             observeCoefficients: function() {
                 
                 console.log("observeCoefficients");
@@ -62,21 +76,53 @@ define(function(require){
             }
         },
         watch: {
-            a0: function() {
+            a0: function(value) {
                 
-                this.observeCoefficients();
+                if (this.isCoefficientValid(value))
+                {
+                    this.isA0Invalid = false;
+                    this.observeCoefficients();
+                }
+                else
+                {
+                    this.isA0Invalid = true;
+                }
             },
-            a1: function() {
+            a1: function(value) {
                 
-                this.observeCoefficients();
+                if (this.isCoefficientValid(value))
+                {
+                    this.isA1Invalid = false;
+                    this.observeCoefficients();
+                }
+                else
+                {
+                    this.isA1Invalid = true;
+                }
             },
-            a2: function() {
+            a2: function(value) {
                 
-                this.observeCoefficients();
+                if (this.isCoefficientValid(value))
+                {
+                    this.isA2Invalid = false;
+                    this.observeCoefficients();
+                }
+                else
+                {
+                    this.isA2Invalid = true;
+                }
             },
-            a3: function() {
+            a3: function(value) {
                 
-                this.observeCoefficients();
+                if (this.isCoefficientValid(value))
+                {
+                    this.isA3Invalid = false;
+                    this.observeCoefficients();
+                }
+                else
+                {
+                    this.isA3Invalid = true;
+                }
             },
             currentState: function(val) {
                 
