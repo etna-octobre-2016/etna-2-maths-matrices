@@ -10,10 +10,10 @@ define(function(require){
         data: function() {
 
             return {
-                a0: null,
-                a1: null,
-                a2: null,
-                a3: null,
+                a0: "",
+                a1: "",
+                a2: "",
+                a3: "",
                 currentState: "default",
                 isA0Invalid: false,
                 isA1Invalid: false,
@@ -35,6 +35,15 @@ define(function(require){
             this.typeWrite(this.$$.welcomeTitle, message, 3000);
         },
         methods: {
+            getCoefficientsArray: function()
+            {
+                return [
+                    this.a0,
+                    this.a1,
+                    this.a2,
+                    this.a3
+                ];
+            },
             isCoefficientValid: function(coefficient) {
                 
                 var value = new Number(coefficient);
@@ -47,7 +56,32 @@ define(function(require){
             },
             observeCoefficients: function() {
                 
+                var coefficients,
+                    i,
+                    isCoefficientsListComplete,
+                    length;
+                
                 console.log("observeCoefficients");
+                
+                coefficients = this.getCoefficientsArray();
+                length = coefficients.length;
+                isCoefficientsListComplete = true;
+                for (i = 0; i < length; i++)
+                {
+                    if (coefficients[i].length === 0)
+                    {
+                        isCoefficientsListComplete = false;
+                        break;
+                    }
+                }
+                if (isCoefficientsListComplete)
+                {
+                    console.log("let's call the API !");
+                }
+                else
+                {
+                    console.log("not yet ready");
+                }
             },
             onBurgerMenuClick: function() {
                 
