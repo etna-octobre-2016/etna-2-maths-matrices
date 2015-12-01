@@ -55,13 +55,22 @@ class Polynomial
         $arrayRoots    = $this->getRoots($minroot,$maxroot);
         $coefficients  = $this->coefficients;
         $res           = [];
+        echo "array Root\n";
         var_dump($arrayRoots);
+        echo "\ncoefficients\n";
+        var_dump($coefficients);
 
-        $res[0] =     $coefficients[0];                                      //quotient
-        //$res[0] =     abs($coefficients[0]);
-        $res[1] =   ( $coefficients[1]  + ($arrayRoots[0]*$res[0]) );       //quotient
-        $res[2] =   ( $coefficients[2]  + ($arrayRoots[0]*$res[1]) );           //quotient
-        $res[3] =   ( $coefficients[3]  + ($arrayRoots[0]*$res[2]) );           //remainder
+        if ($coefficients[0]<0){
+            $coefficients[0] = $coefficients[0]*-1;
+            $coefficients[1] = $coefficients[1]*-1;
+            $coefficients[2] = $coefficients[2]*-1;
+            $coefficients[3] = $coefficients[3]*-1;
+        }
+
+         $res[0] =     $arrayRoots[0];                                           //quotient
+         $res[1] =   ( $coefficients[1]  + ($arrayRoots[0]*$res[0]) );           //quotient
+         $res[2] =   ( $coefficients[2]  + ($arrayRoots[0]*$res[1]) );           //quotient
+         $res[3] =   ( $coefficients[3]  + ($arrayRoots[0]*$res[2]) );           //remainder
 
         return $res;
     }
@@ -71,7 +80,7 @@ class Polynomial
     public function getSolutions($minroot, $maxroot)
     {
         $quotient     = $this->getQuotients($minroot,$maxroot);
-        echo "quotients\n";
+        echo "quotients polynome 2nd degrée \n";
         var_dump($quotient);
         $coefficients   = $this->coefficients;
 
@@ -128,17 +137,22 @@ class Polynomial
     {
         $quotient  = $this->getQuotients($maxroot,$maxroot);
         $solutions = $this->getSolutions($minroot, $maxroot);
+        $coefficients   = $this->coefficients;
         $result      = "error";
         echo " solutions x1 et x2 \n";
         var_dump($solutions);
-
-        if($quotient[1]==0)
+        $sign = "+";
+        if($coefficients[0]<0){$sign = "-";}
+        if($quotient[1]==0){
             $result = "( x - ".$solutions[0]." )^2 ( x - ".$solutions[1]." )";
-        elseif ($this->isSquare === true) {
-            $result = "( x - ".$solutions[0]." )^3";
         }
-        else
-            $result = "( x - ".$quotient[0].")( x - ".$solutions[0]." )( x - ".$solutions[1]." )";
+        elseif ($this->isSquare === true)
+        {
+            $result = "(".$solutions[0]." ".$sign." x)^3";
+        }
+        else{
+            $result = $sign."( x - ".$quotient[0].")( x - ".$solutions[0]." )( x - ".$solutions[1]." )";
+        }
 
         return $result;
 
