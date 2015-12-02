@@ -56,6 +56,8 @@ class Polynomial
         $coefficients  = $this->coefficients;
         $res           = [];
 
+        var_dump($arrayRoots);
+
         $root = $arrayRoots[0];
         if($root<0){$root = $arrayRoots[1];}
 
@@ -116,6 +118,11 @@ class Polynomial
         $quotient       = $quotients;
         $solutions      = $this->getSolutions($quotient);
         $coefficients   = $this->coefficients;
+
+        var_dump($coefficients)."\n";
+        var_dump($quotients)."\n";
+        var_dump($solutions)."\n";
+
         $result         = "error";
         $sign           = "+";
 
@@ -133,7 +140,7 @@ class Polynomial
         }
         else{
             if($coefficients[0]<0){$sign = "-";}
-            $result = $sign."( x - ".$quotient[0].")( x - ".$solutions[0]." )( x - ".$solutions[1]." )";
+            $result = $sign."( x - (".$quotient[0].") ) ( x - (".$solutions[0].") )( x - (".$solutions[1].") )";
         }
 
         return $result;
