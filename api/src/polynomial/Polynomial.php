@@ -55,10 +55,9 @@ class Polynomial
         $arrayRoots    = $this->getRoots($minroot,$maxroot);
         $coefficients  = $this->coefficients;
         $res           = [];
-        echo "array Root\n";
-        var_dump($arrayRoots);
-        echo "\ncoefficients\n";
-        var_dump($coefficients);
+
+        $root = $arrayRoots[0];
+        if($root<0){$root = $arrayRoots[1];}
 
         if ($coefficients[0]<0){
             $coefficients[0] = $coefficients[0]*-1;
@@ -67,35 +66,29 @@ class Polynomial
             $coefficients[3] = $coefficients[3]*-1;
         }
 
-         $res[0] =     $arrayRoots[0];                                           //quotient
-         $res[1] =   ( $coefficients[1]  + ($arrayRoots[0]*$res[0]) );           //quotient
-         $res[2] =   ( $coefficients[2]  + ($arrayRoots[0]*$res[1]) );           //quotient
-         $res[3] =   ( $coefficients[3]  + ($arrayRoots[0]*$res[2]) );           //remainder
+         $res[0] =     $coefficients[0];                                           //quotient
+         $res[1] =   ( $coefficients[1]  + ($root*$res[0]) );           //quotient
+         $res[2] =   ( $coefficients[2]  + ($root*$res[1]) );           //quotient
+         $res[3] =   ( $coefficients[3]  + ($root*$res[2]) );           //remainder
 
         return $res;
     }
 
-    // voir exemple de calcul -> www.mathportal.org/calculators/solving-equations/quadratic-equation-solver.php?val1=1&combo1=2&val2=5&combo2=1&val3=6&rb1=s
     // cette fonction retourne de solutions x1 et x2 depuis un polynome 2nd degré
-    public function getSolutions($minroot, $maxroot)
+    public function getSolutions($quotients)
     {
-        $quotient     = $this->getQuotients($minroot,$maxroot);
-        echo "quotients polynome 2nd degrée \n";
-        var_dump($quotient);
+        $quotient       = $quotients;
         $coefficients   = $this->coefficients;
 
-        // step 3
-        //$xtermCoef      = ($quotient[1] / $quotient[0]);
+        // initialisation de variable pour la division
         $xtermCoef      = $quotient[1];
         $xtermHalfCoef  = ($xtermCoef / 2);
         $commonFactor   = pow( ($xtermHalfCoef),2 );
         $x              = "x";
         $result         = [];
 
-        //step 4, 5
         // Polynome du 2nd degrés
         // Les opérateurs de calcul sont contenus dans la tableau quotient
-        //$left  = pow( ($quotient[0]*$x/2 + $quotient[1]/2) , 2 );
         if ($quotient[2]<0){ $quotient[2] = abs($quotient[2]); }
         else{ $quotient[2] = $quotient[2] * (-1);}
 
@@ -105,24 +98,9 @@ class Polynomial
 
         $right = ($quotient[2]+$commonFactor);
 
-        // step 7
-        echo "variable pour calcul x1 - x2 \n";
-        echo "\nxtermCoef \n";
-        echo $xtermCoef;
-        echo "\nxtermHalfCoef \n";
-        echo $xtermHalfCoef;
-        echo "\nquotient[2] \n";
-        echo $quotient[2];
-        echo "\ncommonFactor \n";
-        echo $commonFactor;
-        echo "\n right \n";
-        echo $right;
-        echo "\n racine de right \n";
-        echo sqrt($right);
-        echo "\n";
         $x1 = ( $xtermHalfCoef - sqrt($right) );
         $x2 = ( $xtermHalfCoef + sqrt($right) );
-        echo "\n";
+
         // check is square
         if (sqrt($right) == 0){$this->isSquare = true;}
 
@@ -133,29 +111,32 @@ class Polynomial
     }
 
     // retourne la polynome factorisé sous forme de string
-    public function getResultFactorisation($minroot, $maxroot)
+    public function getResultFactorisation($quotients)
     {
-        $quotient  = $this->getQuotients($maxroot,$maxroot);
-        $solutions = $this->getSolutions($minroot, $maxroot);
+        $quotient       = $quotients;
+        $solutions      = $this->getSolutions($quotient);
         $coefficients   = $this->coefficients;
-        $result      = "error";
-        echo " solutions x1 et x2 \n";
-        var_dump($solutions);
-        $sign = "+";
-        if($coefficients[0]<0){$sign = "-";}
-        if($quotient[1]==0){
-            $result = "( x - ".$solutions[0]." )^2 ( x - ".$solutions[1]." )";
-        }
-        elseif ($this->isSquare === true)
+        $result         = "error";
+        $sign           = "+";
+
+        if ($this->isSquare == true)
         {
+            if($coefficients[0]<0){$sign = "-";}
             $result = "(".$solutions[0]." ".$sign." x)^3";
         }
+        else if($coefficients[1]==0){
+            $sign1 = "-";
+            if($solutions[1]<0){$sign1="+";$solutions[1]=abs($solutions[1]);}
+            if($solutions[0]<0){$sign2="+";$solutions[0]=abs($solutions[0]);}
+            if($coefficients[0]<0){$sign0="-";}
+            $result = $sign0."( x ".$sign1." ".$solutions[1]." )^2 ( x ".$sign2." ".$solutions[0]." )";
+        }
         else{
+            if($coefficients[0]<0){$sign = "-";}
             $result = $sign."( x - ".$quotient[0].")( x - ".$solutions[0]." )( x - ".$solutions[1]." )";
         }
 
         return $result;
-
     }
 
     //////////////////////////////////////////////////////////////////////////

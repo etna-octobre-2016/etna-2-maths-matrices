@@ -326,15 +326,15 @@ class ApplicationRouter
     public static function polynomialFactoring(SilexRequest $request, Application $app)
     {
 
-        $coefficients[0] = -1;
-        $coefficients[1] = 6;
-        $coefficients[2] = -11;
-        $coefficients[3] = 6;
-
         // $coefficients[0] = -1;
-        // $coefficients[1] = 0;
-        // $coefficients[2] = 12;
-        // $coefficients[3] = -16;
+        // $coefficients[1] = 6;
+        // $coefficients[2] = -11;
+        // $coefficients[3] = 6;
+
+        $coefficients[0] = -1;
+        $coefficients[1] = 0;
+        $coefficients[2] = 12;
+        $coefficients[3] = -16;
 
         // $coefficients[0] = -1;
         // $coefficients[1] = 3;
@@ -346,10 +346,10 @@ class ApplicationRouter
             $polynomial = new Polynomial($coefficients);
             $minRoot = $request->request->get('minRoot');
             $maxRoot = $request->request->get('maxRoot');
-
+            $quotients = $polynomial->getQuotients($minRoot,$maxRoot);
             $response = [
                 'status'  => 'success',
-                'result'  => $polynomial->getResultFactorisation($minRoot,$maxRoot)
+                'result'  => $polynomial->getResultFactorisation($quotients)
             ];
         }
         catch (PolynomialException $e)
