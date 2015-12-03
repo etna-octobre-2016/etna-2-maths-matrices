@@ -341,20 +341,20 @@ class ApplicationRouter
         // $coefficients[2] = -3;
         // $coefficients[3] = 1;
 
-        // $coefficients[0] = -1;
-        // $coefficients[1] = 3;
-        // $coefficients[2] = -3;
-        // $coefficients[3] = 1;
+        $coefficients[0] = 3;
+        $coefficients[1] = 4;
+        $coefficients[2] = -1;
+        $coefficients[3] = -2;
 
         try
         {
             $polynomial = new Polynomial($coefficients);
             $minRoot = $request->request->get('minRoot');
             $maxRoot = $request->request->get('maxRoot');
-            $quotients = $polynomial->getQuotients($minRoot,$maxRoot);
+            //$quotients = $polynomial->getQuotients($minRoot,$maxRoot);
             $response = [
                 'status'  => 'success',
-                'result'  => $polynomial->getResultFactorisation($quotients)
+                'result'  => $polynomial->getResultFactorisation($minRoot,$maxRoot)
             ];
         }
         catch (PolynomialException $e)
