@@ -79,7 +79,8 @@ class Application
                 'matrix/sub'            => 'ApplicationRouter::matrixSub',
                 'matrix/trace'          => 'ApplicationRouter::matrixTrace',
                 'matrix/transpose'      => 'ApplicationRouter::matrixTranspose',
-                'polynomial/roots'      => 'ApplicationRouter::polynomialRoots'
+                'polynomial/roots'      => 'ApplicationRouter::polynomialRoots',
+                'polynomial/factoring'  => 'ApplicationRouter::polynomialFactoring'
             ]
         ];
 
