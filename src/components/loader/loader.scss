@@ -1,0 +1,109 @@
+$loader-color:               $color-flash-blue;
+$loader-inner-circle-size:   30px;
+$loader-inner-circle-weight: 3px;
+$loader-outer-circle-size:   80px;
+$loader-outer-circle-weight: 1px;
+
+@include keyframes(spin)
+{
+    0%
+    {
+        @include transform(rotate(0deg) translateX(-50%) translateY(-50%));
+    }
+    100%
+    {
+        @include transform(rotate(360deg) translateX(-50%) translateY(-50%));
+    }
+}
+@include keyframes(spinoff)
+{
+    0%
+    {
+        @include transform(rotate(0deg) translateX(-50%) translateY(-50%));
+    }
+    100%
+    {
+        @include transform(rotate(-360deg) translateX(-50%) translateY(-50%));
+    }
+}
+
+.loader
+{
+    background:  url("../assets/backgrounds/noisy_net.png") center center repeat;
+    position:    absolute;
+        left:    0;
+        top:     0;
+        z-index: 999;
+    height:      100%;
+    width:       100%;
+    
+    &.fade-transition
+    {
+        @include transform(scale(1));
+        
+        opacity:    1;
+        transition: all 0.5s ease;
+    }
+    &.fade-enter, &.fade-leave
+    {
+        @include transform(scale(10));
+        
+        opacity: 0;
+        
+        .loader-text
+        {
+            display: none;
+        }
+    }
+}
+.loader-outer
+{
+    @include animation(spin 0.5s infinite linear);
+    @include transform-origin(0 0);
+    
+    background-color: rgba(0,0,0,0);
+    border:           $loader-outer-circle-weight solid rgba($loader-color, 0.7);
+    border-left:      $loader-outer-circle-weight solid rgba(0, 0, 0, 0);
+    border-radius:    100%;
+    border-top:       $loader-outer-circle-weight solid rgba(0, 0, 0, 0);
+    border-bottom:    $loader-outer-circle-weight solid rgba(0, 0, 0, 0);
+    box-shadow:       0 0 ($loader-outer-circle-weight * 3) $loader-color;
+    box-sizing:       content-box;
+    height:           $loader-outer-circle-size;
+    opacity:          0.9;
+    position:         absolute;
+        left:         50%;
+        top:          50%;
+    width:            $loader-outer-circle-size;
+}
+.loader-inner
+{
+    @include animation(spinoff 0.5s infinite linear);
+    @include transform-origin(0 0);
+    
+    background-color: rgba(0,0,0,0);
+    border:           $loader-inner-circle-weight solid rgba($loader-color, 1);
+    border-left:      $loader-inner-circle-weight solid rgba(0, 0, 0, 0);
+    border-radius:    100%;
+    border-top:       $loader-inner-circle-weight solid rgba(0, 0, 0, 0);
+    box-shadow:       0 0 ($loader-inner-circle-weight * 3) $loader-color;
+    box-sizing:       content-box;
+    height:           $loader-inner-circle-size;
+    opacity:          0.9;
+    position:         absolute;
+        left:         50%;
+        top:          50%;
+    width:            $loader-inner-circle-size;
+}
+.loader-text
+{
+    @include transform(translateX(-50%) translateY(-50%));
+    
+    color:          $loader-color;
+    font-family:    Orbitron, Arial, Helvetica, sans-serif;
+    margin-top:     $loader-outer-circle-size;
+    position:       absolute;
+        left:       50%;
+        top:        50%;
+    text-rendering: geometricPrecision;
+}

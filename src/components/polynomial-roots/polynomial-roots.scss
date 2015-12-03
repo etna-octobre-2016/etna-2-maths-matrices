@@ -1,0 +1,298 @@
+$polynomialroots-menu-width: 300px;
+
+.polynomialroots
+{
+    height: 100%;
+}
+.polynomialroots.is-menu-opened
+{
+    .polynomialroots-menu
+    {
+        @include transform(translateX(0));
+    }
+    .polynomialroots-content
+    {
+        @include transform(translateX($polynomialroots-menu-width));
+    }
+    .polynomialroots-content-overlay
+    {
+        opacity: 1;
+        height:  100%;
+        width:   100%;
+    }
+}
+.polynomialroots-menu
+{
+    @include transform(translateX(-100%));
+    
+    background:   url("../assets/backgrounds/noisy_net.png") center center repeat;
+    box-shadow:   inset -5px 0 5px rgba(#000000, 0.2);
+    height:       100%;
+    margin:       0;
+    overflow-y:   scroll;
+    padding:      20px;
+    position:     fixed;
+        left:     0;
+        top:      0;
+        z-index:  200;
+    transition:   all 0.3s ease;
+    width:        $polynomialroots-menu-width;
+}
+.polynomialroots-menu-button
+{
+    @include appearance(none);
+    
+    background: rgba(#000000, 0);
+    border:     1px solid $color-flash-blue;
+    box-shadow: inset 0 0 8px #000000;
+    box-sizing: border-box;
+    display:    block;
+    margin-top: 20px;
+    padding:    20px;
+    position:   relative;
+    transition: all 0.3s ease;
+    width:      100%;
+    
+    &:first-child
+    {
+        margin-top: 0;
+    }
+    &::before
+    {
+        @include transform(translateX(-50%));
+        
+        background:  $color-flash-blue;
+        content:     "";
+        display:     block;
+        height:      100%;
+        position:    absolute;
+            left:    50%;
+            top:     0;
+            z-index: 2;
+        transition:  width 0.3s ease;
+        width:       0;
+    }
+}
+.polynomialroots-menu-button:hover
+{
+    &::before
+    {
+        width: 100%;
+    }
+    .polynomialroots-menu-button-text
+    {
+        color: #000000;
+    }
+}
+.polynomialroots-menu-button-text
+{
+    color:       $color-flash-blue;
+    font-family: Orbitron, Arial, Helvetica, sans-serif;
+    font-size:   1rem;
+    transition:  all 0.3s ease;
+    position:    relative;
+        z-index: 3;
+}
+.polynomialroots-burger
+{
+    background:    rgba(#000000, 0.6);
+    border-radius: 50%;
+    cursor:        pointer;
+    height:        54px;
+    position:      absolute;
+        left:      20px;
+        top:       20px;
+        z-index:   400;
+    width:         54px;
+}
+.polynomialroots-burger.is-opened
+{
+    .polynomialroots-burger-circle
+    {
+        stroke-dashoffset: -67;
+        stroke-dasharray: 160;
+    }
+    .polynomialroots-burger-stripe
+    {
+        @include transform(translateX(-50%) translateY(-50%) rotate(180deg));
+        
+        &::before
+        {
+            @include transform(translateY(0) rotate(45deg));
+            
+            transition-delay: 0.3s;
+        }
+        &::after
+        {
+            @include transform(translateY(0) rotate(-45deg));
+            
+            transition-delay: 0.3s;
+        }
+    }
+}
+.polynomialroots-burger:not(.is-opened):hover
+{
+    .polynomialroots-burger-stripe::before
+    {
+        @include transform(translateY(-8px));
+    }
+    .polynomialroots-burger-stripe::after
+    {
+        @include transform(translateY(8px));
+    }
+}
+.polynomialroots-burger-stripe
+{
+    @include transform(translateX(-50%) translateY(-50%));
+    
+    background: transparent;
+    height:     2px;
+    position:   absolute;
+        top:    50%;
+        left:   50%;
+    width:      22px;
+    
+    &::before, &::after
+    {
+        @include transform(translateY(-6px));
+        
+        background: #FFFFFF;
+        content:    "";
+        display:    block;
+        height:     2px;
+        position:   absolute;
+        transition: transform 0.3s ease;
+        width:      100%;
+    }
+    &::after
+    {
+        @include transform(translateY(6px));
+    }
+}
+.polynomialroots-burger-circle
+{
+    fill:              transparent;
+    stroke-dasharray:  25 230;
+    stroke-dashoffset: 4;
+    stroke-width:      2px;
+    stroke:            #FFFFFF;
+    transition:        all 0.3s ease 0.3s;
+}
+.polynomialroots-content
+{
+    @include transform(translateX(0));
+    
+    background:      url("../assets/backgrounds/space.png") center center repeat;
+    background-size: cover;
+    height:          100%;
+    overflow:        hidden;
+    position:        relative;
+    transition:      all 0.3s ease;
+}
+.polynomialroots-content-section
+{
+    height:   100%;
+    position: relative;
+}
+.polynomialroots-content-section-title
+{
+    background:     rgba(#111111, 0.7);
+    border:         1px solid $color-flash-blue;
+    box-shadow:     0 0 5px rgba(#000000, 0.5);
+    color:          #FFFFFF;
+    display:        none;
+    font-family:    Orbitron, Arial, Helvetica, sans-serif;
+    font-size:      1.2rem;
+    font-weight:    normal;
+    margin:         20px 20px 0 100px;
+    padding:        20px;
+    text-rendering: geometricPrecision;
+}
+.polynomialroots-content-section-subtitle
+{
+    color:          $color-flash-blue;
+    font-family:    Orbitron, Arial, Helvetica, sans-serif;
+    font-size:      1.2rem;
+    font-weight:    normal;
+    text-rendering: geometricPrecision;
+}
+.polynomialroots-content-section-container
+{
+    background: rgba(#111111, 0.7);
+    box-shadow: inset 0 0 5px rgba(#000000, 0.5);
+    margin:     20px 20px 0 100px;
+    padding:    80px;
+}
+.polynomialroots-content-overlay
+{
+    background:  rgba(#000000, 0.7);
+    height:      0;
+    opacity:     0;
+    overflow:    hidden;
+    position:    fixed;
+        left:    0;
+        top:     0;
+        z-index: 100;
+    transition:  opacity 0.3s, width 0s, height 0s;
+    width:       0;
+}
+.polynomialroots-formula
+{
+    background: #EEEEEE;
+    text-align: center;
+    padding:    20px;
+}
+.polynomialroots-formula-input
+{
+    @include appearance(none);
+    
+    background:    #FFFFFF;
+    border:        none;
+    box-shadow:    inset 1px 1px 2px rgba(#000000, 0.3);
+    color:         #000000;
+    display:       inline-block;
+    font-family:   CrimsonText, Arial, Helvetica, sans-serif;
+    font-size:     3rem;
+    font-style:    italic;
+    margin:        0;
+    padding:       0;
+    text-align:    center;
+    transition:    all 0.3s ease;
+    width:         100px;
+}
+.polynomialroots-formula-input.is-invalid
+{
+    background: lighten($color-red-tia-maria, 50%);
+}
+.polynomialroots-formula-text
+{
+    color:       #000000;
+    font-family: CrimsonText, Arial, Helvetica, sans-serif;
+    font-size:   3rem;
+    font-style:  italic;
+    
+    sup, sub
+    {
+        font-size:   0.6em;
+        margin-left: 5px;
+    }
+}
+.polynomialroots-result
+{
+    background: #EEEEEE;
+    padding:    0 20px 20px;
+}
+.polynomialroots-result-message
+{
+    border:     1px solid $color-genoa-blue;
+    color:      $color-genoa-blue;
+    font-size:  1.4rem;
+    margin:     0;
+    padding:    15px;
+    text-align: center;
+}
+.polynomialroots-result-message--error
+{
+    border-color: $color-red-tia-maria;
+    color:        $color-red-tia-maria;
+}

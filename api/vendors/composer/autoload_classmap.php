@@ -7,10 +7,13 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Application' => $baseDir . '/src/app/Application.php',
+    'App\\ApplicationRouter' => $baseDir . '/src/app/ApplicationRouter.php',
     'Matrix\\Matrix' => $baseDir . '/src/matrix/Matrix.php',
     'Matrix\\MatrixCalculator' => $baseDir . '/src/matrix/MatrixCalculator.php',
     'Matrix\\MatrixException' => $baseDir . '/src/matrix/MatrixException.php',
     'Pimple' => $vendorDir . '/pimple/pimple/lib/Pimple.php',
+    'Polynomial\\Polynomial' => $baseDir . '/src/polynomial/Polynomial.php',
+    'Polynomial\\PolynomialException' => $baseDir . '/src/polynomial/PolynomialException.php',
     'Psr\\Log\\AbstractLogger' => $vendorDir . '/psr/log/Psr/Log/AbstractLogger.php',
     'Psr\\Log\\InvalidArgumentException' => $vendorDir . '/psr/log/Psr/Log/InvalidArgumentException.php',
     'Psr\\Log\\LogLevel' => $vendorDir . '/psr/log/Psr/Log/LogLevel.php',

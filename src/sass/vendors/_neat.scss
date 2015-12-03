@@ -1,0 +1,9 @@
+// Visual grid settings (for development purpose)
+$visual-grid       : $debug; // @note: this variable is declared in the _variables.scss file
+$visual-grid-color : #88B9CE;
+$visual-grid-index : front;
+
+$grid-columns      : 12;
+$max-width         : 960px;
+
+@import "../../vendors/neat/app/assets/stylesheets/neat";

@@ -1,0 +1,26 @@
+{
+  "name": "Projet Maths ETNA 3",
+  "version": "0.0.1",
+  "authors": [
+    "Saïd AHEMT <ahemt_s@etna-alternance.net>",
+    "Alexis MOHAN <mohan_a@etna-alternance.net>"
+  ],
+  "description": "Bower dependencies of the front end code",
+  "private": true,
+  "devDependencies": {
+    "bourbon": "3.2.4",
+    "neat": "1.5.1"
+  },
+  "dependencies": {
+    "crossroads": "v0.12.0",
+    "eventEmitter": "4.2.11",
+    "js-signals": "1.0.0",
+    "lodash": "3.9.3",
+    "normalize.css": "3.0.2",
+    "requirejs-text": "2.0.14",
+    "requirejs": "2.1.16",
+    "vue": "0.12.10",
+    "textillate": "0.4.0",
+    "typed.js": "1.1.1"
+  }
+}

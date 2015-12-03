@@ -68,17 +68,18 @@ class Application
         $app = $this;
         $routes = [
             'get' => [
-                'welcome'       => 'ApplicationRouter::welcome'
+                'welcome'               => 'ApplicationRouter::welcome'
             ],
             'post' => [
-                'add'           => 'ApplicationRouter::add',
-                'gauss'         => 'ApplicationRouter::gauss',
-                'invert'        => 'ApplicationRouter::invert',
-                'multiply'      => 'ApplicationRouter::multiply',
-                'multiply-real' => 'ApplicationRouter::multiplyByReal',
-                'sub'           => 'ApplicationRouter::sub',
-                'trace'         => 'ApplicationRouter::trace',
-                'transpose'     => 'ApplicationRouter::transpose'
+                'matrix/add'            => 'ApplicationRouter::matrixAdd',
+                'matrix/gauss'          => 'ApplicationRouter::matrixGauss',
+                'matrix/invert'         => 'ApplicationRouter::matrixInvert',
+                'matrix/multiply'       => 'ApplicationRouter::matrixMultiply',
+                'matrix/multiply-real'  => 'ApplicationRouter::matrixMultiplyByReal',
+                'matrix/sub'            => 'ApplicationRouter::matrixSub',
+                'matrix/trace'          => 'ApplicationRouter::matrixTrace',
+                'matrix/transpose'      => 'ApplicationRouter::matrixTranspose',
+                'polynomial/roots'      => 'ApplicationRouter::polynomialRoots'
             ]
         ];
 
