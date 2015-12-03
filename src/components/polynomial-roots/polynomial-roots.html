@@ -47,14 +47,37 @@
                 </div>
                 <div class="polynomialroots-result" v-if="step1.responseStatus === 'error'">
                     <p class="polynomialroots-result-message polynomialroots-result-message--error">
-                        Allo Houston ? On a un problème ! Il semblerait que le serveur ne soit pas joignable ou que le format des données reçus soit incorrect...
+                        {{step1.responseMessage}}
                     </p>
                 </div>
             </div>
         </section>
         <section class="polynomialroots-content-section" v-if="currentState === 'step-2'">
             <h1 class="polynomialroots-content-section-title" v-el="step2Title">&nbsp;</h1>
-            <p style="color: #FFFFFF;">Step 2</p>
+            <div class="polynomialroots-content-section-container">
+                <h2 class="polynomialroots-content-section-subtitle">
+                    Étape 2 : factorisation d'un polynôme de degré 3.
+                </h2>
+                <div class="polynomialroots-formula">
+                    <input class="polynomialroots-formula-input" maxlength="4" type="text" v-class="is-invalid:isA3Invalid" v-model="a3">
+                    <span class="polynomialroots-formula-text">x<sup>3</sup> + </span>
+                    <input class="polynomialroots-formula-input" maxlength="4" type="text" v-class="is-invalid:isA2Invalid" v-model="a2">
+                    <span class="polynomialroots-formula-text">x<sup>2</sup> + </span>
+                    <input class="polynomialroots-formula-input" maxlength="4" type="text" v-class="is-invalid:isA1Invalid" v-model="a1">
+                    <span class="polynomialroots-formula-text">x<sup></sup> + </span>
+                    <input class="polynomialroots-formula-input" maxlength="4" type="text" v-class="is-invalid:isA0Invalid" v-model="a0">
+                </div>
+                <div class="polynomialroots-result" v-if="step2.responseStatus === 'success'">
+                    <p class="polynomialroots-result-message">
+                        Voici la forme factorisée de ce polynôme : {{step2.factoring}}
+                    </p>
+                </div>
+                <div class="polynomialroots-result" v-if="step2.responseStatus === 'error'">
+                    <p class="polynomialroots-result-message polynomialroots-result-message--error">
+                        {{step2.responseMessage}}
+                    </p>
+                </div>
+            </div>
         </section>
         <section class="polynomialroots-content-section" v-if="currentState === 'step-3'">
             <h1 class="polynomialroots-content-section-title" v-el="step3Title">&nbsp;</h1>

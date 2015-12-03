@@ -24,8 +24,14 @@ define(function(require){
                 minRoot: -10,
                 maxRoot: 10,
                 step1: {
+                    responseMessage: null,
                     responseStatus: null,
                     roots: null
+                },
+                step2: {
+                    responseMessage: null,
+                    responseStatus: null,
+                    factoring: null
                 }
             };
         },
@@ -96,17 +102,25 @@ define(function(require){
                         minRoot: this.minRoot,
                         maxRoot: this.maxRoot
                     };
-                    api.polynomial.getRoots(params, this.onRootsFetchComplete.bind(this));
+                    api.polynomial.getRoots(params, this.onRootsFetchComplete.bind(this, params));
                 }
             },
             onBurgerMenuClick: function() {
                 
                 this.isMenuOpened = !this.isMenuOpened;
             },
-            onRootsFetchComplete: function(response) {
+            onFactoringFetchComplete: function(response) {
+                
+                this.step2.responseStatus = response.status;
+                this.step2.responseMessage = response.message;
+                this.step2.factoring = (response.status === "success") ? response.result : null;
+            },
+            onRootsFetchComplete: function(params, response) {
                 
                 this.step1.responseStatus = response.status;
+                this.step1.responseMessage = response.message;
                 this.step1.roots = (response.status === "success") ? response.result : null;
+                api.polynomial.getFactoring(params, this.onFactoringFetchComplete.bind(this));
             },
             onStepButtonClick: function(step) {
                 
@@ -181,12 +195,21 @@ define(function(require){
             },
             currentState: function(val) {
                 
+                var element,
+                    messages;
+                
+                messages = [
+                    "Saisissez les coefficients du polynôme pour obtenir les racines entières."
+                ];
                 if (val === "step-1")
                 {
-                    this.typeWrite(this.$$.step1Title, [
-                        "Saisissez les coefficients du polynôme pour obtenir les racines entières."
-                    ], 1000);
+                    element = this.$$.step1Title;
                 }
+                else if (val === "step-2")
+                {
+                    element = this.$$.step2Title;
+                }
+                this.typeWrite(element, messages, 1000);
             }
         }
     });
