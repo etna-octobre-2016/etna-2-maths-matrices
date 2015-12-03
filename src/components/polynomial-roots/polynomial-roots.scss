@@ -223,6 +223,31 @@ $polynomialroots-menu-width: 300px;
     margin:     20px 20px 0 100px;
     padding:    80px;
 }
+.polynomialroots-content-section-video
+{
+    background: #EEEEEE;
+    padding:    20px;
+}
+.polynomialroots-content-section-video-iframe
+{
+    box-shadow:     0 0 8px rgba(0, 0, 0, 0.5);
+    display:        inline-block;
+    vertical-align: middle;
+}
+.polynomialroots-content-section-video-description
+{
+    display:        inline-block;
+    margin-left:    40px;
+    vertical-align: middle;
+}
+.polynomialroots-content-section-video-description-title
+{
+    color:          $color-genoa-blue;
+    font-family:    Orbitron, Arial, Helvetica, sans-serif;
+    font-size:      1.2rem;
+    font-weight:    normal;
+    text-rendering: geometricPrecision;
+}
 .polynomialroots-content-overlay
 {
     background:  rgba(#000000, 0.7);
