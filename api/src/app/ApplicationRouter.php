@@ -344,7 +344,27 @@ class ApplicationRouter
         }
         return new SilexResponse($app->serialize($response), 200, self::getResponseHeaders());
     }
-    
+    public static function characteristicPolynomial(SilexRequest $request, Application $app)
+    {
+        try
+        {
+            $coefficients = $request->request->get('coefficients');
+            $matrix = new Matrix();
+            $response = [
+                'status'  => 'success',
+                'result'  => $polynomial->getCharacteristicPolynomial($matrix)
+            ];
+        }
+        catch (PolynomialException $e)
+        {
+            $response = [
+                'status'  => 'error',
+                'message' => $e->getMessage()
+            ];
+        }
+        return new SilexResponse($app->serialize($response), 200, self::getResponseHeaders());
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // PRIVATE STATIC METHODS
     ////////////////////////////////////////////////////////////////////////////

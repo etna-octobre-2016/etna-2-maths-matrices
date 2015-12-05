@@ -80,7 +80,8 @@ class Application
                 'matrix/trace'          => 'ApplicationRouter::matrixTrace',
                 'matrix/transpose'      => 'ApplicationRouter::matrixTranspose',
                 'polynomial/roots'      => 'ApplicationRouter::polynomialRoots',
-                'polynomial/factoring'  => 'ApplicationRouter::polynomialFactoring'
+                'polynomial/factoring'  => 'ApplicationRouter::polynomialFactoring',
+                'polynomial/characteristic'  => 'ApplicationRouter::polynomialcharacteristic'
             ]
         ];
 

@@ -60,6 +60,11 @@ class Polynomial
         $res           = [];
         $sizeTabRoot   = count($arrayRoots);
 
+        // check if polynomial has root
+        if($sizeTabRoot<1){
+            throw new PolynomialException('This Polynomial has not root.');
+        }
+
         $root = $arrayRoots[0];
         if($root<0 && $sizeTabRoot>1){$root = $arrayRoots[1];}
 
@@ -88,7 +93,6 @@ class Polynomial
         $xtermCoef      = $quotient[1]/$quotient[0];
         $xtermHalfCoef  = ($xtermCoef / 2);
         $commonFactor   = pow( ($xtermHalfCoef),2 );
-        $x              = "x";
         $result         = [];
 
         // Polynome du 2nd degrés
@@ -114,7 +118,7 @@ class Polynomial
         return $result;
     }
 
-    // retourne la polynome factorisé sous forme de string
+    // retourne la polynome factorisé
     public function getResultFactorisation($minRoot,$maxRoot)
     {
         $quotient       = $this->getQuotients($minRoot,$maxRoot);
@@ -126,22 +130,44 @@ class Polynomial
         if ($this->isSquare == true)
         {
             $sign0 = "";
-            if($coefficients[0]<0){$sign0 = "-";}
-            $result = "(".$solutions[0]." ".$sign0." x)^3";
+            if($coefficients[0]<0)
+                {$sign0 = "-";}
+
+            $result = "(".$solutions[0]." ".$sign0." x)3";
         }
         else if($coefficients[1]==0){
+            $sign0 = "+";
             $sign1 = "-";
-            if($solutions[1]<0){$sign1="+";$solutions[1]=abs($solutions[1]);}
-            if($solutions[0]<0){$sign2="+";$solutions[0]=abs($solutions[0]);}
-            if($coefficients[0]<0){$sign0="-";}
-            $result = $sign0."( x ".$sign1." ".$solutions[1]." )^2 * ( ".$quotient[0]."x ".$sign2." ".$solutions[0]." )";
-        }
-        else{
+            $sign2 = "-";
+            if($solutions[1]<0)
+                {$sign1="+";$solutions[1]=abs($solutions[1]);}
+            if($solutions[0]<0)
+                {$sign2="+";$solutions[0]=abs($solutions[0]);}
+            if($coefficients[0]<0)
+                {$sign0="-";}
+
+            $result = $sign0."( x ".$sign1." ".$solutions[1]." )^2 ( ".$quotient[0]."x ".$sign2." ".$solutions[0]." )";
+        }else{
             if($coefficients[0]<0){$sign = "-";}
-            $result = $sign."( x - (".$quotient[0].") ) ( x - (".$solutions[0].") )( x - (".$solutions[1].") )";
+            $sign0 = "-";
+            $sign1 = "-";
+            $sign2 = "-";
+            if($quotient[0]<0)
+                {$sign0 = "+"; $quotient[0]  =abs($quotient[0]); }
+            if($solutions[0]<0)
+                {$sign1 = "+"; $solutions[0] =abs($solutions[0]);}
+            if($solutions[1]<0)
+                {$sign2 = "+"; $solutions[1] =abs($solutions[1]);}
+
+            $result = $sign."( x ".$sign0." ".$quotient[0]." ) ( x ".$sign1." ".$solutions[0].") ( x ".$sign2." ".$solutions[1]." )";
         }
 
         return $result;
+    }
+
+    public function getCharacteristicPolynomial($matrix){
+
+        return "";
     }
 
     //////////////////////////////////////////////////////////////////////////
